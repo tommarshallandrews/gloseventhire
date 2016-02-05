@@ -21,16 +21,16 @@ class China extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'Chinas';
+    protected $table = 'chinas';
 
 
 
-        public function Chinatypes()
+        public function chinatypes()
     {
        return $this->belongsTo('App\Chinatypes');
     }
 
-        public function Chinamakes()
+        public function chinamakes()
     {
        return $this->belongsTo('App\Chinamakes');
     }
