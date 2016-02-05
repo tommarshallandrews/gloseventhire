@@ -27,12 +27,12 @@ class China extends Model implements AuthenticatableContract,
 
         public function chinatypes()
     {
-       return $this->belongsTo('App\Chinatypes');
+       return $this->belongsTo('App\chinatypes');
     }
 
         public function chinamakes()
     {
-       return $this->belongsTo('App\Chinamakes');
+       return $this->belongsTo('App\chinamakes');
     }
 
 }
