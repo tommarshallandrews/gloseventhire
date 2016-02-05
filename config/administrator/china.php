@@ -4,15 +4,15 @@
 /**
  * Films model config
  */
-//dd(class_exists('Cutlery')); 
+//dd(class_exists('China')); 
 
 return array(
 
-	'title' => 'Cutlery',
+	'title' => 'China',
 
-	'single' => 'Cutlery',
+	'single' => 'China',
 
-	'model' => 'App\Cutlery',
+	'model' => 'App\China',
 
 	'form_width' => 400,
 
@@ -28,15 +28,15 @@ return array(
 			'type' => 'text',
 		),	
 
-        'cutlerytypes' => array(
+        'Chinatypes' => array(
             'title' => 'Type',
-            'relationship' => 'cutlerytypes',
+            'relationship' => 'Chinatypes',
             'select' => 'name',
         ),
             
-        'cutlerymakes' => array(
+        'Chinamakes' => array(
             'title' => 'Range',
-            'relationship' => 'cutlerymakes',
+            'relationship' => 'Chinamakes',
             'select' => 'name',
         ),
 
@@ -54,14 +54,14 @@ return array(
 			'type' => 'text',
 		),	
 		
-        'cutlerytypes' => array(
+        'Chinatypes' => array(
             'title' => 'Type',
             'type' => 'relationship',
             'name_field' => 'name',
         ),
 
 
-        'cutlerymakes' => array(
+        'Chinamakes' => array(
             'title' => 'Range',
             'type' => 'relationship',
             'name_field' => 'name',
@@ -75,7 +75,7 @@ return array(
 	 */
 	'edit_fields' => array(
 
-		'code' => array(
+		'Code' => array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
@@ -110,6 +110,20 @@ return array(
             'description' => 'Notes on usage etc',
         ),  	
 
+        'notes' => array(
+            'type' => 'textarea',
+            'title' => 'Notes / FAQ',
+            'limit' => 1000, //optional, defaults to no limit
+            'height' => 80, //optional, defaults to 100
+            'description' => 'Notes on usage etc',
+        ), 
+
+        'pack' => array(
+            'title' => 'Pack Quantity',
+            'type' => 'enum',
+            'options' => array('10','24','40'), //must be an array
+        ),
+
 
 		'image1' => array(
     		'title' => 'Image',
@@ -139,13 +153,13 @@ return array(
 		),
 
 
-		'cutlerytypes' => array(
+		'Chinatypes' => array(
     		'type' => 'relationship',
     		'title' => 'Type',
     		'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
     	),	
 
-         'cutlerymakes' => array(
+         'Chinamakes' => array(
             'title' => 'Type',
             'type' => 'relationship',
             'name_field' => 'name',
