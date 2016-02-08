@@ -21,7 +21,7 @@ class Chinamakes extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'Chinamakes';
+    protected $table = 'chinamakes';
 
 
 
