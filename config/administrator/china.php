@@ -75,7 +75,7 @@ return array(
 	 */
 	'edit_fields' => array(
 
-		'Code' => array(
+		'code' => array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
