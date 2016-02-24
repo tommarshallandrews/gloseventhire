@@ -4,7 +4,7 @@
 /**
  * Films model config
  */
-//dd(class_exists('Cutlery')); 
+//dd(class_exists('China')); 
 
 return array(
 
@@ -12,9 +12,14 @@ return array(
 
 	'single' => 'Cutlery',
 
-	'model' => 'App\Cutlery',
+	'model' => 'App\Product',
 
 	'form_width' => 400,
+
+    'query_filter'=> function($query)
+{
+        $query->whereType('Cutlery');
+},
 
 	/**
 	 * The display columns
@@ -28,17 +33,7 @@ return array(
 			'type' => 'text',
 		),	
 
-        'cutlerytypes' => array(
-            'title' => 'Type',
-            'relationship' => 'cutlerytypes',
-            'select' => 'name',
-        ),
-            
-        'cutlerymakes' => array(
-            'title' => 'Range',
-            'relationship' => 'cutlerymakes',
-            'select' => 'name',
-        ),
+
 
 
 	),
@@ -53,21 +48,16 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
-		
-        'cutlerytypes' => array(
+
+
+        'type' => array(
             'title' => 'Type',
-            'type' => 'relationship',
-            'name_field' => 'name',
+            'type' => 'enum',
+            'options' => array('China','Cutlery','40'), //must be an array
         ),
 
 
-        'cutlerymakes' => array(
-            'title' => 'Range',
-            'type' => 'relationship',
-            'name_field' => 'name',
-        ),
-
-
+		
 	),
 
 	/**
@@ -75,22 +65,36 @@ return array(
 	 */
 	'edit_fields' => array(
 
+
+        'type' => array(
+            'title' => 'Type',
+            'type' => 'enum',
+            'options' => array('China','Cutlery','40'), //must be an array
+        ),
+
+
 		'code' => array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
 
+        'price' => array(
+            'type' => 'number',
+            'title' => 'Price each (pence)',
+            'symbol' => '', //optional, defaults to ''
+            'decimals' => 0, //optional, defaults to 0h
+            'thousands_separator' => ',', //optional, defaults to ','
+            'decimal_separator' => '.', //optional, defaults to '.'
+        ),
 
 
+        'range' => array(
+            'type' => 'relationship',
+            'title' => 'China Range',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+        ),  
 
-		'price' => array(
-    		'type' => 'number',
-    		'title' => 'Price each (pence)',
-    		'symbol' => '', //optional, defaults to ''
-    		'decimals' => 0, //optional, defaults to 0h
-    		'thousands_separator' => ',', //optional, defaults to ','
-    		'decimal_separator' => '.', //optional, defaults to '.'
-		),	
+
 
 
          'description' => array(
@@ -109,6 +113,14 @@ return array(
             'height' => 80, //optional, defaults to 100
             'description' => 'Notes on usage etc',
         ),  	
+
+
+
+        'pack' => array(
+            'title' => 'Pack Quantity',
+            'type' => 'enum',
+            'options' => array('10','24','40'), //must be an array
+        ),
 
 
 		'image1' => array(
@@ -137,21 +149,6 @@ return array(
     		'length' => 20,
     		'size_limit' => 20,
 		),
-
-
-		'cutlerytypes' => array(
-    		'type' => 'relationship',
-    		'title' => 'Type',
-    		'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-    	),	
-
-         'cutlerymakes' => array(
-            'title' => 'Type',
-            'type' => 'relationship',
-            'name_field' => 'name',
-        ),
-
-
 
 
 

@@ -12,9 +12,14 @@ return array(
 
 	'single' => 'China',
 
-	'model' => 'App\China',
+	'model' => 'App\Product',
 
 	'form_width' => 400,
+
+    'query_filter'=> function($query)
+{
+        $query->whereCat_id(10);
+},
 
 	/**
 	 * The display columns
@@ -28,16 +33,16 @@ return array(
 			'type' => 'text',
 		),	
 
-        'Chinatypes' => array(
+         'type' => array(
+            'relationship' => 'type',
             'title' => 'Type',
-            'relationship' => 'Chinatypes',
-            'select' => 'name',
-        ),
-            
-        'Chinamakes' => array(
-            'title' => 'Range',
-            'relationship' => 'Chinamakes',
-            'select' => 'name',
+             'select' => "(:table).name",
+        ), 
+
+        'range' => array(
+            'relationship' => 'range',
+            'title' => 'Type',
+            'select' => "(:table).name",
         ),
 
 
@@ -53,21 +58,29 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
-		
-        'Chinatypes' => array(
+
+        'type' => array(
+            'type' => 'relationship',
             'title' => 'Type',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+            'options_filter'=> function($query)
+                {
+                    $query->where('cat_id', '=', 10)->orderby('name');
+                },
+        ), 
+
+        'range' => array(
             'type' => 'relationship',
-            'name_field' => 'name',
-        ),
+            'title' => 'China Range',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+            'options_filter'=> function($query)
+                {
+                    $query->where('cat_id', '=', 10)->orderby('name');
+                },
+        ), 
 
 
-        'Chinamakes' => array(
-            'title' => 'Range',
-            'type' => 'relationship',
-            'name_field' => 'name',
-        ),
-
-
+		
 	),
 
 	/**
@@ -75,22 +88,50 @@ return array(
 	 */
 	'edit_fields' => array(
 
+
+        'cat_id' => array(
+            'title' => 'Type',
+            'type' => 'text',
+            'value' => '10', //must be an array
+            'visible' => false,
+        ),
+
+
 		'code' => array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
 
+        'price' => array(
+            'type' => 'number',
+            'title' => 'Price each (pence)',
+            'symbol' => '', //optional, defaults to ''
+            'decimals' => 0, //optional, defaults to 0h
+            'thousands_separator' => ',', //optional, defaults to ','
+            'decimal_separator' => '.', //optional, defaults to '.'
+        ),
 
 
+        'type' => array(
+            'type' => 'relationship',
+            'title' => 'Type',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+            'options_filter'=> function($query)
+                {
+                    $query->where('cat_id', '=', 10)->orderby('name');
+                },
+        ),  
 
-		'price' => array(
-    		'type' => 'number',
-    		'title' => 'Price each (pence)',
-    		'symbol' => '', //optional, defaults to ''
-    		'decimals' => 0, //optional, defaults to 0h
-    		'thousands_separator' => ',', //optional, defaults to ','
-    		'decimal_separator' => '.', //optional, defaults to '.'
-		),	
+
+        'range' => array(
+            'type' => 'relationship',
+            'title' => 'China Range',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+            'options_filter'=> function($query)
+                {
+                    $query->where('cat_id', '=', 10)->orderby('name');
+                },
+        ), 
 
 
          'description' => array(
@@ -110,13 +151,7 @@ return array(
             'description' => 'Notes on usage etc',
         ),  	
 
-        'notes' => array(
-            'type' => 'textarea',
-            'title' => 'Notes / FAQ',
-            'limit' => 1000, //optional, defaults to no limit
-            'height' => 80, //optional, defaults to 100
-            'description' => 'Notes on usage etc',
-        ), 
+
 
         'pack' => array(
             'title' => 'Pack Quantity',
@@ -151,21 +186,6 @@ return array(
     		'length' => 20,
     		'size_limit' => 20,
 		),
-
-
-		'Chinatypes' => array(
-    		'type' => 'relationship',
-    		'title' => 'Type',
-    		'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-    	),	
-
-         'Chinamakes' => array(
-            'title' => 'Type',
-            'type' => 'relationship',
-            'name_field' => 'name',
-        ),
-
-
 
 
 

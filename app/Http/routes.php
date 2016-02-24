@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return "hello";
-});
+Route::resource('products', 'ProductsController');
+
 
 Route::get('/test', function () {
-    return "hello";
+    return View::make('results');
 });
 
+Route::get('/content', function () {
+    return View::make('content');
+});
 
 Route::controller('users', 'UsersController', array('getLogin' => 'users.login', 'getResend' => 'users.resend'));
 

@@ -2,6 +2,11 @@
 
 return [
 
+    //SITE SETTINGS
+    'companyName' => 'Gloucester Event Hire',
+
+    
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
