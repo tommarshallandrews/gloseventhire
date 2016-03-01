@@ -26,12 +26,22 @@ return array(
 	 */
 	'columns' => array(
 
+        'image1' => array(
+        'title' => 'Image',
+        'output' => '<img src=' . public_path() . '/images/(:value) height="30px"/>',
+        ),
+
 
 
 		'code' => array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
+
+        'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),  
 
          'type' => array(
             'relationship' => 'type',
@@ -58,6 +68,11 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
+
+        'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),  
 
         'type' => array(
             'type' => 'relationship',
@@ -101,6 +116,12 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
+        
+        'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),
+
 
         'price' => array(
             'type' => 'number',
@@ -125,7 +146,7 @@ return array(
 
         'range' => array(
             'type' => 'relationship',
-            'title' => 'China Range',
+            'title' => 'Range',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
@@ -156,7 +177,7 @@ return array(
         'pack' => array(
             'title' => 'Pack Quantity',
             'type' => 'enum',
-            'options' => array('10','24','40'), //must be an array
+            'options' => array('single','10','24','40'), //must be an array
         ),
 
 

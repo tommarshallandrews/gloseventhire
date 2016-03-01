@@ -8,9 +8,9 @@
 
 return array(
 
-	'title' => 'Cutlery',
+	'title' => 'Kitchen Equipment',
 
-	'single' => 'Cutlery',
+	'single' => 'Kitchen Equipment',
 
 	'model' => 'App\Product',
 
@@ -18,7 +18,7 @@ return array(
 
     'query_filter'=> function($query)
 {
-        $query->whereCat_id(20);
+        $query->whereCat_id(70);
 },
 
 	/**
@@ -32,11 +32,6 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
-
-        'name' => array(
-            'title' => 'Name',
-            'type' => 'text',
-        ),
 
          'type' => array(
             'relationship' => 'type',
@@ -64,19 +59,13 @@ return array(
 			'type' => 'text',
 		),	
 
-        'name' => array(
-            'title' => 'Name',
-            'type' => 'text',
-        ),
-
-
         'type' => array(
             'type' => 'relationship',
             'title' => 'Type',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 20)->orderby('name');
+                    $query->where('cat_id', '=', 70)->orderby('name');
                 },
         ), 
 
@@ -86,7 +75,7 @@ return array(
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 20)->orderby('name');
+                    $query->where('cat_id', '=', 70)->orderby('name');
                 },
         ), 
 
@@ -103,7 +92,7 @@ return array(
         'cat_id' => array(
             'title' => 'Type',
             'type' => 'text',
-            'value' => '20', //must be an array
+            'value' => '70', //must be an array
             'visible' => false,
         ),
 
@@ -129,7 +118,7 @@ return array(
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 20)->orderby('name');
+                    $query->where('cat_id', '=', 70)->orderby('name');
                 },
         ),  
 
@@ -140,7 +129,18 @@ return array(
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 20)->orderby('name');
+                    $query->where('cat_id', '=', 70)->orderby('name');
+                },
+        ), 
+
+
+        'colour' => array(
+            'type' => 'relationship',
+            'title' => 'Colour',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+            'options_filter'=> function($query)
+                {
+                    $query->where('cat_id', '=', 70)->orderby('name');
                 },
         ), 
 
@@ -162,13 +162,6 @@ return array(
             'description' => 'Notes on usage etc',
         ),  	
 
-
-
-        'pack' => array(
-            'title' => 'Pack Quantity',
-            'type' => 'enum',
-            'options' => array('10','24','40'), //must be an array
-        ),
 
 
 		'image1' => array(

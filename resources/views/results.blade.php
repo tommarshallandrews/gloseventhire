@@ -52,91 +52,39 @@
           <!-- Filter -->
           <form class="shop__filter">
 
-            <!-- Price -->
-            <h3 class="headline">
-              <span>Price</span>
-            </h3>
-            <div class="radio">
-              <input type="radio" name="shop-filter__price" id="shop-filter-price_1" value="" checked>
-              <label for="shop-filter-price_1">Under $25</label>
-            </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__price" id="shop-filter-price_2" value="">
-              <label for="shop-filter-price_2">$25 to $50</label>
-            </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__price" id="shop-filter-price_3" value="">
-              <label for="shop-filter-price_3">$50 to $100</label>
-            </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__price" id="shop-filter-price_4" value="specify">
-              <label for="shop-filter-price_4">Other (specify)</label>
-            </div>
-            <div class="form-group shop-filter__price">
-              <div class="row">
-                <div class="col-xs-4">
-                  <label for="shop-filter-price_from" class="sr-only"></label>
-                  <input id="shop-filter-price_from" type="number" min="0" class="form-control" placeholder="From" disabled>
-                </div>
-                <div class="col-xs-4">
-                  <label for="shop-filter-price_to" class="sr-only"></label>
-                  <input id="shop-filter-price_to" type="number" min="0" class="form-control" placeholder="To" disabled>
-                </div>
-                <div class="col-xs-4">
-                  <button type="submit" class="btn btn-block btn-default" disabled>Go</button>
-                </div>
-              </div>
-            </div>
+ 
 
             <!-- Checkboxes -->
             <h3 class="headline">
-              <span>Brand</span>
+              <span>Types</span>
             </h3>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="shop-filter-checkbox_1" checked>
-              <label for="shop-filter-checkbox_1">Adidas</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="shop-filter-checkbox_2">
-              <label for="shop-filter-checkbox_2">Calvin Klein</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="shop-filter-checkbox_3">
-              <label for="shop-filter-checkbox_3">Columbia</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="shop-filter-checkbox_4">
-              <label for="shop-filter-checkbox_4">Tommy Hilfiger</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" value="" id="shop-filter-checkbox_5">
-              <label for="shop-filter-checkbox_5">Not specified</label>
-            </div>
 
-            <!-- Radios -->
+            <div class="checkbox">
+              <input type="checkbox" value="" id="shop-filter-checkbox_1" >
+              <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/0/{{$rangeSlug}}">[All]</a></label>
+            </div>
+            @foreach($types as $type)
+            <div class="checkbox">
+              <input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($typeSlug == $type->slug){ echo("checked"); }  ?>>
+              <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$type->slug}}/{{$rangeSlug}}">{{$type->name}}</a></label>
+            </div>
+            @endforeach
+
             <h3 class="headline">
-              <span>Material</span>
+              <span>Range</span>
             </h3>
-            <div class="radio">
-              <input type="radio" name="shop-filter__radio" id="shop-filter-radio_1" value="" checked>
-              <label for="shop-filter-radio_1">100% Cotton</label>
+            <div class="checkbox">
+              <input type="checkbox" value="" id="shop-filter-checkbox_1">
+              <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$typeSlug}}/0">[All]</a></label>
             </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__radio" id="shop-filter-radio_2" value="">
-              <label for="shop-filter-radio_2">Bamboo</label>
+            @foreach($ranges as $range)
+            <div class="checkbox">
+              <input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($rangeSlug == $range->slug){ echo("checked"); }  ?>>
+              <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$typeSlug}}/{{$range->slug}}">{{$range->name}}</a></label>
             </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__radio" id="shop-filter-radio_3" value="">
-              <label for="shop-filter-radio_3">Leather</label>
-            </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__radio" id="shop-filter-radio_4" value="">
-              <label for="shop-filter-radio_4">Polyester</label>
-            </div>
-            <div class="radio">
-              <input type="radio" name="shop-filter__radio" id="shop-filter-radio_5" value="">
-              <label for="shop-filter-radio_5">Not specified</label>
-            </div>
+            @endforeach
+
+          
 
             <!-- Colors -->
             <h3 class="headline">
@@ -178,148 +126,36 @@
           </ul>
 
           <div class="row">
+            
+      @foreach($results as $result)
             <div class="col-sm-6 col-md-4">
-
               <div class="shop__thumb">
                 <a href="#">
-
                   <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_1.jpg" class="img-responsive" alt="...">
+                    <img src="http://madigital.co.uk/images/{{$result->image1}}" class="img-responsive" alt="...">
                   </div>
-
                   <h5 class="shop-thumb__title">
-                    Product Title
+                    {{$result->name}}<br>
+                    ({{$result->range->name}})
                   </h5>
-
                   <div class="shop-thumb__price">
-                    <span class="shop-thumb-price_old">$80.99</span>
-                    <span class="shop-thumb-price_new">$59.99</span>
+                    <span class="shop-thumb-price_new">{{$result->price}}p each</span>
                   </div>
-
                 </a>
               </div>
-
             </div>
-            <div class="col-sm-6 col-md-4">
+        @endforeach
 
-              <div class="shop__thumb">
-                <a href="#">
 
-                  <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_2.jpg" class="img-responsive" alt="...">
-                  </div>
-
-                  <h5 class="shop-thumb__title">
-                    Product Title
-                  </h5>
-
-                  <div class="shop-thumb__price">
-                    $59.99
-                  </div>
-
-                </a>
-              </div>
-
-            </div>
-            <div class="col-sm-6 col-md-4">
-
-              <div class="shop__thumb">
-                <a href="#">
-
-                  <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_3.jpg" class="img-responsive" alt="...">
-                  </div>
-
-                  <h5 class="shop-thumb__title">
-                    Product Title
-                  </h5>
-
-                  <div class="shop-thumb__price">
-                    $59.99
-                  </div>
-
-                </a>
-              </div>
-
-            </div>
-            <div class="col-sm-6 col-md-4">
-
-              <div class="shop__thumb">
-                <a href="#">
-
-                  <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_4.jpg" class="img-responsive" alt="...">
-                  </div>
-
-                  <h5 class="shop-thumb__title">
-                    Product Title
-                  </h5>
-
-                  <div class="shop-thumb__price">
-                    $59.99
-                  </div>
-
-                </a>
-              </div>
-
-            </div>
-            <div class="col-sm-6 col-md-4">
-
-              <div class="shop__thumb">
-                <a href="#">
-
-                  <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_5.jpg" class="img-responsive" alt="...">
-                  </div>
-
-                  <h5 class="shop-thumb__title">
-                    Product Title
-                  </h5>
-
-                  <div class="shop-thumb__price">
-                    $59.99
-                  </div>
-
-                </a>
-              </div>
-
-            </div>
-            <div class="col-sm-6 col-md-4">
-
-              <div class="shop__thumb">
-                <a href="#">
-
-                  <div class="shop-thumb__img">
-                    <img src="assets/img/shop-item_6.jpg" class="img-responsive" alt="...">
-                  </div>
-
-                  <h5 class="shop-thumb__title">
-                    Product Title
-                  </h5>
-
-                  <div class="shop-thumb__price">
-                    $59.99
-                  </div>
-
-                </a>
-              </div>
-
-            </div>    
           </div> <!-- / .row -->
 
           <!-- Pagination -->
           <div class="row">
             <div class="col-sm-12">
 
-              <ul class="pagination pull-right">
-                <li class="disabled"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
+
+              @include('pagination.default', ['paginator' => $results])
+
               
             </div>
           </div> <!-- / .row -->

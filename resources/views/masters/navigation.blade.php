@@ -14,7 +14,7 @@
           
           <!-- Navbar brand -->
           <a class="navbar-brand" href="index.html">
-            <i class="fa fa-paperclip"></i> Paperclip
+            <i class="fa fa-paperclip"></i> Glos Event Hire
           </a>
 
         </div> <!-- / .navbar-header -->
@@ -40,54 +40,21 @@
                 <div class="row">
                   <div class="row-sm-height">
 
-                    <div class="col-sm-3 col-sm-height col-sm-top">
+                  @foreach($cats as $cat)
+                     <div class="col-sm-3 col-sm-height col-sm-top">
                       <div class="inside">
-                        <h4 class="mega-menu__heading">Pages</h4>
+                        <h4 class="mega-menu__heading"><a href="{{ url('/products') }}/{{$cat->slug}}/0/0">{{$cat->name}}</a></h4>
                         <ul class="mega-menu__menu">
-                          <li><a href="about-us.html">About Us: Default</a></li>
-                          <li><a href="about-us_option-1.html">About Us: Option 1</a></li>
-                          <li><a href="coming-soon.html">Coming Soon</a></li>
-                          <li><a href="contact-us.html">Contact Us: Default</a></li>
-                          <li><a href="contact-us_option-1.html">Contact Us: Option 1</a></li>
+                                 @foreach($cat->types as $type)
+                                    <li><a href="{{ url('/products') }}/{{$cat->slug}}/{{$type->slug}}/0">{{$type->name}}</a></li>
+                                @endforeach
                         </ul>
                       </div>
                     </div>
-                    <div class="col-sm-3 col-sm-height col-sm-top">
-                      <div class="inside">
-                        <h4 class="mega-menu__heading">Pages</h4>
-                        <ul class="mega-menu__menu">
-                          <li><a href="help-center.html">Help Center</a></li>
-                          <li><a href="help-item.html">Help Item</a></li>
-                          <li><a href="pricing.html">Pricing: Boxes</a></li>
-                          <li><a href="pricing_joint.html">Pricing: Joint Boxes</a></li>
-                          <li><a href="pricing_table.html">Pricing: Table</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-height col-sm-top">
-                      <div class="inside">
-                        <h4 class="mega-menu__heading">Pages</h4>
-                        <ul class="mega-menu__menu">
-                          <li><a href="resume.html">Resume</a></li>
-                          <li><a href="search-results.html">Search Results</a></li>
-                          <li><a href="services.html">Services</a></li>
-                          <li><a href="sign-in.html">Sign In</a></li>
-                          <li><a href="sign-up.html">Sign Up</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-height col-sm-top">
-                      <div class="inside">
-                        <h4 class="mega-menu__heading">Pages</h4>
-                        <ul class="mega-menu__menu">
-                          <li><a href="timeline_center.html">Timeline: Center</a></li>
-                          <li><a href="timeline_left.html">Timeline: Left</a></li>
-                          <li><a href="Timeline_right.html">Timeline: Right</a></li>
-                          <li><a href="user-profile.html">User Profile</a></li>
-                          <li><a href="error-page.html">404 Error Page</a></li>
-                        </ul>
-                      </div>
-                    </div>
+                  @endforeach
+
+
+
 
                   </div> <!-- / .row-height -->
                 </div> <!-- / .row -->

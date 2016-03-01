@@ -1,5 +1,5 @@
 <?php
-
+use App\Cat;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,7 +11,28 @@
 |
 */
 
-Route::resource('products', 'ProductsController');
+Route::get('/products/{catagory}/{type}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
+
+
+View::composer('masters.navigation', function($view)
+{   
+
+if (Auth::check()){
+    $user_id = Auth::user()->id;
+    } else {
+    $user_id = 0;
+    }
+
+    //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
+    $type = Cat::with('types')->orderby('name')->get(); 
+    //dd($cat);
+    $view->with('cats',$type);
+
+
+
+});
+
+//Route::resource('products', 'ProductsController');
 
 
 Route::get('/test', function () {

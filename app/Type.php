@@ -31,4 +31,10 @@ class Type extends Model implements AuthenticatableContract,
       return $this->hasMany('App\Product');
     }
 
+        public function Cats()
+    {
+       //return $this->hasMany('App\Product');
+      return $this->belongsTo('App\Cat');
+    }
+
 }

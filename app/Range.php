@@ -31,4 +31,10 @@ class Range extends Model implements AuthenticatableContract,
       return $this->belongsToMany('App\Product');
     }
 
+    public function Cats()
+    {
+       //return $this->hasMany('App\Product');
+      return $this->belongsTo('App\Cat');
+    }
+
 }
