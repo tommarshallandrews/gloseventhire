@@ -112,6 +112,11 @@ return array(
 			'type' => 'text',
 		),	
 
+        'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),
+        
         'price' => array(
             'type' => 'number',
             'title' => 'Price each (pence)',
