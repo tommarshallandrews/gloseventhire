@@ -32,9 +32,13 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function details($id)
     {
-        //
+
+         $details = Product::with('range','type')
+        ->find($id);
+        return View::make('details', compact('details'));
+        return $details;
     }
 
     /**

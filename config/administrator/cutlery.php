@@ -171,38 +171,48 @@ return array(
 
         'pack' => array(
             'title' => 'Pack Quantity',
-            'type' => 'enum',
-            'options' => array('10','24','40'), //must be an array
+            'type' => 'textarea',
+            'limit' => 1000, //optional, defaults to no limit
+            'height' => 80, //optional, defaults to 100
+            'description' => 'Pack size description',
         ),
 
 
-		'image1' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+	       'image1' => array(
+            'title' => 'Image 1',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
-		'image2' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+        'image2' => array(
+            'title' => 'Image 2',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
-		'image3' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+        'image3' => array(
+            'title' => 'Image 3',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
+        'image4' => array(
+            'title' => 'Image 4',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
 
 

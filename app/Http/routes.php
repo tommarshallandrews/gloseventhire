@@ -1,5 +1,6 @@
 <?php
 use App\Cat;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,9 +12,22 @@ use App\Cat;
 |
 */
 
+//products
 Route::get('/products/{catagory}/{type}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
 
+Route::get('/products/details/{id}', [ 'as' => 'products.details', 'uses' => 'ProductsController@details' ]);
 
+
+
+//orders
+Route::get('/orders', [ 'as' => 'orders.index', 'uses' => 'OrdersController@index' ]);
+
+Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
+
+Route::post('/orders/edit', [ 'as' => 'orders.edit', 'uses' => 'OrdersController@edit' ]);
+
+
+//navigation
 View::composer('masters.navigation', function($view)
 {   
 
@@ -25,8 +39,9 @@ if (Auth::check()){
 
     //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
     $type = Cat::with('types')->orderby('name')->get(); 
+    $order = 28;
     //dd($cat);
-    $view->with('cats',$type);
+    $view->with(['cats'=> $type , 'order' => $order]);
 
 
 

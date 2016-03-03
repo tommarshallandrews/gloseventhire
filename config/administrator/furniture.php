@@ -169,32 +169,41 @@ return array(
 
 
 
-		'image1' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+		      'image1' => array(
+            'title' => 'Image 1',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
-		'image2' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+        'image2' => array(
+            'title' => 'Image 2',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
-		'image3' => array(
-    		'title' => 'Image',
-    		'type' => 'image',
-    		'location' => public_path() . '/images/',
-    		'naming' => 'keep',
-    		'length' => 20,
-    		'size_limit' => 20,
-		),
+        'image3' => array(
+            'title' => 'Image 3',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
+
+        'image4' => array(
+            'title' => 'Image 4',
+            'type' => 'image',
+            'location' => public_path() . '/images/',
+            'naming' => 'keep',
+            'length' => 20,
+            'size_limit' => 20,
+        ),
 
 
 

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class Product extends Model implements AuthenticatableContract,
+class Order extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
@@ -21,35 +21,13 @@ class Product extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'orders';
 
 
-    public function orders() {
-    return $this -> belongsToMany('App\Order', 'order_product', 'product_id', 'order_id') -> withPivot('id','quantity');
+        public function product() {
+
+    return $this -> belongsToMany('App\Product', 'order_product', 'order_id', 'product_id') -> withPivot('id','quantity');
     }
-    
-
-    public function cats()
-    {
-       return $this->belongsTo('App\Cat');
-    }
-
-
-    public function range()
-    {
-       //return $this->belongsTo('App\Option');
-       return $this->belongsTo('App\Range');
-    }
-
-
-    public function type()
-    {
-       //return $this->belongsTo('App\Option');
-       return $this->belongsTo('App\Type');
-    }
-
-
-
 
 
 

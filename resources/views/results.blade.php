@@ -132,10 +132,12 @@
               <div class="shop__thumb">
                 <a href="#">
                   <div class="shop-thumb__img">
+                    <a href="{{ url('/products/details') }}/{{$result->id}}">
                     <img src="http://madigital.co.uk/images/{{$result->image1}}" class="img-responsive" alt="...">
+                    </a>
                   </div>
                   <h5 class="shop-thumb__title">
-                    {{$result->name}}<br>
+                    <a href="{{ url('/products/details') }}/{{$result->id}}">{{$result->name}}</a><br>
                     ({{$result->range->name}})
                   </h5>
                   <div class="shop-thumb__price">
