@@ -17,8 +17,15 @@
     <!-- CSS Global -->
     <link href="{{URL::to('/')}}/css/styles.css" rel="stylesheet">
 
+        <!-- CSS gLOS -->
+    <link href="{{URL::to('/')}}/css/glos.css" rel="stylesheet">
+
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
   </head>
 

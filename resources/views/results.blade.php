@@ -133,7 +133,7 @@
                 <a href="#">
                   <div class="shop-thumb__img">
                     <a href="{{ url('/products/details') }}/{{$result->id}}">
-                    <img src="http://madigital.co.uk/images/{{$result->image1}}" class="img-responsive" alt="...">
+                    <img src="http://madigital.co.uk/images/{{$result->image1}}"  class="img-responsive productThumb" alt="...">
                     </a>
                   </div>
                   <h5 class="shop-thumb__title">

@@ -13,7 +13,8 @@
           
           <!-- Navbar brand -->
           <a class="navbar-brand" href="index.html">
-            <i class="fa fa-paperclip"></i> Gloucester Event Hire
+            <i class="fa fa-paperclip"></i> Gloucester Event Hire  
+
           </a>
 
         </div> <!-- / .navbar-header -->
@@ -21,24 +22,24 @@
           <ul class="nav navbar-nav navbar-right">
 
             <!-- General links -->
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
             </li>
 
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us</a>
             </li>
 
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">FAQ</a>
             </li>
 
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us</a>
             </li>
 
 
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="{{ url('/orders') }}" class="dropdown-toggle" data-toggle="dropdown">My orders</a>
             </li>
 
@@ -134,20 +135,20 @@
               </div> 
            
             </li>
-                <!-- / .navbar-search -->
-
-
+            <!-- / .navbar-search -->
 
 
             <!-- Shopping cart -->
             <li class="navbar__shopping-cart">
-              <a href="{{ url('/quote') }}/{{ $order }}">
+              <a href="{{ url('/quote') }}/{{ $getOrder->order() }}">
                 <i class="fa fa-shopping-cart"></i> 
-                <span class="navbar__shopping-cart-items">3 <span class="visible-xs-inline">items</span></span>
+                <span class="navbar__shopping-cart-items">{{ $getOrder->orderCount() }}<span class="visible-xs-inline">items</span></span>
               </a>
             </li>
 
           </ul> <!-- / .nav -->
+
+
 
           <!-- Navbar Search (mobile) -->
           <form class="navbar-form visible-xs">

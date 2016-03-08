@@ -39,10 +39,37 @@
     <script src="{{URL::to('/')}}/js/bootstrap.min.js"></script>
     
     <!-- JS Plugins -->
-    <script src="{{URL::to('/')}}/js/scrolltopcontrol.js"></script>
+    <script src="{{URL::to('/')}}/js/scrolltopcontrols.js"></script>
     
     <!-- JS Custom -->
     <script src="{{URL::to('/')}}/js/custom.js"></script>
+
+
+
+
+      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yyyy'});
+    $( "#datepicker2" ).datepicker({dateFormat: 'dd/mm/yyyy'});
+  });
+  </script>
+
+
+ <script>
+  $(function() {
+    $(".productThumb")
+        .mouseover(function() { 
+            var src = $(this).attr("src").replace("A.jpeg", "B.jpeg");
+            $(this).attr("src", src);
+        })
+        .mouseout(function() {
+            var src = $(this).attr("src").replace("B.jpeg", "A.jpeg");
+            $(this).attr("src", src);
+        });
+});
+</script>
 
 
   </body>

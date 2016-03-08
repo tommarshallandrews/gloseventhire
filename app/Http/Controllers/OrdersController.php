@@ -74,19 +74,28 @@ class OrdersController extends Controller
 
         //
         $order = Order::with(['product' => function($query) {
-                $query->with(['range', 'type']);
+                $query->with(['range', 'type'])->orderby('name');
                 }])
         ->where('user_id', '=',  Auth::user()->id, 'and')
         ->where('id', $order_id)
+        //->orderby('product->name')
         ->first();
 
         if(!$order){
             return "nothing here!";
         }
+
+                //calculations
+            $productcost = 0;
+            foreach($order->product as $products){
+            $productcost = $productcost + ($products->price * $products->pivot->quantity);
+            }
+
+            //return $productcost;
         
         Session::put('order', $order->id);
         //return $order;
-        return View::make('quote', compact('order'));
+        return View::make('quote', compact('order', 'productcost'));
         //return View::make('results');
     }
 
@@ -133,11 +142,13 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit()
-    {
+    {   
+
             //check for integer in quantity
         if (!(Input::get('quantity') > 0 && Input::get('quantity') < 1000)) {
             Session::flash('type', "danger");
             Session::flash('message', "Please enter a quantity between 1 and 1000");
+            return "nogo";
             return Redirect::back();
         }
 
@@ -151,26 +162,46 @@ class OrdersController extends Controller
         } 
 
         if (!Session::has('order')){
-            //create new make with seqeenced name and slug 
+            //create new order
             $order = new Order;
             $order->user_id = Auth::user()->id;
             $order->save();
             Session::put('order', $order->id);
+            Session::put('orderCount', 0);
         }
+
+        //return Session::has('order');
 
        $quantity = Input::get('quantity');
        $product_id = Input::get('product_id');
+       $action_id = Input::get('action_id');
 
-    $order_id = Order::find(Session::get('order'));
+    $order = Order::with('product')
+    ->find(Session::get('order'));
+
+    //return $order;
+
+    Session::put('orderCount', count($order->product) + 1);
 
     //return $product_id;
-    $order_id->product()->detach($product_id);
-    $order_id->product()->attach($product_id, ['quantity' => $quantity]); 
+    $order->product()->detach($product_id);
+    $order->product()->attach($product_id, ['quantity' => $quantity]); 
 
     //push productto order session
     //Session::put('order.product', $product_id);
+    if($action_id == 'add'){
+     //  return $action_id;
+    }
 
-    //return(Session::get('order.product'));
+
+   
+    if($action_id == 'update'){
+    return redirect()->route('orders.show', [$order->id]);
+       return $action_id;
+    } 
+
+
+
 
     Session::flash('message', $quantity . " of these have been added to your quote");
     Session::flash('type', "success");
@@ -197,7 +228,15 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function newquote($id)
+    {
+        Session::forget('order');
+        return View::make('index');
+    }
+
+
+        public function destroy($id)
     {
         //
     }

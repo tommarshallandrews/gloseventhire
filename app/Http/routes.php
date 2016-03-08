@@ -11,6 +11,10 @@ use App\Cat;
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function () {
+    return View::make('index');
+});
+
 
 //products
 Route::get('/products/{catagory}/{type}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
@@ -24,10 +28,16 @@ Route::get('/orders', [ 'as' => 'orders.index', 'uses' => 'OrdersController@inde
 
 Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
 
+Route::get('/quote/new', [ 'as' => 'orders.newquote', 'uses' => 'OrdersController@newquote' ]);
+
 Route::post('/orders/edit', [ 'as' => 'orders.edit', 'uses' => 'OrdersController@edit' ]);
 
 
 //navigation
+
+
+//Route::get('/topNavigation', [ 'as' => 'navigation.index', 'uses' => 'NavigationController@index' ]);
+
 View::composer('masters.navigation', function($view)
 {   
 
@@ -39,9 +49,8 @@ if (Auth::check()){
 
     //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
     $type = Cat::with('types')->orderby('name')->get(); 
-    $order = 28;
     //dd($cat);
-    $view->with(['cats'=> $type , 'order' => $order]);
+    $view->with(['cats'=> $type, 'getOrder' => app('App\getOrder')]);
 
 
 

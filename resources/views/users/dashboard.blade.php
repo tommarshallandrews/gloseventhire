@@ -38,6 +38,9 @@
  @endforeach
 <!-- end list open makes  -->
 
+
+<a href="{{ url('/quote/new') }}/{{ $order->id }}"> New quote </a>
+
 </div>    
 
 

@@ -1,0 +1,36 @@
+
+.quantity_form {
+    width: 30px;
+    height: 25px;
+    padding: 2px 2px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+
+.spacer10 {
+  padding-top : 10px;
+}
+
+.spacer20 {
+  padding-top : 20px;
+}
+
+
+.grey {
+  color : #A7A7A7;
+}
+
+
+.black {
+  color : #000;
+}
+
+.bold {
+  font-weight: bold;
+}

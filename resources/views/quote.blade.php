@@ -5,26 +5,6 @@
     
 
 
-    <!-- TOPIC HEADER
-    ================================================== -->
-    <div class="topic">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <h3>Shop: Category</h3>
-          </div>
-          <div class="col-sm-8">
-            <ol class="breadcrumb pull-right hidden-xs">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index_shop.html">Shop</a></li>
-              <li class="active">Category</li>
-            </ol>
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .container -->
-    </div> <!-- / .topic -->
-
-
  
  <!-- MAIN CONTENT
     ================================================== -->
@@ -35,7 +15,7 @@
             <div class="checkout__block">
 
               <h3 class="headline">
-                <span>Cart</span>
+                <span>Your requirements</span>
               </h3>
 
 
@@ -44,17 +24,26 @@
 
               <div class="checkout-cart__item">
                 <div class="checkout-cart-item__img">
-                  <img src="assets/img/shop-item_1.jpg" class="img-responsive" alt="...">
+                  <img src="http://madigital.co.uk/images/{{$product->image1}}" class="img-responsive" alt="...">
                 </div>
                 <div class="checkout-cart-item__content">
                   <h5 class="checkout-cart-item__heading">
-                    {{ $product->name }}
+                    {{ $product->name }} - {{ $product->range->name }}
                   </h5>
                   <div class="checkout-cart-item__footer">
-                    <div class="input_qty input_qty_sm pull-right">
-                      <input type="text">{{ $product->pivot->quantity * $product->price}}p
+                    <div class="input_qty input_qty_sm pull-right bold">
+                      £{{ number_format($product->pivot->quantity * $product->price / 100, 2)}}
                     </div>
-                    <div class="checkout-cart-item__price pull-left">{{ $product->price }}p x {{ $product->pivot->quantity }}</div>
+                    <div class="checkout-cart-item__price pull-left">
+                      {!! Form::open(array('url' => 'orders/edit', 'method' => 'post', 'class' => 'form-inline')) !!}
+                      £{{ number_format($product->price / 100, 2) }} x <input type="text" class="quantity_form" name="quantity" id="quantity" value="{{ $product->pivot->quantity }}">
+                      <input type="hidden" name="action_id" value="update">
+                      <button type="submit" class="btn btn-default btn-xs">update</button>
+                      <input type="hidden" name="product_id" value="{{$product->id}}">
+
+                    </form>
+
+                    </div>
                     <div class="clearfix"></div>
                   </div>
                 </div>
@@ -67,50 +56,75 @@
 
 
 
-
             </div>
           </div>
           <div class="col-sm-4">
             <div class="checkout__block">
               
               <h3 class="headline">
-                <span>Shipping</span>
+                <span>Delivery</span>
               </h3>
+              <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect you order form out Gloucester warehouse.</p>
 
               <div class="form-group">
-                <select name="checkout-shipping__country" id="checkout-shipping__country" class="form-control">
-                  <option value="Australia" selected>Australia</option>
-                  <option value="Belgium">Belgium</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Denmark">Denmark</option>
-                  <option value="France">France</option>
-                  <option value="Gemany">Gemany</option>
-                </select>
+                <input type="text" id="checkout-account__first-name" placeholder="Enter postcode" class="form-control">
               </div>
+
+              <a href="#" class="btn btn-secondary btn-xs">Calculate delivery</a>
+              
+
+
+              <h3 class="headline">
+                <span>Hire Period</span>
+              </h3>
+              <p>Please select you prefered hire start date</p>
+
+
+              <div class="input-group date" id="datetimepicker1">
+                    <input type="text" name="startDate" class="form-control" id="datepicker1" placeholder="Start date">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </div>
+
+                <div class="spacer10"></div>
+
+              <div class="input-group date" id="datetimepicker1">
+                    <input type="text" name="endDate" class="form-control" id="datepicker2" placeholder="End date">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                </div>
+<div class="spacer10"></div>
+              <a href="#" class="btn btn-secondary btn-xs">Submit prefered dates</a>
+
+
+               <h3 class="headline">
+                <span>Return</span>
+              </h3>
+              <p>Stock is expected tobe returned clean. Id you would like us to clean it we chargs an additional 20%</p>
               <div class="radio">
                 <input type="radio" name="checkout__delivery" id="checkout-delivery__standart" checked>
-                <label for="checkout-delivery__standart">Standart 10-15 days $10</label>
+                <label for="checkout-delivery__standart">Return Clean</label>
               </div>
               <div class="radio">
                 <input type="radio" name="checkout__delivery" id="checkout-delivery__express">
-                <label for="checkout-delivery__express">Express 2-5 days $30</label>
+                <label for="checkout-delivery__express">Return Dirty (additional 20%)</label>
               </div>
+
+              <a href="#" class="btn btn-secondary btn-xs">Update return condition</a>
+
 
             </div>
+
+
+
+
+
             <div class="checkout__block">
               
-              <h3 class="headline">
-                <span>Payment</span>
-              </h3>
 
-              <div class="radio">
-                <input type="radio" name="checkout__payment" id="checkout-payment__credit-card" checked>
-                <label for="checkout-payment__credit-card">Credit card</label>
-              </div>
-              <div class="radio">
-                <input type="radio" name="checkout__payment" id="checkout-payment__paypal">
-                <label for="checkout-payment__paypal">Paypal</label>
-              </div>
+
 
             </div>
           </div>
@@ -118,7 +132,7 @@
             <div class="checkout__block">
               
               <h3 class="headline">
-                <span>Account</span>
+                <span>Your details</span>
               </h3>
 
               <div class="form-group">
@@ -150,38 +164,52 @@
               </div>
 
             </div>
+
+
+
+
+
+
+              <h3 class="headline">
+                <span>Your Quote</span>
+              </h3>
+
+              <p>This is indicitave and subject to confirmation</p>
+
+
+              <h4 class="checkout-total__heading grey">Product Total:</h4>
+              <div class="checkout-total__price grey">£{{ number_format($productcost/100, 2) }}</div>
+              <div class="clearfix"></div>
+
+
+
+              <h4 class="checkout-total__heading grey">VAT:</h4>
+              <div class="checkout-total__price grey">£{{ number_format($productcost/500, 2) }}</div>
+              <div class="clearfix"></div>
+
+
+              <h4 class="checkout-total__heading grey">Delivery:</h4>
+              <div class="checkout-total__price grey">Free (Collection)</div>
+              <div class="clearfix"></div>
+
+
+              <h4 class="checkout-total__heading grey">Return:</h4>
+              <div class="checkout-total__price grey">Free (Clean)</div>
+              <div class="clearfix"></div>
+
+
+              <h4 class="checkout-total__heading black bold">Grand Total:</h4>
+              <div class="checkout-total__price black bold">£{{ number_format(6*$productcost/500, 2) }}</div>
+              <div class="clearfix"></div>
+
+
+ <a href="#" class="btn btn-secondary checkout__submit pull-right">Save quote and contact me</a>
+
           </div>
         </div> <!-- / .row -->
-        <div class="checkout-total__block">
-          <div class="row">
-            <div class="col-sm-4">
-              
-              <h4 class="checkout-total__heading">Product Total:</h4>
-              <div class="checkout-total__price">$197</div>
-              <div class="clearfix"></div>
 
-            </div>
-            <div class="col-sm-4">
-              
-              <h4 class="checkout-total__heading">Total Tax:</h4>
-              <div class="checkout-total__price">$20</div>
-              <div class="clearfix"></div>
 
-            </div>
-            <div class="col-sm-4">
-              
-              <h4 class="checkout-total__heading">Grand Total:</h4>
-              <div class="checkout-total__price">$217</div>
-              <div class="clearfix"></div>
 
-            </div>
-          </div>  <!-- / .row -->
-        </div> <!-- / .checkout-total__block -->
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <a href="#" class="btn btn-secondary checkout__submit">Proceed to checkout</a>
-          </div>
-        </div>
       </div> <!-- / .container -->
     </form>
    

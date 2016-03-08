@@ -177,7 +177,7 @@ return array(
         ),
 
 
-		      'image1' => array(
+		'image1' => array(
             'title' => 'Image 1',
             'type' => 'image',
             'location' => public_path() . '/images/',

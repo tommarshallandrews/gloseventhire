@@ -62,9 +62,10 @@
 
   {!! Form::open(array('url' => 'orders/edit', 'method' => 'post', 'class' => 'form-inline')) !!}
     <div class="form-group">
-        <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
+    <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
     </div>
     <input type="hidden" name="product_id" value="{{$details->id}}">
+    <input type="hidden" name="action_id" value="add">
     <button type="submit" class="btn btn-secondary btn-lrg"><i class="fa fa-shopping-cart"></i> Add to quote</button>
   </form>
 
@@ -85,6 +86,9 @@
               @endif
               @if($details->image3)
               <img src="http://madigital.co.uk/images/{{$details->image3}}" class="img-responsive" alt="...">
+              @endif
+              @if($details->image4)
+              <img src="http://madigital.co.uk/images/{{$details->image4}}" class="img-responsive" alt="...">
               @endif
             </div>
             <div class="shop-item-img__main">
