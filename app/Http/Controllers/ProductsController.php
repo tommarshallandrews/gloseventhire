@@ -89,7 +89,7 @@ class ProductsController extends Controller
         ->where('cat_id','LIKE', $cat_id)
         ->where('type_id', 'LIKE', $type_id,  'AND')
         ->where('range_id', 'LIKE', $range_id)  
-        ->paginate(3);
+        ->paginate(12);
 
         $types = Type::where('cat_id', 'LIKE', $cat_id)  
         ->get();

@@ -32,22 +32,7 @@
         <div class="col-sm-4 col-md-3">
 
           <!-- Search -->
-          <form>
-            <div class="well">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search products...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">
-                        <i class="fa fa-search"></i>
-                      </button>
-                    </span>
-                  </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-              </div><!-- /.row -->
-            </div> <!-- / .well -->
-          </form>
+
 
           <!-- Filter -->
           <form class="shop__filter">
@@ -116,14 +101,7 @@
         </div>
         <div class="col-sm-8 col-md-9">
 
-          <!-- Filters -->
-          <ul class="shop__sorting">
-            <li class="active"><a href="#">Popular</a></li>
-            <li><a href="#">Newest</a></li>
-            <li><a href="#">Bestselling</a></li>
-            <li><a href="#">Price (low)</a></li>
-            <li><a href="#">Price (high)</a></li>
-          </ul>
+
 
           <div class="row">
             
