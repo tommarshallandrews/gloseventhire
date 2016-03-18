@@ -183,6 +183,9 @@ return array(
         ),
 
 
+
+
+
 		'image1' => array(
     		'title' => 'Image 1',
     		'type' => 'image',
@@ -217,6 +220,12 @@ return array(
             'naming' => 'keep',
             'length' => 20,
             'size_limit' => 20,
+        ),
+
+
+        'dirty' => array(
+            'type' => 'bool',
+            'title' => 'Dirty charge appliable',
         ),
 
 

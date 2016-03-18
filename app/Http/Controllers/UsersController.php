@@ -7,90 +7,307 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use App\Order;
+use View;
+use Hash;
+use Mail;
+use Auth;
+use Redirect;
+use Session;
 
-class UsersController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class UsersController extends Controller {
 
-	public function getLogin() {
-		
-		return \View::make('users.login');
-	}
+    protected $layout = "masters.default";
 
-
-
-    public function index()
-    {
-        //
+    public function __construct() {
+        $this->beforeFilter('csrf', array('on'=>'post'));
+        $this->beforeFilter('auth', array('only'=>array('getDashboard')));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+
+
+
+
+  public function getLogin() {
+        
+        return View::make('users.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    
+
+
+
+
+    public function getRegister() {
+        return View::make('users.register');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+
+  
+
+            
+    //create a new user fomr scratch
+
+
+
+    public function postStore(Requests\UserAddRequest $request) {
+    
+
+        if (!Auth::check()) {
+        //create unregistered user and a new make for them
+        $user = new User;
+        $user->save();
+        Auth::login($user);
+        //return $user;
+        } 
+
+
+        $user = Auth::User();
+
+        $confirmation_code = str_random(30);
+
+        $user->email = $request->email;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->password = Hash::make($request->password);
+        $user->confirmation_code = $confirmation_code;
+        $user->save();
+
+        //send verification email
+        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
+         $message->from('tom@marshallandrews.com', 'Tom');
+         $message->to($user->email)
+         ->subject('Gloucester Event Hire - Email verification');
+        });
+
+
+        if($request->submitType == 'contact'){
+            return "contact dash";
+        }
+        
+
+        return Redirect::to('users/dashboard')
+                ->with('message', '<h1>Great!</h1><h4>We have sent a verification to that email address to check its all correct.<br><strong>Please check your inbox.</strong></h4>')
+                ->with('messageType','validate')
+                ->withInput();
+
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+
+
+
+    public function postUpdate(Requests\UserUpdateRequest $request) {
+    
+
+
+        $user = Auth::User();
+
+        $user->email = $request->email;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->phone = $request->phone;
+        $user->save();
+
+
+        if($request->submitType == 'contact'){
+            return "contact dash";
+        }
+
+        if($request->submitType == 'order'){
+            return "order address page";
+        }
+
+        return Redirect::to('users/dashboard')
+                ->with('message', 'That is updated for you now')
+                ->with('alert-class', 'alert-success')
+                ->withInput();
+
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+
+
+
+
+        //acount form user who has previously regisered
+        public function getEdit() {
+        $user = User::find(Auth::user()->id);
+        //return $user;
+
+        return View::make('users.edit', compact('user'));
+        //return "edit";
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+
+
+
+
+    public function postSignin(Requests\UserAddRequest $request) {
+
+        $order = '0';
+            //check for an orphan order
+        if (Auth::check() AND empty(Auth::user()->email)) {
+                $order = Order::where('user_id','LIKE', (Auth::user()->id))->first();
+            }
+
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
+
+                //get array of likes and store in session
+
+                
+                //check if an orphan make is in progress and assign make to them
+                if ($order <> '0'){
+                $order->user_id = Auth::user()->id;
+                $order->save();
+
+                return Redirect::to('users/dashboard');
+                }
+
+                //chech emailconfirmation and resirect to redent is necessary
+                if(!Auth::user()->confirmed == 1 ){
+                    return View::make('users.resend');
+                }
+
+
+            return Redirect::to('users/dashboard')
+            ->with('message', '<h3>Welcome back '. Auth::user()->username .'</h3> You are now logged back in')
+            ->with('alert-class', 'alert-danger')
+            ->withInput();
+
+        } else {
+            return Redirect::to('users/login')
+                ->with('message', 'Your username/password combination was incorrect')
+                ->with('alert-class', 'alert-danger')
+                ->withInput();
+        }
+    }
+
+
+
+
+
+    public function getDashboard() {
+        
+        $orders = Order::
+        where('user_id', Auth::user()->id)
+        ->get();
+
+        $user = Auth::user();
+
+
+        return View::make('users.dashboard', compact('orders','user'));
+
+    }
+
+
+   
+
+
+
+    public function confirm($confirmation_code)
     {
-        //
+        if( ! $confirmation_code)
+        {   
+            Session::flash('alert-class', 'alert-warning'); 
+            return Redirect::to('users/dashboard')
+            ->with('message', 'That confirmtion link is bad. Click on accounts to send another one')
+            ->with('alert-class', 'alert-danger')
+            ->withInput();
+        }
+
+        $user = User::whereConfirmationCode($confirmation_code)->first();
+
+        if ( ! $user)
+        {   
+            Session::flash('alert-class', 'alert-warning'); 
+            return Redirect::to('users/dashboard')
+            ->with('message', 'That confirmtion link is bad. Click on accounts to send another one')
+            ->with('alert-class', 'alert-danger')
+            
+            ->withInput();
+        }
+
+        $user->confirmed = 1;
+        $user->confirmation_code = null;
+        $user->save();
+
+
+        Session::flash('alert-class', 'alert-success'); 
+        return Redirect::to('users/dashboard')
+                ->with('message', 'You are now verified and logged in.')
+                ->with('alert-class', 'alert-success')
+                ->withInput();
+       
+   
+    }
+
+
+
+
+
+public function getResend() {
+        return View::make('users.resend');
+    
+    }
+
+
+
+public function postResend(Request $request) {
+        //$validator = Validator::make($data = Input::all(), User::$newUpdateRules);
+
+        //genedate confirmation code
+        $confirmation_code = str_random(30);
+
+        if($request->email) {
+        $user = User::where('email', '=', $request->email)->firstOrFail();
+        } else {
+        $user = Auth::user();
+        }
+
+        //return $user;
+        
+
+        $user->confirmation_code = $confirmation_code;
+
+
+        //return $confirmation_code;
+        $user->save();
+
+        //send verification email
+        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
+         $message->from('tom@marshallandrews.com', 'Tom');
+         $message->to($user->email)
+         ->subject('Gloucester Event Hire - Email verification');
+        });
+
+
+
+        return Redirect::to('users/dashboard')
+                ->with('message', 'We have sent a verification to that email address to check its all correct. Please check your inbox.')
+                ->with('messageType','validate')
+                ->with('alert-class', 'alert-success')
+                ->withInput();
+            //->withInput($input);
+        //return Redirect::action('WorkshopController@show', Session::get('make_id', '0'));
+
+
+}
+
+
+
+        
+
+    public function getLogout() {
+        Auth::logout();
+        Session::forget('order');
+        Session::forget('orderCount');
+        return Redirect::to('users/login')->with('message', 'Your are now logged out!');
     }
 }
+

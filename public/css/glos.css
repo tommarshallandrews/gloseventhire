@@ -12,6 +12,9 @@
     border-radius: 2px;
 }
 
+.spacer5 {
+  padding-top : 5px;
+}
 
 .spacer10 {
   padding-top : 10px;
@@ -33,4 +36,57 @@
 
 .bold {
   font-weight: bold;
+}
+
+
+.paddingtop3 {
+    margin-top: 3px;
+}
+
+.paddingbottom3 {
+    margin-bottom: 3px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+.incy {
+font-weight: normal;
+font-size: 60%;
+
+}
+
+.tiny {
+font-weight: normal;
+font-size: 80%;
+
+}
+
+.small {
+font-weight: normal;
+font-size: 90%;
+}
+
+.large {
+font-size: 120%;
+}
+
+.huge {
+font-size: 140%;
+}
+
+.giant {
+font-size: 450%;
+letter-spacing: -4px;
+}
+
+
+.bold {
+font-weight: bold;
 }

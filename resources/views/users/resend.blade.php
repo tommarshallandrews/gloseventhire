@@ -40,7 +40,7 @@
 
 
                             
-                     {{ Form::open() }}
+                     {!! Form::open(array('url'=>'users/resend', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
 
                     
                                 @if (!Auth::User('email'))
@@ -63,7 +63,7 @@
                                     <!-- Button -->
 
                                     <div class="col-sm-12 controls">
-                                     {{ Form::submit('Reset', array('class'=>'btn btn-success'))}}
+                                     {!! Form::submit('Reseend', array('class'=>'btn btn-success'))!!}
                     
 
                                     </div>
@@ -71,7 +71,7 @@
 
 
  
-                           {{ Form::close() }}   
+                           {!! Form::close() !!}   
 
 
 

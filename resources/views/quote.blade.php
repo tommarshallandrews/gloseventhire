@@ -3,12 +3,11 @@
 
 @include('masters.navigation')
     
+<script src="{{URL::to('/')}}/js/quoteValidation.js"></script>
 
-
- 
  <!-- MAIN CONTENT
     ================================================== -->
-    <form>
+
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
@@ -58,19 +57,34 @@
 
             </div>
           </div>
+
+
           <div class="col-sm-4">
             <div class="checkout__block">
               
               <h3 class="headline">
-                <span>Delivery</span>
+                
+                <span>Delivery Postcode</span>
               </h3>
-              <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect you order form out Gloucester warehouse.</p>
 
+              <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect you order form out Gloucester warehouse.</p>
+              {!! Form::open(array('url' => 'orders/updateDelivery', 'method' => 'post')) !!}
               <div class="form-group">
-                <input type="text" id="checkout-account__first-name" placeholder="Enter postcode" class="form-control">
+                <input type="text" id="checkout-account__first-name" name="postcode" value="{{ $order->postcode }}" placeholder="Enter postcode" class="form-control">
               </div>
 
-              <a href="#" class="btn btn-secondary btn-xs">Calculate delivery</a>
+              @if (Session::has('postcodeMessage'))
+                <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('postcodeMessage') }}</div>
+              @endif
+
+              <button type="submit" class="btn btn-secondary btn-xs">Calculate delivery</button>
+              {!! Form::close() !!}
+<div class="spacer5"></div>
+              {!! Form::open(array('url' => 'orders/updateDelivery', 'method' => 'post')) !!}
+<input type="hidden" name="postcode" value="Collected" >
+
+              <button type="submit" class="btn btn-default btn-xs">Collect and return from Gloucester</button>
+              {!! Form::close() !!}
               
 
 
@@ -80,94 +94,55 @@
               <p>Please select you prefered hire start date</p>
 
 
-              <div class="input-group date" id="datetimepicker1">
-                    <input type="text" name="startDate" class="form-control" id="datepicker1" placeholder="Start date">
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </span>
-                </div>
+
+
+              {!! Form::open(array('url' => 'orders/updateDates', 'method' => 'post')) !!}
+
+                    
+                      <div class="input-group date">
+            <input type="text" name="end_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></i></span>
+        </div>
+
 
                 <div class="spacer10"></div>
 
-              <div class="input-group date" id="datetimepicker1">
-                    <input type="text" name="endDate" class="form-control" id="datepicker2" placeholder="End date">
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                    </span>
+   
+                    
+                      <div class="input-group date">
+            <input type="text" name="end_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></i></span>
+
                 </div>
 <div class="spacer10"></div>
-              <a href="#" class="btn btn-secondary btn-xs">Submit prefered dates</a>
-
+        
+              <button type="submit" class="btn btn-secondary btn-xs">Submit prefered dates</button>
+              {!! Form::close() !!}
 
                <h3 class="headline">
                 <span>Return</span>
               </h3>
               <p>Stock is expected tobe returned clean. Id you would like us to clean it we chargs an additional 20%</p>
+              {!! Form::open(array('url' => 'orders/updateReturn', 'method' => 'post')) !!}
               <div class="radio">
-                <input type="radio" name="checkout__delivery" id="checkout-delivery__standart" checked>
+                <input type="radio" name="return" value="clean" id="checkout-delivery__standart" <?php if($order->return == 'clean'){echo('checked');} ?>>
                 <label for="checkout-delivery__standart">Return Clean</label>
               </div>
               <div class="radio">
-                <input type="radio" name="checkout__delivery" id="checkout-delivery__express">
+                <input type="radio" name="return" value="dirty" id="checkout-delivery__express" <?php if($order->return == 'dirty'){echo('checked');} ?>>
                 <label for="checkout-delivery__express">Return Dirty (additional 20%)</label>
               </div>
-
-              <a href="#" class="btn btn-secondary btn-xs">Update return condition</a>
-
-
-            </div>
-
-
-
-
-
-            <div class="checkout__block">
-              
-
-
+              <button type="submit" class="btn btn-secondary btn-xs">Update return condition</button>
+              {!! Form::close() !!}
 
             </div>
           </div>
+          
+
+
+
+
           <div class="col-sm-4">
+
             <div class="checkout__block">
-              
-              <h3 class="headline">
-                <span>Your details</span>
-              </h3>
-
-              <div class="form-group">
-                <input type="text" id="checkout-account__first-name" placeholder="First name" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" id="checkout-account__last-name" placeholder="Last name" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="tel" id="checkout-account__phone" placeholder="Phone" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" id="checkout-account__city" placeholder="City" class="form-control">
-              </div>
-              <div class="form-group">
-                <input type="text" id="checkout-account__street-address" placeholder="Street Address" class="form-control">
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" id="checkout-account__zip" placeholder="ZIP Code" class="form-control">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <input type="text" id="checkout-account__state" placeholder="State" class="form-control">
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-
-
-
 
 
               <h3 class="headline">
@@ -177,42 +152,143 @@
               <p>This is indicitave and subject to confirmation</p>
 
 
-              <h4 class="checkout-total__heading grey">Product Total:</h4>
-              <div class="checkout-total__price grey">£{{ number_format($productcost/100, 2) }}</div>
+              <div class="left large grey">Product Total:</div>
+              <div class="right large grey">£{{ number_format($totalproduct/100, 2) }}</div>
+              <div class="clearfix"></div>
+
+
+              @if($order->return == 'clean')
+              <div class="left large grey">Return - Clean:</div>
+              <div class="right large grey">Free</div>
+              @else
+              <div class="left large grey">Return - Dirty:</div>
+              <div class="right large grey">£{{ number_format($totaldirty/100, 2) }}</div>
+              @endif
+              <div class="clearfix"></div>
+
+               @if($order->distance == 0)
+              <div class="left large grey">Delivery - none:</div>
+              <div class="right large grey">Free</div>
+              @else
+              <div class="left large grey">Delivery {{ number_format($order->distance/1000, 2) }}km:</div>
+              <div class="right large grey">£{{ number_format($order->distance/1000, 2) }}</div>
+              @endif
+              <div class="clearfix"></div>
+
+               <div class="left large grey">VAT:</div>
+              <div class="right large grey">£{{ number_format($totalvat/100, 2) }}</div>
+              <div class="clearfix"></div>
+
+              <div class="spacer10"></div>
+
+              <div class="left large black bold ">Grand Total:</div>
+              <div class="right large black bold">£{{ number_format($totaltotal/100, 2) }}</div>
               <div class="clearfix"></div>
 
 
 
-              <h4 class="checkout-total__heading grey">VAT:</h4>
-              <div class="checkout-total__price grey">£{{ number_format($productcost/500, 2) }}</div>
-              <div class="clearfix"></div>
 
 
-              <h4 class="checkout-total__heading grey">Delivery:</h4>
-              <div class="checkout-total__price grey">Free (Collection)</div>
-              <div class="clearfix"></div>
+{!! Form::open(array('url'=>'users/store', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
+
+              <h3 class="headline">
+                <span>Your details</span>
+              </h3>
+
+                               @if(Session::has('errors'))
+                                <div id="signupalert" style="display" class="alert alert-danger">
+                                  <strong>You have some errors on the registration form.</strong>
+                                      <ul>
+                                          @foreach($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                          @endforeach
+                                      </ul>
+                                </div>
+                                @endif  
 
 
-              <h4 class="checkout-total__heading grey">Return:</h4>
-              <div class="checkout-total__price grey">Free (Clean)</div>
-              <div class="clearfix"></div>
+              @if (Session::has('exists'))
+                <div class="alert alert-danger">Seems that emails already registered. Please <a href="{{URL::to('/users/login')}}">login</a> to attach this order to your account of ue another email</div>
+              @endif
 
 
-              <h4 class="checkout-total__heading black bold">Grand Total:</h4>
-              <div class="checkout-total__price black bold">£{{ number_format(6*$productcost/500, 2) }}</div>
-              <div class="clearfix"></div>
+@if(Auth::User()->confirmed == '1')
+
+<button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
+<div class="spacer10"></div>
+ <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
+  <div class="spacer10"></div>
+ <p>* Subject to availability and possible deposit<p>
 
 
- <a href="#" class="btn btn-secondary checkout__submit pull-right">Save quote and contact me</a>
+@elseif(!Auth::User()->email)
+
+              <div class="form-group">
+                <input type="text" name="firstname" placeholder="First name" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="lastname" placeholder="Last name" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="email" placeholder="Email" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <input type="text" name="phone" placeholder="Phone" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <input type="password" name="password" placeholder="Password  (minimum 6 characters)" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <input type="password" name="password_confirm" placeholder="Confirm Password" class="form-control">
+              </div>
+
+
+
+ <button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me</button>
+<div class="spacer10"></div>
+ <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
+ <div class="spacer10"></div>
+ <p>* Subject to availability and possible deposit<p>
+
+
+@else
+
+<div class="alert alert-danger">It looks like you've registered but not validated your email address. <br><br> Please check you emails for the validation request or 
+
+
+  request it again <a href="{{URL::to('/users/resend')}}">here</a>.</div>
+
+@endif
+
+
+{!! Form::close() !!}
 
           </div>
+
+
         </div> <!-- / .row -->
 
 
 
       </div> <!-- / .container -->
-    </form>
-   
 
+   
+ <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <script>
+    $('.input-group.date').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "01-01-2006",
+    endDate: "01-01-2016",
+    todayBtn: "linked",
+    autoclose: true,
+    todayHighlight: true
+    });
+    </script>
 
    @include('masters.footer')

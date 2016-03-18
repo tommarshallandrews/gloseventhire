@@ -214,7 +214,10 @@ return array(
         ),
 
 
-
+        'dirty' => array(
+            'type' => 'bool',
+            'title' => 'Dirty charge appliable',
+        ),
 
 
 

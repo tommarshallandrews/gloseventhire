@@ -22,29 +22,52 @@
           <ul class="nav navbar-nav navbar-right">
 
             <!-- General links -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+            <li >
+              <a href="#" >Home</a>
             </li>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us</a>
+            <li >
+              <a href="#" >About Us</a>
             </li>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">FAQ</a>
+            <li >
+              <a href="#" >FAQ</a>
             </li>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact Us</a>
+            <li >
+              <a href="{{ url('/users/register') }}" >Contact Us</a>
             </li>
 
+            
+            <li >
+                @if(Auth::check())
+                  
+                    
+                    @if(Auth::user()->email)
+                      <li>
+                          <a href="{{ url('/users/dashboard') }}" >Account {{ Auth::user()->id }}</a>
+                      </li>
+                    @else
+                       <li>
+                          <a href="{{ url('/users/register') }}" >Register {{ Auth::user()->id }}</a>
+                      </li>
+                    @endif
+  
 
-            <li class="dropdown">
-              <a href="{{ url('/orders') }}" class="dropdown-toggle" data-toggle="dropdown">My orders</a>
-            </li>
+                @else  
 
+                   <li >
+                    <a href="{{ url('/users/register') }}" >Register {{ Auth::user()->id }}</a>
+                  </li>
+                    
+                  <li>
+                    <a href="{{ url('/users/login') }}" >Login</a>
+                  </li>
+                  
+                @endif
+            
 
-
+            
 
 
           </ul> <!-- / .nav -->

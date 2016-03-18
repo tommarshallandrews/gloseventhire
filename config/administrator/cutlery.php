@@ -214,7 +214,10 @@ return array(
             'size_limit' => 20,
         ),
 
-
+        'dirty' => array(
+            'type' => 'bool',
+            'title' => 'Dirty charge appliable',
+        ),
 
 
 

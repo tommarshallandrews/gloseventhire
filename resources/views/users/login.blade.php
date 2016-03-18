@@ -1,8 +1,8 @@
 
 
- @include('masters.unregistered') 
+ @include('masters.header') 
 
-
+@include('masters.navigation')
 
  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-default" >
@@ -17,7 +17,7 @@
                         <div style="display" id="login-alert" class="alert alert-danger col-sm-12">{{ Session::get('message') }}</div>
 @endif   
                             
-                       {{ Form::open(array('url'=>'users/signin', 'class'=>'form-horizontal')) }}
+                       {!! Form::open(array('url'=>'users/signin', 'class'=>'form-horizontal')) !!}
                                     
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -44,7 +44,7 @@
                                     <!-- Button -->
 
                                     <div class="col-sm-12 controls">
-                                     {{ Form::submit('Login', array('class'=>'btn btn-success btn-lg"'))}}
+                                     {!! Form::submit('Login', array('class'=>'btn btn-success btn-lg"'))!!}
              
 
                                     </div>
@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                 </div>    
-                           {{ Form::close() }}   
+                           {!! Form::close() !!}   
 
 
 
@@ -69,5 +69,4 @@
                     </div>  
         </div>
 
-
- @include('masters.footerNoMenu') 
+ @include('masters.footer')

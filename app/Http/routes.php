@@ -1,5 +1,6 @@
 <?php
 use App\Cat;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,31 @@ Route::get('/', function () {
     return View::make('index');
 });
 
+//users
+Route::controller('users', 'UsersController', array('getLogin' => 'users.login', 'getResend' => 'users.resend'));
+
+
+Route::any('usernameCheck', function()
+{   
+    return View::make('usernameCheck');
+ });
+
+Route::any('emailCheck', function()
+{
+    return View::make('emailCheck');
+ });
+
+Route::get('register/verify/{confirmationCode}', [
+    'as' => 'confirmation_path',
+    'uses' => 'UsersController@confirm'
+]);
+
+
 
 //products
+
+Route::get('/products', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]); //show all products
+
 Route::get('/products/{catagory}/{type}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
 
 Route::get('/products/details/{id}', [ 'as' => 'products.details', 'uses' => 'ProductsController@details' ]);
@@ -24,14 +48,25 @@ Route::get('/products/details/{id}', [ 'as' => 'products.details', 'uses' => 'Pr
 
 
 //orders
-Route::get('/orders', [ 'as' => 'orders.index', 'uses' => 'OrdersController@index' ]);
-
-Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
 
 Route::get('/quote/new', [ 'as' => 'orders.newquote', 'uses' => 'OrdersController@newquote' ]);
 
+Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
+
+
+
+
+
+
+Route::get('/orders', [ 'as' => 'orders.index', 'uses' => 'OrdersController@index' ]);
+
 Route::post('/orders/edit', [ 'as' => 'orders.edit', 'uses' => 'OrdersController@edit' ]);
 
+Route::post('/orders/updateReturn', [ 'as' => 'orders.updateReturn', 'uses' => 'OrdersController@updateReturn' ]);
+
+Route::post('/orders/updateDates', [ 'as' => 'orders.updateDates', 'uses' => 'OrdersController@updateDates' ]);
+
+Route::post('/orders/updateDelivery', [ 'as' => 'orders.updateDelivery', 'uses' => 'OrdersController@updateDelivery' ]);
 
 //navigation
 
@@ -41,11 +76,6 @@ Route::post('/orders/edit', [ 'as' => 'orders.edit', 'uses' => 'OrdersController
 View::composer('masters.navigation', function($view)
 {   
 
-if (Auth::check()){
-    $user_id = Auth::user()->id;
-    } else {
-    $user_id = 0;
-    }
 
     //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
     $type = Cat::with('types')->orderby('name')->get(); 

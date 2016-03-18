@@ -9,9 +9,8 @@
 <!--<script src="js/jquery.confirm.js"></script>-->
 <script src="{{URL::to('/')}}/js/bootstrap.min.js"></script>
 <script src="{{URL::to('/')}}/js/bootswatch.js"></script>
-<script src="{{URL::to('/')}}/js/jquery.mousewheel.min.js"></script>
-<script src="{{URL::to('/')}}/js/vendor/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="{{URL::to('/')}}/js/scripts.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
 
 @yield("footer")

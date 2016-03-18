@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Cat;
 use App\Type;
 use App\Range;
@@ -60,15 +63,24 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    
+
+
+    public function show(request $request)
     {   
 
+    if(!Auth::check()){
+    return "you are not logged in to view an order";
+    }
+
+    $order_id = $request->id;
+
          
-    if(!Session::has('order')){
+    /*if(!Session::has('order')){
         $order_id = $id;
     } else {
         $order_id = Session::get('order');
-    }
+    }*/
 
     //dd($order_id);
 
@@ -82,20 +94,53 @@ class OrdersController extends Controller
         ->first();
 
         if(!$order){
-            return "nothing here!";
+            return redirect('products/china/0/0');
         }
 
-                //calculations
-            $productcost = 0;
+            //cost calculations
+
+            $lineproduct = 0;
+            $totalproduct = 0;
+            $totaldirty = 0;
+            $totalvat = 0;
+            $totaltotal = 0;
+
+
             foreach($order->product as $products){
-            $productcost = $productcost + ($products->price * $products->pivot->quantity);
+
+                //calculate line product cost
+                $lineproduct = ($products->price * $products->pivot->quantity);
+                
+                //add dirty charge if set
+                if ($order->return == 'dirty' && $products->dirty == 1){
+                    $linedirty = $lineproduct * 0.2;
+                } else {
+                    $linedirty = 0;
+                }
+                
+                //add vat to line 
+                $linevat = $products->vat * ($lineproduct + $linedirty);
+                
+                //line total
+                $linetotal = $lineproduct + $linedirty + $linevat;
+
+
+            // now sum up up the lines for each cost
+
+                $totalproduct = $totalproduct + $lineproduct;
+                $totaldirty = $totaldirty + $linedirty;
+                $totalvat = $totalvat + $linevat;
+                $totaltotal = $totaltotal + $linetotal;
+
             }
+
+
 
             //return $productcost;
         
         Session::put('order', $order->id);
         //return $order;
-        return View::make('quote', compact('order', 'productcost'));
+        return View::make('quote', compact('order',  'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
         //return View::make('results');
     }
 
@@ -148,18 +193,21 @@ class OrdersController extends Controller
         if (!(Input::get('quantity') > 0 && Input::get('quantity') < 1000)) {
             Session::flash('type', "danger");
             Session::flash('message', "Please enter a quantity between 1 and 1000");
-            return "nogo";
             return Redirect::back();
         }
 
+
+
         if (!Auth::check()) {
+        //create unregistered user and a new make for them
+        $user = new User;
+        $user->save();
+        Auth::login($user);
+        }
+        //save cookes for new user
 
-            //create unregistered user and a new make for them
-            $user = new User;
-            $user->save();
-            Auth::login($user);
 
-        } 
+
 
         if (!Session::has('order')){
             //create new order
@@ -205,7 +253,10 @@ class OrdersController extends Controller
 
     Session::flash('message', $quantity . " of these have been added to your quote");
     Session::flash('type', "success");
-    return Redirect::back();
+
+
+
+    return Redirect::back()->withCookie(cookie('user_id', Auth::user()->id, 3600));;
     
     //return $quantity;
     }
@@ -222,6 +273,89 @@ class OrdersController extends Controller
         return $quantity;
     }
 
+    public function updateDelivery()
+    {       
+    
+    $postcode = Input::get('postcode');
+
+
+
+    if($postcode != "Collected"){
+
+
+   $postcode = str_replace(' ', '', $postcode); // remove any spaces;
+   $postcode = strtoupper($postcode); // force to uppercase;
+   $valid_postcode_exp = "/^(([A-PR-UW-Z]{1}[A-IK-Y]?)([0-9]?[A-HJKS-UW]?[ABEHMNPRVWXY]?|[0-9]?[0-9]?))\s?([0-9]{1}[ABD-HJLNP-UW-Z]{2})$/i";
+   
+   // set default output results (assuming invalid postcode):
+   if (!preg_match($valid_postcode_exp, strtoupper($postcode))) {
+    Session::flash('postcodeMessage', 'This looks like the wrong format for a UK postcode. Please try again or contact us for a delivery quote');
+    Session::flash('type', "danger");
+    return Redirect::back();
+   }
+
+
+        //return $postcode;
+        $url = 'http://maps.googleapis.com/maps/api/distancematrix/json?origins=GL28AX&destinations=' . $postcode .'&mode=driving&language=en-EN&sensor=false';
+        $JSON = file_get_contents($url);
+        $data = json_decode($JSON);
+
+
+        if($data->rows[0]->elements[0]->status == 'NOT_FOUND'){
+        Session::flash('postcodeMessage', 'We can find that postcode. Please try again or contact us for a delivery quote');
+        Session::flash('type', "danger");
+        return Redirect::back();
+        }
+
+
+        $distance = $data->rows[0]->elements[0]->distance->value;
+        
+    } else {
+
+    $distance = 0;
+    }
+        
+        //$obj = json_decode($json);
+
+        //return Input::get('postcode');
+        $order = Order::find(Session::get('order'));
+        $order->postcode = $postcode;
+        $order->distance = $distance;
+        $order->save();
+
+        Session::flash('postcodeMessage', 'Sweet. that looks like a good postcode. We have added the estimated delivery & collection to your quote');
+        Session::flash('type', "success");
+        return Redirect::back();
+
+    }
+
+
+
+    public function updateDates()
+    {
+        $order = Order::find(Session::get('order'));
+        $order->start_date = Input::get('start_date');
+        $order->end_date = Input::get('end_date');
+        $order->save();
+        //Session::flash('you return state has been updated');
+        //Session::flash('type', "success");
+        return Redirect::back();
+
+    }
+
+
+
+    public function updateReturn()
+    {
+        $order = Order::find(Session::get('order'));
+        $order->return = Input::get('return');
+        $order->save();
+        //Session::flash('you return state has been updated');
+        //Session::flash('type', "success");
+        return Redirect::back();
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -229,10 +363,12 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function newquote($id)
+    public function newquote()
     {
         Session::forget('order');
-        return View::make('index');
+        Session::forget('orderCount');
+        return redirect('products/china/0/0');
+        //return View::order('index');
     }
 
 
@@ -240,4 +376,8 @@ class OrdersController extends Controller
     {
         //
     }
+
+
+
+
 }

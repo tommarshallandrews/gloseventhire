@@ -21,10 +21,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        return "what do we want here?";
 
-        DB::table('users')
-        ->get();
+        return View::make('results', compact('results','types','typeSlug','ranges','rangeSlug','cat'));
     }
 
     /**
@@ -95,6 +94,7 @@ class ProductsController extends Controller
         ->get();
 
         $ranges = Range::where('cat_id', 'LIKE', $cat_id)  
+        ->orderby('order')  
         ->get();
 
         //return $results;
