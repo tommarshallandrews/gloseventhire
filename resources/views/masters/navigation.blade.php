@@ -57,7 +57,7 @@
                 @else  
 
                    <li >
-                    <a href="{{ url('/users/register') }}" >Register {{ Auth::user()->id }}</a>
+                    <a href="{{ url('/users/register') }}" >Register</a>
                   </li>
                     
                   <li>
