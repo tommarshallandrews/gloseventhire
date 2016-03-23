@@ -37,9 +37,9 @@ class Cat extends Model implements AuthenticatableContract,
 
     }
 
-    public function types()
+    public function groups()
     {
-       return $this->hasMany('App\Type');
+       return $this->hasMany('App\Group');
 
     }
 

@@ -41,29 +41,27 @@
             
             <li >
                 @if(Auth::check())
-                  
-                    
+                                      
                     @if(Auth::user()->email)
                       <li>
                           <a href="{{ url('/users/dashboard') }}" >Account {{ Auth::user()->id }}</a>
                       </li>
                     @else
                        <li>
-                          <a href="{{ url('/users/register') }}" >Register {{ Auth::user()->id }}</a>
+                          <a href="{{ url('/users/login') }}" >Login {{ Auth::user()->id }}</a>
+                      </li>
+                       <li >
+                        <a href="{{ url('/users/register') }}" >Register</a>
                       </li>
                     @endif
-  
-
+                
                 @else  
-
-                   <li >
-                    <a href="{{ url('/users/register') }}" >Register</a>
-                  </li>
-                    
                   <li>
                     <a href="{{ url('/users/login') }}" >Login</a>
                   </li>
-                  
+                   <li >
+                    <a href="{{ url('/users/register') }}" >Register</a>
+                  </li>
                 @endif
             
 
@@ -117,12 +115,23 @@
 @foreach($cats as $cat)
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{$cat->name}} <b class="caret"></b></a>
+              <a href="{{ url('/products') }}/{{$cat->slug}}/0/0"  >{{$cat->name}} </a>
               <ul class="dropdown-menu">
 
-                               @foreach($cat->types as $type)
-                                    <li><a href="{{ url('/products') }}/{{$cat->slug}}/{{$type->slug}}/0">{{$type->name}}</a></li>
-                                @endforeach
+                <!-- check cat to show correct drops -->
+                    @if($cat->id == 10 || $cat->id == 20 || $cat->id == 70)
+                            
+                              @foreach($cat->ranges as $range)
+                                    <li><a href="{{ url('/products') }}/{{$cat->slug}}/0/{{$range->slug}}">{{$range->name}}</a></li>
+                              @endforeach
+                    
+                    @elseif($cat->id !== 60)
+
+                               @foreach($cat->groups as $group)
+                                    <li><a href="{{ url('/products') }}/{{$cat->slug}}/{{$group->slug}}/0">{{$group->name}}</a></li>
+                               @endforeach
+                    @endif
+
 
               </ul>
             </li>

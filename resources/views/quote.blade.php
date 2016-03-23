@@ -23,11 +23,35 @@
 
               <div class="checkout-cart__item">
                 <div class="checkout-cart-item__img">
+                  <?php 
+                    if($product->image1)
+                    {
+                   ?>     
                   <img src="http://madigital.co.uk/images/{{$product->image1}}" class="img-responsive" alt="...">
+                  <?php
+                    }
+                    else
+                    {
+                  ?>
+                    <span class="colorbox-quote" data-toggle="tooltip" data-placement="top" title="" style="background:{{$product->pivot->colour}}"></span>
+                  <?php
+                    } 
+                  ?>
+                
                 </div>
                 <div class="checkout-cart-item__content">
                   <h5 class="checkout-cart-item__heading">
-                    {{ $product->name }} - {{ $product->range->name }}
+                    <?php 
+                    if($product->group->collection)
+                      {
+                        echo($product->group->name . " - " . $product->group->collection);
+                      }
+                    else
+                    {
+                      echo($product->name . " - " . $product->range->name);
+                    } 
+                    ?>
+               
                   </h5>
                   <div class="checkout-cart-item__footer">
                     <div class="input_qty input_qty_sm pull-right bold">
@@ -91,7 +115,7 @@
               <h3 class="headline">
                 <span>Hire Period</span>
               </h3>
-              <p>Please select you prefered hire start date</p>
+              <p>Please select you prefered hire dates</p>
 
 
 
@@ -99,19 +123,23 @@
               {!! Form::open(array('url' => 'orders/updateDates', 'method' => 'post')) !!}
 
                     
-                      <div class="input-group date">
-            <input type="text" name="end_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></i></span>
+        <span class="small">Start date</span>
+        <div class="input-group date">
+            <input type="text" name="start_date" class="form-control" value="<?php if(isset($order->start_date)){echo(date('d-m-Y', strtotime($order->start_date)));} ?>">
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
 
+      <div class="spacer10"></div>
+        <span class="small">End date</span>
+        <div class="input-group date">
+            <input type="text" name="end_date" class="form-control" value="<?php if(isset($order->start_date)){echo(date('d-m-Y', strtotime($order->end_date)));} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
 
-                <div class="spacer10"></div>
+         @if (Session::has('datesMessage'))
+            <div class="spacer10"></div>
+            <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('datesMessage') }}</div>
+        @endif
 
-   
-                    
-                      <div class="input-group date">
-            <input type="text" name="end_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></i></span>
-
-                </div>
 <div class="spacer10"></div>
         
               <button type="submit" class="btn btn-secondary btn-xs">Submit prefered dates</button>
@@ -120,7 +148,7 @@
                <h3 class="headline">
                 <span>Return</span>
               </h3>
-              <p>Stock is expected tobe returned clean. Id you would like us to clean it we chargs an additional 20%</p>
+              <p>Stock is expected to be returned clean. Id you would like us to clean it we chargs an additional 20%</p>
               {!! Form::open(array('url' => 'orders/updateReturn', 'method' => 'post')) !!}
               <div class="radio">
                 <input type="radio" name="return" value="clean" id="checkout-delivery__standart" <?php if($order->return == 'clean'){echo('checked');} ?>>
@@ -186,87 +214,129 @@
               <div class="clearfix"></div>
 
 
+<!-- checkout options only when a date is set -->
+@if($order->end_date && $order->end_date)
 
 
 
-{!! Form::open(array('url'=>'users/store', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
-
-              <h3 class="headline">
-                <span>Your details</span>
-              </h3>
-
-                               @if(Session::has('errors'))
-                                <div id="signupalert" style="display" class="alert alert-danger">
-                                  <strong>You have some errors on the registration form.</strong>
-                                      <ul>
-                                          @foreach($errors->all() as $error)
-                                      <li>{{ $error }}</li>
-                                          @endforeach
-                                      </ul>
-                                </div>
-                                @endif  
-
-
-              @if (Session::has('exists'))
-                <div class="alert alert-danger">Seems that emails already registered. Please <a href="{{URL::to('/users/login')}}">login</a> to attach this order to your account of ue another email</div>
-              @endif
-
-
-@if(Auth::User()->confirmed == '1')
-
-<button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
-<div class="spacer10"></div>
- <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
-  <div class="spacer10"></div>
- <p>* Subject to availability and possible deposit<p>
-
-
-@elseif(!Auth::User()->email)
-
-              <div class="form-group">
-                <input type="text" name="firstname" placeholder="First name" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <input type="text" name="lastname" placeholder="Last name" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <input type="text" name="email" placeholder="Email" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <input type="text" name="phone" placeholder="Phone" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <input type="password" name="password" placeholder="Password  (minimum 6 characters)" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <input type="password" name="password_confirm" placeholder="Confirm Password" class="form-control">
-              </div>
+         @if (Session::has('registerMessage'))
+              <div class="spacer10"></div>
+              <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('registerMessage') }}</div>
+        @endif
 
 
 
- <button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me</button>
-<div class="spacer10"></div>
- <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
- <div class="spacer10"></div>
- <p>* Subject to availability and possible deposit<p>
+        <!-- if user is logged in and confirmed -->
+        @if(Auth::User()->confirmed == '1')
+        <div class="spacer20"></div>
+            {!! Form::open(array('url'=>'orders/getquote', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
+
+                <input type="hidden" name="status" value="quote">
+                <button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
+                <div class="spacer10"></div>
+                <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
+                 <p>* Subject to availability and possible deposit<p>
+           
+            {!! Form::close() !!}
+
+        @endif
+        <!-- end if user is logged in and confirmed -->
 
 
-@else
-
-<div class="alert alert-danger">It looks like you've registered but not validated your email address. <br><br> Please check you emails for the validation request or 
 
 
-  request it again <a href="{{URL::to('/users/resend')}}">here</a>.</div>
+
+
+
+        <!--  if user is has not registered -->         
+        @if(!Auth::User()->email && Auth::Check())
+
+
+                      <h3 class="headline">
+                        <span>Your details</span>
+                      </h3>
+
+
+                      @if(Session::has('errors'))
+                          <div id="signupalert" style="display" class="alert alert-danger">
+                            <strong>You have some errors on the registration form.</strong>
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                          </div>
+                       @endif  
+
+
+
+                      @if (Session::has('exists'))
+                        <div class="alert alert-danger">Seems that emails already registered. Please <a href="{{URL::to('/users/login')}}">login</a> to attach this order to your account of ue another email</div>
+                      @endif
+
+
+
+                      @if (Session::has('registerMessage'))
+                          <div class="spacer10"></div>
+                          <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('registerMessage') }}</div>
+                      @endif
+
+
+            {!! Form::open(array('url'=>'users/store', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
+
+
+                      <div class="form-group">
+                        <input type="text" name="firstname" placeholder="First name" class="form-control" value="{{ old('firstname') }}">
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" name="lastname" placeholder="Last name" class="form-control" value="{{ old('lastname') }}">
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" name="email" placeholder="Email" class="form-control" value="{{ old('email') }}">
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" name="phone" placeholder="Phone" class="form-control" value="{{ old('phone') }}">
+                      </div>
+
+                      <div class="form-group">
+                        <input type="password" name="password" placeholder="Password  (minimum 6 characters)" class="form-control">
+                      </div>
+
+                      <div class="form-group">
+                        <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control">
+                      </div>
+
+
+                        <input type="hidden" name="status" value="quote">
+
+                        <button type="submit" class="btn btn-secondary btn-xs">Add my details and send me a validation email</button>
+
+              {!! Form::close() !!}
+
+        @endif 
+        <!--  if user is has not registered -->
+
+
+
+
+        <!--  if user has registered but not validated their email address --> 
+          @if(Auth::User()->email && Auth::User()->confirmed !== '1' && !Session::has('registerMessage'))
+                <div class="spacer20"></div>
+                <div class="alert alert-danger">It looks like you've registered but not validated your email address. <br><br> Please check you emails for the validation request or request it again <a href="{{URL::to('/users/resend')}}">here</a>.</div>
+          @endif
+        <!--  if user has registered but not validated their email address --> 
+
 
 @endif
+<!-- end checkout options only when a date is set -->
 
 
-{!! Form::close() !!}
+
+
+
 
           </div>
 

@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <div class="footer__copyright">
-                Copyright 2015 <a href="http://simpleqode.com/">Simpleqode.com</a>. All Rights Reserved.
+                Copyright 2015 <a href="http://{{ Config::get('app.companyWebsite') }}">{{ Config::get('app.companyName') }}</a>. All Rights Reserved.
               </div>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -47,11 +47,18 @@
 
 
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yyyy'});
-    $( "#datepicker2" ).datepicker({dateFormat: 'dd/mm/yyyy'});
-  });
+  
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <script>
+    $('.input-group.date').datepicker({
+    format: "dd-mm-yyyy",
+    startDate: '+1d',
+    endDate: "01-01-2018",
+    todayBtn: "linked",
+    autoclose: true,
+    todayHighlight: true
+    });
+    </script>
   </script>
 
 

@@ -26,9 +26,19 @@ class UserAddRequest extends Request
 
 
     public function rules()
+{
+    $user = Auth::user();
+
+    switch($this->method())
     {
-    
-    return [
+        case 'GET':
+        case 'DELETE':
+        {
+            return [];
+        }
+        case 'POST':
+        {
+            return [
         'firstname' => 'required',
         'lastname' => 'required', 
         'phone' => 'required', 
@@ -36,9 +46,27 @@ class UserAddRequest extends Request
         'password' => 'required|min:6',
         'password_confirmation' => 'required|same:password'
             ];
+         Request::flash();   
+        }
+        case 'PUT':
+        case 'PATCH':
+        {
+            return [
+        'firstname' => 'required',
+        'lastname' => 'required', 
+        'phone' => 'required', 
+        'email' => 'required|email|unique:users'. $user->id
+            ];
 
-
-        Request::flash();  
+            return'patch';
+          Request::flash();  
+        }
+        default:break;
     }
+}
+
+
+
+
 
 }

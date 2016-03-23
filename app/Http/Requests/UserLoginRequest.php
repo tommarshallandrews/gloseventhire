@@ -5,7 +5,7 @@ use App\Http\Requests\Request;
 use App\User;
 use Auth;
 
-class UserAddRequest extends Request
+class UserLoginRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,12 +29,8 @@ class UserAddRequest extends Request
     {
     
     return [
-        'firstname' => 'required',
-        'lastname' => 'required', 
-        'phone' => 'required', 
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6',
-        'password_confirmation' => 'required|same:password'
+        'password' => 'required', 
+        'email' => 'required',
             ];
 
 

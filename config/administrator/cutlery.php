@@ -38,8 +38,8 @@ return array(
             'type' => 'text',
         ),
 
-         'type' => array(
-            'relationship' => 'type',
+         'group' => array(
+            'relationship' => 'group',
             'title' => 'Type',
              'select' => "(:table).name",
         ), 
@@ -49,7 +49,11 @@ return array(
             'title' => 'Type',
             'select' => "(:table).name",
         ),
-
+        
+        'order' => array(
+            'title' => 'Order',
+            'type' => 'number',
+        ),
 
 	),
 
@@ -70,9 +74,9 @@ return array(
         ),
 
 
-        'type' => array(
+        'group' => array(
             'type' => 'relationship',
-            'title' => 'Type',
+            'title' => 'Group',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
@@ -128,9 +132,9 @@ return array(
         ),
 
 
-        'type' => array(
+        'group' => array(
             'type' => 'relationship',
-            'title' => 'Type',
+            'title' => 'Group',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
@@ -214,11 +218,25 @@ return array(
             'size_limit' => 20,
         ),
 
+        'order' => array(
+            'title' => 'Order',
+            'type' => 'number',
+        ),
+
         'dirty' => array(
             'type' => 'bool',
             'title' => 'Dirty charge appliable',
         ),
 
+        'vat' => array(
+            'type' => 'number',
+            'title' => 'VAT rate as fraction (20% = 0.200)',
+            'symbol' => '', //optional, defaults to ''
+            'decimals' => 3, //optional, defaults to 0h
+            'thousands_separator' => ',', //optional, defaults to ','
+            'decimal_separator' => '.', //optional, defaults to '.'
+            'value' => '0.200',
+        ),
 
 
 	),

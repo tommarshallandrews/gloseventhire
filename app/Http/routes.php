@@ -1,6 +1,7 @@
 <?php
 use App\Cat;
 use App\User;
+use App\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,6 @@ Route::get('/', function () {
 
 //users
 Route::controller('users', 'UsersController', array('getLogin' => 'users.login', 'getResend' => 'users.resend'));
-
 
 Route::any('usernameCheck', function()
 {   
@@ -39,11 +39,15 @@ Route::get('register/verify/{confirmationCode}', [
 
 //products
 
+Route::get('/products/linen/{group}/{colour}', [ 'as' => 'products.showLinen', 'uses' => 'ProductsController@showLinen' ]);
+
 Route::get('/products', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]); //show all products
 
-Route::get('/products/{catagory}/{type}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
+Route::get('/products/details/{id}/{colourslug?}', [ 'as' => 'products.details', 'uses' => 'ProductsController@details' ]);
 
-Route::get('/products/details/{id}', [ 'as' => 'products.details', 'uses' => 'ProductsController@details' ]);
+Route::get('/products/{catagory}/{group}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
+
+
 
 
 
@@ -78,9 +82,9 @@ View::composer('masters.navigation', function($view)
 
 
     //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
-    $type = Cat::with('types')->orderby('name')->get(); 
+    $group = Cat::with('groups')->orderby('name')->get(); 
     //dd($cat);
-    $view->with(['cats'=> $type, 'getOrder' => app('App\getOrder')]);
+    $view->with(['cats'=> $group, 'getOrder' => app('App\getOrder')]);
 
 
 

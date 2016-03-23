@@ -21,9 +21,11 @@
                         <div class="panel-body" >
 
 
-                                @if (Session::has('message'))
-                                  <div class="alert alert-info">{{ Session::get('message') }}</div>
+                                 @if (Session::has('registerMessage'))
+                                    <div class="spacer10"></div>
+                                    <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('registerMessage') }}</div>
                                 @endif
+
 
                               {!! Form::open(array('url'=>'users/store', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
                               <input type="hidden" id="token" value="{{ csrf_token() }}">

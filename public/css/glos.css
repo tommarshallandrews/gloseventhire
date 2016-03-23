@@ -34,6 +34,10 @@
   color : #000;
 }
 
+.white {
+  color : #FFF;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -89,4 +93,24 @@ letter-spacing: -4px;
 
 .bold {
 font-weight: bold;
+}
+
+
+.colorbox {
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 15px;
+    display: block;
+}
+
+.colorbox-quote {
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 15px;
+    display: block;
+    margin: 15px 25px 15px 25px;
 }

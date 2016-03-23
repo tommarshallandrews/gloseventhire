@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cat;
-use App\Type;
+use App\Group;
 use App\Range;
 use App\Product;
+use App\Colour;
 use View;
+use Session;
+
 
 class ProductsController extends Controller
 {
@@ -31,13 +34,24 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function details($id)
-    {
+    public function details($id, $colourslug = null)
+    {   
+        //return $colour;
+        $colour = null;
 
-         $details = Product::with('range','type')
+        if($colourslug){
+        $colour = Colour::where('slug', '=', $colourslug)->first();
+        }
+
+
+         $details = Product::with('range','group')
         ->find($id);
-        return View::make('details', compact('details'));
-        return $details;
+
+        
+        
+        //return($colour);
+        return View::make('details', compact('details','colour'));
+        //return $details->group->id;
     }
 
     /**
@@ -57,11 +71,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($cat, $type, $range)
+    public function show($cat, $group, $range)
     {
 
         $catId = Cat::where('slug', '=', $cat)->first();
-        $typeId = Type::where('slug', '=', $type)->first();
+        $groupId = Group::where('slug', '=', $group)->first();
         $rangeId = Range::where('slug', '=', $range)->first();
 
         $cat_id = "%";
@@ -69,11 +83,11 @@ class ProductsController extends Controller
             $cat_id = $catId->id;
             }
 
-        $type_id = "%";
-        $typeSlug = '0';
-        if ($type !== '0'){
-            $type_id = $typeId->id;
-            $typeSlug = $typeId->slug;
+        $group_id = "%";
+        $groupSlug = '0';
+        if ($group !== '0'){
+            $group_id = $groupId->id;
+            $groupSlug = $groupId->slug;
             }   
 
         $range_id = "%";
@@ -84,13 +98,13 @@ class ProductsController extends Controller
             }       
 
         //
-        $results = Product::with('range','type')
+        $results = Product::with('range','group')
         ->where('cat_id','LIKE', $cat_id)
-        ->where('type_id', 'LIKE', $type_id,  'AND')
+        ->where('group_id', 'LIKE', $group_id,  'AND')
         ->where('range_id', 'LIKE', $range_id)  
         ->paginate(12);
 
-        $types = Type::where('cat_id', 'LIKE', $cat_id)  
+        $groups = Group::where('cat_id', 'LIKE', $cat_id)  
         ->get();
 
         $ranges = Range::where('cat_id', 'LIKE', $cat_id)  
@@ -98,7 +112,61 @@ class ProductsController extends Controller
         ->get();
 
         //return $results;
-        return View::make('results', compact('results','types','typeSlug','ranges','rangeSlug','cat'));
+        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat'));
+        //return View::make('results');
+
+    }
+
+
+
+        public function showLinen($group, $colour)
+    {
+
+        $groupId = Group::where('slug', '=', $group)->first();
+        $colourId = Colour::where('slug', '=', $colour)->first();
+
+
+        $group_id = "%";
+        $groupSlug = '0';
+        if ($group !== '0'){
+            $group_id = $groupId->id;
+            $groupSlug = $groupId->slug;
+            }   
+
+        $colour_id = "%";
+        $colourSlug = '0';
+        $colourHex = '0';
+        if ($colour !== '0'){
+            $colour_id = $colourId->id;
+            $colourSlug = $colourId->slug;
+            $colourHex = $colourId->hex;
+            }       
+
+        
+        //living nightmare to work out how to get this to order on the collection field. Seems you have to use te function to joing the products anf then run the eager load
+        $results = colour::with(['product' => function ($query) {
+
+        $query->select('products.*')->join('groups', 'group_id', '=', 'groups.id')->orderBy('groups.collection', 'ASC');
+
+        }, 'product.group'])
+
+         ->where('id', '=', $colour_id)
+         ->paginate(100);     
+        
+        //return $results;
+
+        $groups = Group::where('cat_id', 'LIKE', 60)  
+        ->get();
+
+
+        $colours = Colour::orderby('order','range')  
+        ->get();
+
+        $cat = 60;
+        session::put('colour', $colourHex);
+
+        //return $results[0];
+        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat'));
         //return View::make('results');
 
     }
@@ -109,10 +177,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($type)
+    public function edit($group)
     {
 
-        $products = DB::table($type)
+        $products = DB::table($group)
         ->get();
 
         return $products;

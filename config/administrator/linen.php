@@ -8,9 +8,9 @@
 
 return array(
 
-	'title' => 'Kitchen Equipment',
+	'title' => 'Linen',
 
-	'single' => 'Kitchen Equipment',
+	'single' => 'Linen',
 
 	'model' => 'App\Product',
 
@@ -18,7 +18,7 @@ return array(
 
     'query_filter'=> function($query)
 {
-        $query->whereCat_id(70);
+        $query->whereCat_id(60);
 },
 
 	/**
@@ -33,17 +33,17 @@ return array(
 			'type' => 'text',
 		),	
 
-         'type' => array(
-            'relationship' => 'type',
-            'title' => 'Type',
+
+       'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),
+
+         'group' => array(
+            'relationship' => 'group',
+            'title' => 'Group',
              'select' => "(:table).name",
         ), 
-
-        'range' => array(
-            'relationship' => 'range',
-            'title' => 'Type',
-            'select' => "(:table).name",
-        ),
 
 
 	),
@@ -59,27 +59,25 @@ return array(
 			'type' => 'text',
 		),	
 
-        'type' => array(
+        'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),
+
+        'group' => array(
             'type' => 'relationship',
-            'title' => 'Type',
+            'title' => 'Group',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 70)->orderby('name');
+                    $query->where('cat_id', '=', 60)->orderby('name');
                 },
         ), 
 
-        'range' => array(
-            'type' => 'relationship',
-            'title' => 'China Range',
-            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-            'options_filter'=> function($query)
-                {
-                    $query->where('cat_id', '=', 70)->orderby('name');
-                },
-        ), 
-
-
+        'order' => array(
+            'title' => 'Order',
+            'type' => 'number',
+        ),
 		
 	),
 
@@ -92,7 +90,7 @@ return array(
         'cat_id' => array(
             'title' => 'Type',
             'type' => 'text',
-            'value' => '70', //must be an array
+            'value' => '60', //must be an array
             'visible' => false,
         ),
 
@@ -101,6 +99,11 @@ return array(
 			'title' => 'Code',
 			'type' => 'text',
 		),	
+
+                'name' => array(
+            'title' => 'Name',
+            'type' => 'text',
+        ),
 
         'price' => array(
             'type' => 'number',
@@ -111,27 +114,27 @@ return array(
             'decimal_separator' => '.', //optional, defaults to '.'
         ),
 
+        'price2' => array(
+            'type' => 'number',
+            'title' => 'Price of white linen each (pence)',
+            'symbol' => '', //optional, defaults to ''
+            'decimals' => 0, //optional, defaults to 0h
+            'thousands_separator' => ',', //optional, defaults to ','
+            'decimal_separator' => '.', //optional, defaults to '.'
 
-        'type' => array(
+        ),
+
+
+        'group' => array(
             'type' => 'relationship',
-            'title' => 'Type',
+            'title' => 'Group',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 70)->orderby('name');
+                    $query->where('cat_id', '=', 60)->orderby('name');
                 },
         ),  
 
-
-        'range' => array(
-            'type' => 'relationship',
-            'title' => 'Range',
-            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-            'options_filter'=> function($query)
-                {
-                    $query->where('cat_id', '=', 70)->orderby('name');
-                },
-        ), 
 
 
         'colour' => array(
@@ -140,7 +143,7 @@ return array(
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
             'options_filter'=> function($query)
                 {
-                    $query->where('cat_id', '=', 70)->orderby('name');
+                    $query->where('cat_id', '=', 60)->orderby('name');
                 },
         ), 
 
@@ -191,10 +194,25 @@ return array(
     		'size_limit' => 20,
 		),
 
-
+        'order' => array(
+            'title' => 'Order',
+            'type' => 'number',
+            'value' => '0',
+        ),
+        
         'dirty' => array(
             'type' => 'bool',
             'title' => 'Dirty charge appliable',
+        ),
+
+        'vat' => array(
+            'type' => 'number',
+            'title' => 'VAT rate as fraction (20% = 0.200)',
+            'symbol' => '', //optional, defaults to ''
+            'decimals' => 3, //optional, defaults to 0h
+            'thousands_separator' => ',', //optional, defaults to ','
+            'decimal_separator' => '.', //optional, defaults to '.'
+            'value' => '0.200',
         ),
 
 

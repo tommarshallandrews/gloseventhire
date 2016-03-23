@@ -82,15 +82,10 @@ class UsersController extends Controller {
         });
 
 
-        if($request->submitType == 'contact'){
-            return "contact dash";
-        }
-        
+        Session::flash('registerMessage','Thanks for registering. we\'ve sent you an email');
+        Session::flash('type', "success");
+        return Redirect::back();
 
-        return Redirect::to('users/dashboard')
-                ->with('message', '<h1>Great!</h1><h4>We have sent a verification to that email address to check its all correct.<br><strong>Please check your inbox.</strong></h4>')
-                ->with('messageType','validate')
-                ->withInput();
 
         
     }
@@ -146,41 +141,39 @@ class UsersController extends Controller {
 
 
 
-    public function postSignin(Requests\UserAddRequest $request) {
+    public function postSignin(Requests\UserLoginRequest $request) {
 
         $order = '0';
-            //check for an orphan order
-        if (Auth::check() AND empty(Auth::user()->email)) {
-                $order = Order::where('user_id','LIKE', (Auth::user()->id))->first();
-            }
+
+
 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
-
-                //get array of likes and store in session
-
-                
-                //check if an orphan make is in progress and assign make to them
-                if ($order <> '0'){
-                $order->user_id = Auth::user()->id;
-                $order->save();
-
-                return Redirect::to('users/dashboard');
-                }
 
                 //chech emailconfirmation and resirect to redent is necessary
                 if(!Auth::user()->confirmed == 1 ){
                     return View::make('users.resend');
                 }
 
+            //check for an orphan order
+            if (Session::has('order')) {
+                $order = Order::where('id','LIKE', Session::get('order'))->first();
+                $order->user_id = Auth::user()->id;
+                $order->save();
+                //return Auth::user()->id;
+            }
 
-            return Redirect::to('users/dashboard')
-            ->with('message', '<h3>Welcome back '. Auth::user()->username .'</h3> You are now logged back in')
-            ->with('alert-class', 'alert-danger')
-            ->withInput();
+
+                return Redirect::to('users/dashboard')
+                ->with('message', 'Welcome back '. Auth::user()->username .' - You are now logged back in')
+                ->with('alert-class', 'alert-success')
+                ->withInput();
+
+            
 
         } else {
+
             return Redirect::to('users/login')
                 ->with('message', 'Your username/password combination was incorrect')
                 ->with('alert-class', 'alert-danger')
@@ -193,6 +186,10 @@ class UsersController extends Controller {
 
 
     public function getDashboard() {
+
+        if(!Auth::check()){
+            return View::make('users.login');
+        }
         
         $orders = Order::
         where('user_id', Auth::user()->id)
@@ -238,14 +235,21 @@ class UsersController extends Controller {
         $user->save();
 
 
-        Session::flash('alert-class', 'alert-success'); 
+
+        //if there is a live order then redirect to that quote page
+        if(session::has('order')){
+        return Redirect::to('quote/' . session::get('order') .'')
+            ->with('registerMessage', 'You are now verified and logged in.')
+            ->with('type', 'success');
+        }
+
+
+        //otherwise go to the dashboard
         return Redirect::to('users/dashboard')
                 ->with('message', 'You are now verified and logged in.')
                 ->with('alert-class', 'alert-success')
                 ->withInput();
-       
-   
-    }
+}
 
 
 

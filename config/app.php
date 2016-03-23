@@ -4,6 +4,8 @@ return [
 
     //SITE SETTINGS
     'companyName' => 'Gloucester Event Hire',
+    'companyWebsite' => 'gloseventhire.co.uk',
+    'companyEmail' => 'info@gloseventhire.co.uk ',
 
     
 
@@ -44,7 +46,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'GMT',
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +85,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'ghytraloiu875rvyujiuaembc532106h'),
 
     'cipher' => 'AES-256-CBC',
 

@@ -34,7 +34,7 @@
 
             <!-- Price -->
             <div class="shop-item-cart__price">
-              {{$details->price}}p
+              £{{ number_format($details->price / 100, 2)}} each
             
 
             <button type="button" class="btn btn-default btn-sml" data-container="body" data-toggle="popover" data-placement="top" data-content="This charge is for aech item for one hire period. Normally a hire period is Friday-monday or 48 hours during the week." title="" data-original-title="Cost notes" aria-describedby="popover948211">
@@ -49,11 +49,12 @@
             <!-- Intro -->
             <div class="shop-item__intro">
               <p>
-               {{$details->description}}
+               {{$details->description}} 
               </p>
             </div>
 
             <!-- Add to cart -->
+
 
 @if (Session::has('message'))
    <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('message') }}</div>
@@ -65,11 +66,13 @@
     <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
     </div>
     <input type="hidden" name="product_id" value="{{$details->id}}">
+    @if($details->group->collection)
+    <input type="hidden" name="colour_hex" value="{{$colour->hex}}">
+    @endif
     <input type="hidden" name="action_id" value="add">
+
     <button type="submit" class="btn btn-secondary btn-lrg"><i class="fa fa-shopping-cart"></i> Add to quote</button>
   </form>
-
-
 
 
           </div> <!-- / .shop-item__info -->
@@ -80,7 +83,9 @@
           <!-- Product image -->
           <div class="shop-item__img">
             <div class="shop-item-img__aside">
+              @if($details->image1)
               <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive active" alt="...">
+              @endif
               @if($details->image2)
               <img src="http://madigital.co.uk/images/{{$details->image2}}" class="img-responsive" alt="...">
               @endif
@@ -92,7 +97,11 @@
               @endif
             </div>
             <div class="shop-item-img__main">
+              @if($details->image1)
               <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive" alt="..." style="opacity: 1;">
+              @elseif($details->group->collection)
+              <span class="colorbox huge bold white " data-toggle="tooltip" data-placement="top" title="{{$colour->name}}" style="background:{{$colour->hex}}">{{$colour->name}} Linen {{$details->group->collection}}</span>
+              @endif
             </div>
             <div class="clearfix"></div>
           </div>

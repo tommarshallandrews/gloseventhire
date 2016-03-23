@@ -25,7 +25,7 @@ class Product extends Model implements AuthenticatableContract,
 
 
     public function orders() {
-    return $this -> belongsToMany('App\Order', 'order_product', 'product_id', 'order_id') -> withPivot('id','quantity');
+    return $this -> belongsToMany('App\Order', 'order_product', 'product_id', 'order_id') -> withPivot('id','quantity','colour');
     }
     
 
@@ -42,15 +42,16 @@ class Product extends Model implements AuthenticatableContract,
     }
 
 
-    public function type()
+    public function group()
     {
        //return $this->belongsTo('App\Option');
-       return $this->belongsTo('App\Type');
+       return $this->belongsTo('App\Group');
     }
 
 
-
-
+    public function colour() {
+    return $this -> belongsToMany('App\Colour');
+    }
 
 
 

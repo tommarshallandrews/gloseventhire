@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Cat;
-use App\Type;
+use App\Group;
 use App\Range;
 use App\Product;
 use App\Order;
@@ -35,7 +35,7 @@ class OrdersController extends Controller
         session()->forget('order');
             //get all orders for a customer
         $orders = Order::with(['product' => function($query) {
-                $query->with(['range', 'type']);
+                $query->with(['range', 'group']);
                 }])
         ->where('user_id', '=',  Auth::user()->id, 'and')
         ->get();
@@ -50,11 +50,10 @@ class OrdersController extends Controller
      */
     public function details($id)
     {
-
-         $details = Product::with('range','type')
+        $details = Product::with('range','group')
         ->find($id);
         return View::make('details', compact('details'));
-        return $details;
+
     }
 
     /**
@@ -70,28 +69,19 @@ class OrdersController extends Controller
     {   
 
     if(!Auth::check()){
-    return "you are not logged in to view an order";
+    return View::make('users.login');
     }
 
     $order_id = $request->id;
 
-         
-    /*if(!Session::has('order')){
-        $order_id = $id;
-    } else {
-        $order_id = Session::get('order');
-    }*/
-
-    //dd($order_id);
-
-        //
         $order = Order::with(['product' => function($query) {
-                $query->with(['range', 'type'])->orderby('name');
+                $query->with(['range', 'group'])->orderby('name');
                 }])
         ->where('user_id', '=',  Auth::user()->id, 'and')
         ->where('id', $order_id)
         //->orderby('product->name')
         ->first();
+
 
         if(!$order){
             return redirect('products/china/0/0');
@@ -134,13 +124,11 @@ class OrdersController extends Controller
 
             }
 
-
-
             //return $productcost;
         
         Session::put('order', $order->id);
         //return $order;
-        return View::make('quote', compact('order',  'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
+        return View::make('quote', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
         //return View::make('results');
     }
 
@@ -173,7 +161,6 @@ class OrdersController extends Controller
 
 
             //return $make->slug;
-
             return Redirect::action('WorkshopController@show', array($make->id));
 
     }
@@ -222,6 +209,7 @@ class OrdersController extends Controller
 
        $quantity = Input::get('quantity');
        $product_id = Input::get('product_id');
+       $colour_id = Input::get('colour_hex');
        $action_id = Input::get('action_id');
 
     $order = Order::with('product')
@@ -233,7 +221,7 @@ class OrdersController extends Controller
 
     //return $product_id;
     $order->product()->detach($product_id);
-    $order->product()->attach($product_id, ['quantity' => $quantity]); 
+    $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_id]); 
 
     //push productto order session
     //Session::put('order.product', $product_id);
@@ -332,13 +320,42 @@ class OrdersController extends Controller
 
 
     public function updateDates()
+
     {
+
+        $start_date = Input::get('start_date');
+        $start_date = str_replace('/', '-', $start_date);
+        $start_date = date('Y-m-d', strtotime($start_date));
+
+        $end_date = Input::get('end_date');
+        $end_date = str_replace('/', '-', $end_date);
+        $end_date = date('Y-m-d', strtotime($end_date));
+
         $order = Order::find(Session::get('order'));
-        $order->start_date = Input::get('start_date');
-        $order->end_date = Input::get('end_date');
+        
+        $order->start_date = $start_date;
+        $order->end_date = $end_date;
+
+        if($start_date >= $end_date){
+        Session::flash('datesMessage','Your start date is after you end date');
+        Session::flash('type', "danger");
+        return Redirect::back()->withinput();
+        }
+
+
+        //check its not too long
+        $diff = abs(strtotime($end_date) - strtotime($start_date));
+        $days = $diff / 86400;
+        if($days > 7){
+        Session::flash('datesMessage','That\'s more than a week dude! call us');
+        Session::flash('type', "danger");
+        return Redirect::back()->withinput();
+        }
+        
+        
         $order->save();
-        //Session::flash('you return state has been updated');
-        //Session::flash('type', "success");
+        Session::flash('datesMessage','Your dates are sweet!');
+        Session::flash('type', "success");
         return Redirect::back();
 
     }

@@ -373,7 +373,7 @@
                               <tbody>
                                 <tr>
                                   <td align="center" height="20" style="border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; color: #563e7e; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                                    Thanks for your £{{ number_format(($cost)/100, 2, '.', '') }} payment to <span class="apple-override-hidden" style="border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; color: #563e7e; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">rockonsilver.co.uk</span>.
+                                    Thanks for your £{{ number_format(($cost)/100, 2, '.', '') }} payment to <span class="apple-override-hidden" style="border: 0; margin: 0; padding: 0; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; color: #563e7e; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">{{ Config::get('app.companyWebsite') }}</span>.
                                   </td>
                                 </tr>
                               </tbody>
@@ -403,10 +403,8 @@
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                       <tr>
                                         <td width="100%" height="72" align="center" class="icon" style="border: 0; margin: 0; padding: 0;">
-                                          <a href="http://rockonsilver.co.uk" style="border: 0; margin: 0; padding: 0;" target="_blank">
-                                            <span class="retina">
-                                              <img alt="" src="http://rockonsilver.co.uk/css/images/rock-on-silver-logo.png" style="border: 0; margin: 0; padding: 0;" />
-                                            </span>
+                                          <a href="http://{{ Config::get('app.companyWebsite') }}" style="border: 0; margin: 0; padding: 0;" target="_blank">
+                                            {{ Config::get('app.companyName') }}
                                           </a>
                                         </td>
                                       </tr>
