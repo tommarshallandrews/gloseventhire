@@ -211,6 +211,7 @@ return array(
         'order' => array(
             'title' => 'Order',
             'type' => 'number',
+            'value' => '0',
         ),
 
         'dirty' => array(
