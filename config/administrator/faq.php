@@ -8,11 +8,11 @@
 
 return array(
 
-	'title' => 'Page content',
+	'title' => 'FAQs',
 
-	'single' => 'Page',
+	'single' => 'FAQ',
 
-	'model' => 'App\Page',
+	'model' => 'App\Faq',
 
 	'form_width' => 700,
 
@@ -23,9 +23,9 @@ return array(
 	'columns' => array(
 
 
-     'name' => array(
-            'title' => 'Name',
+        'heading' => array(
             'type' => 'text',
+            'title' => 'Heading',
         ),
 
 
@@ -37,9 +37,9 @@ return array(
 	 */
 	'filters' => array(
 
-        'name' => array(
-            'title' => 'Name',
+        'heading' => array(
             'type' => 'text',
+            'title' => 'Heading',
         ),
 
 		
@@ -52,29 +52,23 @@ return array(
 
 
 
-        'name' => array(
-            'title' => 'Name',
-            'type' => 'text',
-        ),
 
-        'navigation' => array(
-            'type' => 'text',
-            'title' => 'Navigation text',
-        ),
 
         'heading' => array(
             'type' => 'text',
             'title' => 'Heading',
         ),
 
-        'slug' => array(
-            'type' => 'text',
-            'title' => 'Slug',
-        ),
+
 
         'body' => array(
             'type' => 'wysiwyg',
             'title' => 'Body',
+        ),
+
+        'order' => array(
+            'type' => 'number',
+            'title' => 'Order',
         ),
 
 
