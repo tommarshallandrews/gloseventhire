@@ -1,10 +1,29 @@
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="green">
+
 <div class="container">
         <div class="navbar-header">
 
           <!-- Navbar toggle -->
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -12,30 +31,29 @@
           </button>
           
           <!-- Navbar brand -->
-          <a class="navbar-brand" href="index.html">
-            <i class="fa fa-paperclip"></i> Gloucester Event Hire  
-
+          <a class="navbar-logo" href="{{ url('/') }}">
+            <img src="{{ url('/') }}/images/gloucester-events-hire.png" width="350px">
           </a>
 
         </div> <!-- / .navbar-header -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="topbar">
           <ul class="nav navbar-nav navbar-right">
 
             <!-- General links -->
             <li >
-              <a href="#" >Home</a>
+              <a class="yellow" href="{{ url('/') }}" >Home</a>
             </li>
 
             <li >
-              <a href="#" >About Us</a>
+              <a href="{{ url('/page/about-us') }}" >About Us</a>
             </li>
 
             <li >
-              <a href="#" >FAQ</a>
+              <a href="{{ url('/faq') }}" >FAQ</a>
             </li>
 
             <li >
-              <a href="{{ url('/users/register') }}" >Contact Us</a>
+              <a href="{{ url('/page/contact-us') }}" >Contact Us</a>
             </li>
 
             
@@ -44,11 +62,11 @@
                                       
                     @if(Auth::user()->email)
                       <li>
-                          <a href="{{ url('/users/dashboard') }}" >Account {{ Auth::user()->id }}</a>
+                          <a href="{{ url('/users/dashboard') }}" >Account </a>
                       </li>
                     @else
                        <li>
-                          <a href="{{ url('/users/login') }}" >Login {{ Auth::user()->id }}</a>
+                          <a href="{{ url('/users/login') }}" >Login</a>
                       </li>
                        <li >
                         <a href="{{ url('/users/register') }}" >Register</a>
@@ -78,7 +96,7 @@
 
 
 
-
+     </div>
 
 
 
@@ -102,11 +120,13 @@
         <div class="navbar-header">
 
 
-          
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#productbar">
+            Click to view products
+          </button>
 
 
         </div> <!-- / .navbar-header -->
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="productbar">
           <ul class="nav navbar-nav navbar-right">
 
             <!-- General links -->
@@ -115,7 +135,7 @@
 @foreach($cats as $cat)
 
             <li class="dropdown">
-              <a href="{{ url('/products') }}/{{$cat->slug}}/0/0"  >{{$cat->name}} </a>
+              <a href="{{ url('/products') }}/{{$cat->slug}}/0/0"  >{{$cat->name}}</a>
               <ul class="dropdown-menu">
 
                 <!-- check cat to show correct drops -->

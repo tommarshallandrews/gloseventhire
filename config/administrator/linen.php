@@ -107,7 +107,7 @@ return array(
 
         'price' => array(
             'type' => 'number',
-            'title' => 'Price each (pence)',
+            'title' => 'Price of coloured linen each (pence)',
             'symbol' => '', //optional, defaults to ''
             'decimals' => 0, //optional, defaults to 0h
             'thousands_separator' => ',', //optional, defaults to ','

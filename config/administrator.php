@@ -65,7 +65,16 @@ return array(
 	 * 		'Analytics' => array('E-Commerce' => 'page.ecommerce.analytics'),
 	 *	)
 	 */
-	'menu' => array('china','cutlery','furniture','glass','kitchen_equipment','service_equipment','linen' => array( 'linen','colours'),'Site Content' => array( 'faq','pages')),
+	'menu' => array('china',
+		'cutlery',
+		'furniture',
+		'glass',
+		'kitchen_equipment',
+		'service_equipment',
+		'Linen' => array( 'linen','colours'),
+		'order',
+		'Site Content' => array( 'faq','pages'),
+		),
 
 	/**
 	 * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user

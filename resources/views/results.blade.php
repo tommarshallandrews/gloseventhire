@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-4">
-            <h3>Shop: Category</h3>
+            <h3>Product: Category {{$catSlug}}</h3>
           </div>
           <div class="col-sm-8">
             <ol class="breadcrumb pull-right hidden-xs">
@@ -136,7 +136,7 @@
                               <div class="">
                                 <a href="#">
                                   <h5 >
-                                    <a href="{{ url('/products/details') }}/{{$product->id}}/{{ $colourId->slug  }}">{{$product->group->name}}</a>
+                                    <a href="{{ url('/products/details') }}/{{$product->id}}/{{$colourId->slug}}">{{$product->group->name}}</a>
                                   
 
 

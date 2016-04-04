@@ -198,8 +198,8 @@
               <div class="left large grey">Delivery - none:</div>
               <div class="right large grey">Free</div>
               @else
-              <div class="left large grey">Delivery {{ number_format($order->distance/1000, 2) }}km:</div>
-              <div class="right large grey">£{{ number_format($order->distance/1000, 2) }}</div>
+              <div class="left large grey">Delivery ({{ number_format($order->distance/1609 , 2) }} miles):</div>
+              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile')/1609, 2) }}</div>
               @endif
               <div class="clearfix"></div>
 
@@ -229,10 +229,9 @@
         <!-- if user is logged in and confirmed -->
         @if(Auth::User()->confirmed == '1')
         <div class="spacer20"></div>
-            {!! Form::open(array('url'=>'orders/getquote', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
+            {!! Form::open(array('url'=>'orders/getQuote', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
 
-                <input type="hidden" name="status" value="quote">
-                <button type="submit" href="#" name="submitType" value="contact" class="btn btn-success block">Save quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
+                <button type="submit" name="submitType" value="contact" class="btn btn-success block">Save this quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
                 <div class="spacer10"></div>
                 <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
                  <p>* Subject to availability and possible deposit<p>

@@ -6,6 +6,7 @@ return [
     'companyName' => 'Gloucester Event Hire',
     'companyWebsite' => 'gloseventhire.co.uk',
     'companyEmail' => 'info@gloseventhire.co.uk ',
+    'poundsPerMile' => 2,
 
     
 

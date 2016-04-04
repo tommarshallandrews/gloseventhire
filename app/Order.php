@@ -29,7 +29,10 @@ class Order extends Model implements AuthenticatableContract,
     return $this -> belongsToMany('App\Product', 'order_product', 'order_id', 'product_id') -> withPivot('id','quantity','colour');
     }
 
-
+        public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
 
 }

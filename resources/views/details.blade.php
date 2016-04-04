@@ -129,72 +129,43 @@
                 <span>Similar Products</span>
               </h3>
 
-              <div class="row">
+<div class="row">
+
+@foreach($similars as $similar)
+
+
+              
                 <div class="col-sm-4">
 
                   <div class="shop__thumb">
                     <a href="#">
 
                       <div class="shop-thumb__img">
-                        <img src="assets/img/shop-item_1.jpg" class="img-responsive" alt="...">
+                        <a href="{{ url('/products/details') }}/{{$similar->id}}">
+                        <img src="http://madigital.co.uk/images/{{$similar->image1}}" class="img-responsive" alt="..." width="210">
+                        </a>
                       </div>
 
                       <h5 class="shop-thumb__title">
-                        Product Title
+                        <a href="{{ url('/products/details') }}/{{$similar->id}}">
+                        {{$similar->name}}
+                        </a>
                       </h5>
 
                       <div class="shop-thumb__price">
-                        <span class="shop-thumb-price_old">$80.99</span>
-                        <span class="shop-thumb-price_new">$59.99</span>
+                        <span class="shop-thumb-price_new">£{{ number_format($similar->price / 100, 2)}} each</span>
                       </div>
 
                     </a>
                   </div>
 
                 </div>
-                <div class="col-sm-4">
+          
+@endforeach
 
-                  <div class="shop__thumb">
-                    <a href="#">
+</div> <!-- / .row -->
 
-                      <div class="shop-thumb__img">
-                        <img src="assets/img/shop-item_2.jpg" class="img-responsive" alt="...">
-                      </div>
-
-                      <h5 class="shop-thumb__title">
-                        Product Title
-                      </h5>
-
-                      <div class="shop-thumb__price">
-                        $59.99
-                      </div>
-
-                    </a>
-                  </div>
-
-                </div>
-                <div class="col-sm-4">
-
-                  <div class="shop__thumb">
-                  <a href="#">
-
-                    <div class="shop-thumb__img">
-                      <img src="assets/img/shop-item_3.jpg" class="img-responsive" alt="...">
-                    </div>
-
-                    <h5 class="shop-thumb__title">
-                      Product Title
-                    </h5>
-
-                    <div class="shop-thumb__price">
-                      $59.99
-                    </div>
-
-                  </a>
-                </div>
-
-                </div>
-              </div> <!-- / .row -->
+              
             </div>
           </div> <!-- / .row -->
 

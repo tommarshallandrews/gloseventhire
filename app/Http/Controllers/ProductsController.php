@@ -47,10 +47,18 @@ class ProductsController extends Controller
          $details = Product::with('range','group')
         ->find($id);
 
+        $rangeSelected = $details->range->id;
+
+
+            $similars = Product::with('range','group')
+            ->where ('range_id', '=', $rangeSelected)
+            ->get();
+
+            //return $similar;
         
         
         //return($colour);
-        return View::make('details', compact('details','colour'));
+        return View::make('details', compact('details','colour','similars'));
         //return $details->group->id;
     }
 
@@ -78,10 +86,15 @@ class ProductsController extends Controller
         $groupId = Group::where('slug', '=', $group)->first();
         $rangeId = Range::where('slug', '=', $range)->first();
 
+        
+
         $cat_id = "%";
+        $catSlug = '0';
         if ($cat !== '0'){
             $cat_id = $catId->id;
+            $catSlug = $catId->slug;
             }
+
 
         $group_id = "%";
         $groupSlug = '0';
@@ -112,7 +125,7 @@ class ProductsController extends Controller
         ->get();
 
         //return $results;
-        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat'));
+        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat','catSlug'));
         //return View::make('results');
 
     }

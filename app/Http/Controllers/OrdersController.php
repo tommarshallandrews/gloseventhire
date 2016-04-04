@@ -20,6 +20,7 @@ use Input;
 use Auth;
 use Session;
 use Redirect;
+use Mail;
 
 class OrdersController extends Controller
 {
@@ -141,29 +142,6 @@ class OrdersController extends Controller
 
 
   
-
-        public function create()
-    {
-        //
-        if (!Auth::check()) {
-
-            //create unregistered user and a new make for them
-            $user = new User;
-            $user->save();
-            Auth::login($user);
-
-        } 
-
-            //create new make with seqeenced name and slug 
-            $make = new Order;
-            $make->user_id = Auth::user()->id;
-            $make->save();
-
-
-            //return $make->slug;
-            return Redirect::action('WorkshopController@show', array($make->id));
-
-    }
 
 
 
@@ -372,6 +350,29 @@ class OrdersController extends Controller
         return Redirect::back();
 
     }
+
+
+        public function getQuote()
+    {
+        $order = Order::find(Session::get('order'));
+        $order->status = 'quote';
+        $order->save();
+
+        //send verification email
+        Mail::send('emails.notify', ['order' => $order], function($message) {
+         $message->from('tom@marshallandrews.com', 'Tom');
+         $message->to('tom@marshallandrews.com', 'Tom')
+         ->subject('Gloucester Event Hire - Order notification');
+        });
+
+
+
+        Session::flash('message','That\s saved and someone will contact you shortly');
+        Session::flash('alert-class', "alert-success");
+        return Redirect::to('users/dashboard');
+
+    }
+
 
     /**
      * Remove the specified resource from storage.

@@ -1,13 +1,7 @@
 
 
-
-
-
-@if (!Auth::User('email'))
-@include('masters.unregistered') 
-@else
 @include('masters.header') 
-@endif
+@include('masters.navigation') 
 
  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">   
 
@@ -80,7 +74,7 @@
         </div>
 
 
- @include('masters.footerNoMenu') 
+ @include('masters.footer') 
 
 
 

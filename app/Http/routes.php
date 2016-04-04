@@ -2,6 +2,8 @@
 use App\Cat;
 use App\User;
 use App\Group;
+use App\Faq;
+use App\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,20 @@ use App\Group;
 */
 Route::get('/', function () {
     return View::make('index');
+});
+
+
+Route::get('/faq', function () {
+    $faqs = faq::all();
+    //return $faqs;
+    return View::make('faqs', compact('faqs'));
+});
+
+Route::get('/page/{slug}', function ($slug) {
+
+    $content = Page::where('slug', $slug)->first();
+    //return $content;
+    return View::make('page', compact('content'));
 });
 
 //users
@@ -50,7 +66,6 @@ Route::get('/products/{catagory}/{group}/{range}', [ 'as' => 'products.show', 'u
 
 
 
-
 //orders
 
 Route::get('/quote/new', [ 'as' => 'orders.newquote', 'uses' => 'OrdersController@newquote' ]);
@@ -60,7 +75,7 @@ Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@s
 
 
 
-
+//orders
 
 Route::get('/orders', [ 'as' => 'orders.index', 'uses' => 'OrdersController@index' ]);
 
@@ -71,6 +86,8 @@ Route::post('/orders/updateReturn', [ 'as' => 'orders.updateReturn', 'uses' => '
 Route::post('/orders/updateDates', [ 'as' => 'orders.updateDates', 'uses' => 'OrdersController@updateDates' ]);
 
 Route::post('/orders/updateDelivery', [ 'as' => 'orders.updateDelivery', 'uses' => 'OrdersController@updateDelivery' ]);
+
+Route::post('/orders/getQuote', [ 'as' => 'orders.getQuote', 'uses' => 'OrdersController@getQuote' ]);
 
 //navigation
 
