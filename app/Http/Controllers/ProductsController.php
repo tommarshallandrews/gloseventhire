@@ -135,6 +135,8 @@ class ProductsController extends Controller
         public function showLinen($group, $colour)
     {
 
+        $catSlug = 'linen';
+
         $groupId = Group::where('slug', '=', $group)->first();
         $colourId = Colour::where('slug', '=', $colour)->first();
 
@@ -179,7 +181,7 @@ class ProductsController extends Controller
         session::put('colour', $colourHex);
 
         //return $results[0];
-        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat'));
+        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','catSlug'));
         //return View::make('results');
 
     }
