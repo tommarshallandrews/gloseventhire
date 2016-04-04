@@ -196,6 +196,7 @@
                 <i class="fa fa-shopping-cart"></i> 
                 <span class="navbar__shopping-cart-items">{{ $getOrder->orderCount() }}<span class="visible-xs-inline">items</span></span>
               </a>
+              {{Session::get('order')}}
             </li>
 
           </ul> <!-- / .nav -->

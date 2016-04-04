@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('/faq', function () {
     $faqs = faq::all();
     //return $faqs;
@@ -50,6 +51,14 @@ Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'UsersController@confirm'
 ]);
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 

@@ -30,7 +30,7 @@ class UsersController extends Controller {
 
 
   public function getLogin() {
-        
+        Auth::logout();
         return View::make('users.login');
     }
 
@@ -158,12 +158,13 @@ class UsersController extends Controller {
                 }
 
             //check for an orphan order
-            if (Session::has('order')) {
-                $order = Order::where('id','LIKE', Session::get('order'))->first();
+            if(Session::has('order')) {
+                $order = Order::find(Session::get('order'));
                 $order->user_id = Auth::user()->id;
                 $order->save();
-                //return Auth::user()->id;
+                
             }
+
 
 
                 return Redirect::to('users/dashboard')

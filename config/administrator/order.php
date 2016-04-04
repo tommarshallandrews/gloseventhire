@@ -68,7 +68,15 @@ return array(
      */
     'filters' => array(
         'id',
-        "status",
+
+
+       'status' => array(
+            'type' => 'enum',
+            'title' => 'Status',
+            'options' => array('open','quote','paid','complete','cancelled','refunded'), //must be an array
+        ),
+
+        
 
         'updated_at' => array(
             'title' => 'Order Updated',
@@ -134,7 +142,7 @@ return array(
 'actions' => array(
     //Clearing the site cache
     'clear_cache' => array(
-        'title' => 'Launch specification page',
+        'title' => 'Launch quote page',
         'messages' => array(
             'active' => 'Launching window...',
             'success' => 'Cache cleared!',
@@ -144,13 +152,16 @@ return array(
         'action' => function(&$data)
         {
             //Cache::flush();
-            return Redirect::route('orders.spec', $data->id);
+            //return $data;
+            //Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
+            return redirect('quote/' . $data->id);
+            //return Redirect::route('orders.show');
 
             //return true to flash the success message
             //return false to flash the default error
             //return a string to show a custom error
             //return a Response::download() to initiate a file download
-            return true;
+            //return true;
         }
     ),
 ),

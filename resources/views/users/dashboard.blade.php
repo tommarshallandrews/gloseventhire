@@ -157,7 +157,7 @@
                                 <div class="form-group">
                                     <!-- Button -->                                        
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button id="btn-signup-REMOVE-THIS-TO-DISABLE-DURING-VALIDATION " type="submit" class="btn btn-success"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                        <button id="btn-signup-REMOVE-THIS-TO-DISABLE-DURING-VALIDATION " type="submit" class="btn btn-success"><i class="icon-hand-right"></i> &nbsp Update</button>
 
                                     </div>
                                 </div>
@@ -172,6 +172,10 @@
                             {!! Form::close() !!}
 
 
+<div class="col-md-offset-3 col-md-9">
+<div class="spacer10"></div>
+<a href="{{ url('/password/email') }}" class="underline">Reset you password</a>
+</div>
 
 
 </div>    

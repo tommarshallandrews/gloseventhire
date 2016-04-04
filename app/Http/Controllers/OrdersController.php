@@ -69,6 +69,8 @@ class OrdersController extends Controller
     public function show(request $request)
     {   
 
+      // return Auth::user()->level;
+
     if(!Auth::check()){
     return View::make('users.login');
     }
@@ -78,15 +80,21 @@ class OrdersController extends Controller
         $order = Order::with(['product' => function($query) {
                 $query->with(['range', 'group'])->orderby('name');
                 }])
-        ->where('user_id', '=',  Auth::user()->id, 'and')
         ->where('id', $order_id)
         //->orderby('product->name')
         ->first();
 
 
+
         if(!$order){
-            return redirect('products/china/0/0');
+            return "Order does not exist";
         }
+
+
+        if ($order->user_id !== Auth::user()->id && Auth::user()->level == 0){
+            return "Order not avaialble to you";
+        }
+
 
             //cost calculations
 
@@ -238,6 +246,8 @@ class OrdersController extends Controller
     {
         return $quantity;
     }
+
+
 
     public function updateDelivery()
     {       
