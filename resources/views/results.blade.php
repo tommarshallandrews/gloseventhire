@@ -41,7 +41,7 @@
 
 
 
-            @if($cat == 60)
+            @if($cat_id == 60)
 
                                   <!-- Checkboxes -->
                       <h3 class="headline">
@@ -171,7 +171,7 @@
                                   </div>
                                   <h5 class="shop-thumb__title">
                                     <a href="{{ url('/products/details') }}/{{$result->id}}">{{$result->name}}</a><br>
-                                     @if($cat !== 60)
+                                     @if($cat_id !== 60 && $cat_id !== 70)
                                     ({{$result->range->name}})
                                      @endif
                                   </h5>

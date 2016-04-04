@@ -124,8 +124,8 @@ class ProductsController extends Controller
         ->orderby('order')  
         ->get();
 
-        //return $results;
-        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat','catSlug'));
+        //return $cat_id;
+        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat_id','cat','catSlug'));
         //return View::make('results');
 
     }
@@ -177,11 +177,13 @@ class ProductsController extends Controller
         $colours = Colour::orderby('order','range')  
         ->get();
 
-        $cat = 60;
+        $cat = 'linen';
+        $cat_id = 60;
+
         session::put('colour', $colourHex);
 
         //return $results[0];
-        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','catSlug'));
+        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','cat_id','catSlug'));
         //return View::make('results');
 
     }
