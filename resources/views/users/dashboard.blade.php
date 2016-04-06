@@ -87,6 +87,7 @@
 <!-- details form three -->
 <div class="col-sm-8">
 
+
                                 {!! Form::open(array('url'=>'users/update', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
 
                                 <div class="form-group">
@@ -95,10 +96,6 @@
                                         <h3>Your details</h3>
                                     </div>
                                 </div>
-
-     
-
-                              
 
                                 
                                 @if(Session::has('errors'))
@@ -113,9 +110,6 @@
                                 @endif   
 
 
-
-
-                                    
                                 
                                   
                                 <div class="form-group">
@@ -162,20 +156,80 @@
                                     </div>
                                 </div>
 
- 
-
-                                
-                              
-                             
-                                
-                                
                             {!! Form::close() !!}
 
 
-<div class="col-md-offset-3 col-md-9">
-<div class="spacer10"></div>
-<a href="{{ url('/password/email') }}" class="underline">Reset you password</a>
-</div>
+
+
+
+
+
+
+
+
+                            {!! Form::open(array('url'=>'users/updatepassword', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
+
+                                <div class="form-group">
+                                    <div for="email" class="col-md-3 control-label"></div>
+                                    <div class="col-md-9">
+                                        <h3>Reset password</h3>
+                                    </div>
+                                </div>
+
+
+                                      @if (Session::has('password-message'))
+                                      <div class="form-group">
+                                          <div class="alert {{ Session::get('alert-class') }} col-md-6 col-md-offset-3">{{ Session::get('password-message') }}
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                          </div>
+                                      </div>
+                                      @endif
+
+                                
+
+
+
+                                <div class="form-group">
+                                    <label for="old_password" class="col-md-3 control-label">Old password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control" name="old_password" id="old_password" placeholder="Your old password">
+                                    </div>
+                                </div>
+                                    
+
+                                 <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">New password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="txtNewPassword" class="form-control" name="password" id="password" placeholder="Your new password">
+                                    </div>
+                                </div>
+
+                                  <div class="form-group">
+                                    <label for="password_confirmation" class="col-md-3 control-label">Confirm Password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm your password" >
+                                    </div>
+                                  </div>
+
+
+
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup-REMOVE-THIS-TO-DISABLE-DURING-VALIDATION " type="submit" class="btn btn-danger"><i class="icon-hand-right"></i> &nbsp Update password</button>
+
+                                    </div>
+                                </div>
+
+                            {!! Form::close() !!}
+
+
+
+
+
+
+
 
 
 </div>    

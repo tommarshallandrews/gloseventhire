@@ -125,6 +125,37 @@ class UsersController extends Controller {
     }
 
 
+    public function postUpdatepassword(Requests\PasswordUpdateRequest $request) {
+
+            $credentials = [
+            'email' => Auth::user()->email,
+            'password' => $request->get('old_password'),
+            ];
+
+
+            if(\Auth::validate($credentials)) {
+                    $user = Auth::User();
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+            
+            return Redirect::to('users/dashboard')
+                ->with('password-message', 'That updated for you.')
+                ->with('alert-class', 'alert-success')
+                ->withInput();
+
+            }   
+
+
+
+            return Redirect::to('users/dashboard')
+                ->with('password-message', 'That not your password')
+                ->with('alert-class', 'alert-danger')
+                ->withInput();
+    
+
+    }
+
+
 
 
 
@@ -307,7 +338,12 @@ public function postResend(Request $request) {
 
 
 
+
+
+
         
+
+
 
     public function getLogout() {
         Auth::logout();

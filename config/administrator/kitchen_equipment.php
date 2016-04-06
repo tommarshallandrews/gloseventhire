@@ -14,7 +14,7 @@ return array(
 
 	'model' => 'App\Product',
 
-	'form_width' => 400,
+	'form_width' => 700,
 
     'query_filter'=> function($query)
 {
@@ -162,7 +162,7 @@ return array(
 
 
          'notes' => array(
-            'type' => 'textarea',
+            'type' => 'wysiwyg',
             'title' => 'Notes / FAQ',
             'limit' => 1000, //optional, defaults to no limit
             'height' => 80, //optional, defaults to 100
@@ -206,6 +206,17 @@ return array(
             'length' => 20,
             'size_limit' => 20,
         ),
+
+
+        'document1' => array(
+                'title' => 'File upload',
+                'type' => 'file',
+                'location' => public_path() . '/documents/',
+                'naming' => 'keep',
+                'length' => 20,
+                'size_limit' => 20,
+                'mimes' => 'pdf,psd,doc,docx',
+            ),
 
         'order' => array(
             'title' => 'Order',

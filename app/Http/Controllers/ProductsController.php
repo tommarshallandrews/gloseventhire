@@ -39,6 +39,7 @@ class ProductsController extends Controller
         //return $colour;
         $colour = null;
 
+
         if($colourslug){
         $colour = Colour::where('slug', '=', $colourslug)->first();
         }
@@ -47,14 +48,31 @@ class ProductsController extends Controller
          $details = Product::with('range','group')
         ->find($id);
 
-        $rangeSelected = $details->range->id;
+        //return $details;
 
+        $similars = 0;
 
+        //select similar products form a range
+        if($details->cat_id == 10 || $details->cat_id == 20){
+            $rangeSelected = $details->range->id;
             $similars = Product::with('range','group')
-            ->where ('range_id', '=', $rangeSelected)
+            ->where ('range_id', '=', $rangeSelected, 'and')
+            ->where ('id','!=', $id)
             ->get();
+            }
 
-            //return $similar;
+
+        //select similar products form a group
+        if($details->cat_id == 30 || $details->cat_id == 40 || $details->cat_id == 50 || $details->cat_id == 70){
+            $groupSelected = $details->group->id;
+            $similars = Product::with('range','group')
+            ->where ('group_id', '=', $groupSelected, 'and')
+            ->where ('id','!=', $id)
+            ->get();
+            }
+            
+        //select similar products for linen TODO
+
         
         
         //return($colour);
@@ -158,7 +176,8 @@ class ProductsController extends Controller
             }       
 
         
-        //living nightmare to work out how to get this to order on the collection field. Seems you have to use te function to joing the products anf then run the eager load
+        //Living nightmare to work out how to get this to order on the collection field. 
+        //Seems you have to use the function to joing the products anf then run the eager load
         $results = colour::with(['product' => function ($query) {
 
         $query->select('products.*')->join('groups', 'group_id', '=', 'groups.id')->orderBy('groups.collection', 'ASC');

@@ -44,7 +44,7 @@
 
 
 
-                                    
+                               @if(Session::get('type') !== 'success')  
                                 
                                   
                                 <div class="form-group">
@@ -121,7 +121,7 @@
                                 </div>
 
                                 
-                              
+                              @endif
                              
                                 
                                 

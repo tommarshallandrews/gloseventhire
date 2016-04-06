@@ -1,5 +1,6 @@
 <?php
 
+
 return array(
 
 	/**
@@ -85,6 +86,7 @@ return array(
 	'permission'=> function()
 	{
 		return true;
+		//return Auth::user()->level == 1;
 	},
 
 	/**
@@ -121,7 +123,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'login_path' => 'auth/login',
+	'login_path' => 'users/login',
 
 	/**
 	 * The logout path is the path where Administrator will send the user when they click the logout link

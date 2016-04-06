@@ -121,6 +121,8 @@
             </div>
           </div> <!-- / .row -->
 
+
+@if($similars)
           <!-- Similar products -->
           <div class="row">
             <div class="col-sm-12">
@@ -131,10 +133,9 @@
 
 <div class="row">
 
+
 @foreach($similars as $similar)
 
-
-              
                 <div class="col-sm-4">
 
                   <div class="shop__thumb">
@@ -163,11 +164,13 @@
           
 @endforeach
 
+
 </div> <!-- / .row -->
 
               
             </div>
           </div> <!-- / .row -->
+@endif
 
         </div>
       </div> <!-- / .row -->

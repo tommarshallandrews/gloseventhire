@@ -5,7 +5,7 @@ use App\Http\Requests\Request;
 use App\User;
 use Auth;
 
-class UserUpdateRequest extends Request
+class PasswordUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,10 +29,8 @@ class UserUpdateRequest extends Request
     {
     
     return [
-        'firstname' => 'required',
-        'lastname' => 'required', 
-        'phone' => 'required', 
-        'email' => 'required|email|unique:users,email,'.Auth::user()->id,
+        'password' => 'required|min:6',
+        'password_confirmation' => 'required|same:password'
         //'email' => 'required|email|unique,email',
             ];
 

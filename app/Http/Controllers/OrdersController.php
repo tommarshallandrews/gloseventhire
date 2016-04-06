@@ -103,6 +103,7 @@ class OrdersController extends Controller
             $totaldirty = 0;
             $totalvat = 0;
             $totaltotal = 0;
+            $orderCount = 0;
 
 
             foreach($order->product as $products){
@@ -130,8 +131,11 @@ class OrdersController extends Controller
                 $totaldirty = $totaldirty + $linedirty;
                 $totalvat = $totalvat + $linevat;
                 $totaltotal = $totaltotal + $linetotal;
+                $orderCount = $orderCount + 1;
 
             }
+
+            Session::put('orderCount', $orderCount);
 
             //return $productcost;
         
@@ -159,15 +163,22 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
+    //add or edit products in quote
     public function edit()
     {   
 
             //check for integer in quantity
-        if (!(Input::get('quantity') > 0 && Input::get('quantity') < 1000)) {
+        if (!(Input::get('quantity') >= 0 && Input::get('quantity') < 1000)) {
             Session::flash('type', "danger");
             Session::flash('message', "Please enter a quantity between 1 and 1000");
             return Redirect::back();
         }
+
 
 
 
@@ -191,6 +202,8 @@ class OrdersController extends Controller
             Session::put('orderCount', 0);
         }
 
+
+
         //return Session::has('order');
 
        $quantity = Input::get('quantity');
@@ -198,16 +211,19 @@ class OrdersController extends Controller
        $colour_id = Input::get('colour_hex');
        $action_id = Input::get('action_id');
 
-    $order = Order::with('product')
-    ->find(Session::get('order'));
+        $order = Order::with('product')
+        ->find(Session::get('order'));
 
-    //return $order;
 
-    Session::put('orderCount', count($order->product) + 1);
+        //return $order;
+
 
     //return $product_id;
     $order->product()->detach($product_id);
+    //attach if not 0 
+    if(Input::get('quantity') != 0){
     $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_id]); 
+    }
 
     //push productto order session
     //Session::put('order.product', $product_id);
@@ -223,8 +239,18 @@ class OrdersController extends Controller
     } 
 
 
+    //count them again
+    $updatedOrder = Order::with('product')
+    ->find(Session::get('order'));
 
+        $orderCount = 0;
+    foreach($updatedOrder->product as $products){
+                $orderCount = $orderCount + 1;
+            }
 
+    //return $orderCount;
+
+    Session::put('orderCount', $orderCount);     
     Session::flash('message', $quantity . " of these have been added to your quote");
     Session::flash('type', "success");
 

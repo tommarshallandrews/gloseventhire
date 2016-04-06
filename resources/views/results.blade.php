@@ -109,7 +109,7 @@
 
           <div class="row">
 
-       @if($cat == 60) 
+       @if($cat_id == 60) 
 
              @if($results[0])
               
