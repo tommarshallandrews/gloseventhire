@@ -97,6 +97,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // show product results
     public function show($cat, $group, $range)
     {
 

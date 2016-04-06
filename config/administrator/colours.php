@@ -77,6 +77,14 @@ return array(
             'type' => 'text',
         ),
 
+         'description' => array(
+            'type' => 'textarea',
+            'title' => 'Description',
+            'limit' => 1000, //optional, defaults to no limit
+            'height' => 80, //optional, defaults to 100
+        ),  
+
+
         'order' => array(
             'title' => 'Order',
             'type' => 'number',

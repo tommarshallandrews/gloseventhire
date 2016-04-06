@@ -115,7 +115,7 @@
               </h3>
 
               <div class="section">
-                {{$details->notes}}
+               <?php print($details->notes) ?>
               </div>
 
             </div>
