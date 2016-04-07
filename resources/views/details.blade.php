@@ -83,10 +83,8 @@
           <!-- Product image -->
           <div class="shop-item__img">
             <div class="shop-item-img__aside">
-              @if($details->image1)
-              <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive active" alt="...">
-              @endif
               @if($details->image2)
+              <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive active" alt="...">
               <img src="http://madigital.co.uk/images/{{$details->image2}}" class="img-responsive" alt="...">
               @endif
               @if($details->image3)
@@ -96,6 +94,8 @@
               <img src="http://madigital.co.uk/images/{{$details->image4}}" class="img-responsive" alt="...">
               @endif
             </div>
+
+
             <div class="shop-item-img__main">
               @if($details->image1)
               <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive" alt="..." style="opacity: 1;">
@@ -106,7 +106,10 @@
             <div class="clearfix"></div>
           </div>
 
-          <!-- Item Description -->
+
+
+<!-- Item Description -->   
+@if($details->notes)       
           <div class="row">
             <div class="col-sm-12">
 
@@ -119,7 +122,30 @@
               </div>
 
             </div>
-          </div> <!-- / .row -->
+          </div> 
+@endif          
+<!-- / .row -->
+
+
+<!-- Item Description -->
+@if($details->pack)
+           
+          <div class="row">
+            <div class="col-sm-12">
+
+              <h3 class="headline">
+                <span>Pack size / Quantities</span>
+              </h3>
+
+              <div class="section">
+               <?php print($details->pack) ?>
+              </div>
+
+            </div>
+          </div> 
+@endif
+<!-- / .row -->
+
 
 
 @if($similars)

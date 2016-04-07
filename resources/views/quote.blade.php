@@ -347,17 +347,6 @@
       </div> <!-- / .container -->
 
    
- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-    <script>
-    $('.input-group.date').datepicker({
-    format: "dd/mm/yyyy",
-    startDate: "01-01-2006",
-    endDate: "01-01-2016",
-    todayBtn: "linked",
-    autoclose: true,
-    todayHighlight: true
-    });
-    </script>
+
 
    @include('masters.footer')

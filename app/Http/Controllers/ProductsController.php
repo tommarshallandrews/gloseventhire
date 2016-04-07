@@ -53,7 +53,7 @@ class ProductsController extends Controller
         $similars = 0;
 
         //select similar products form a range
-        if($details->cat_id == 10 || $details->cat_id == 20){
+        if($details->cat_id == 10 || $details->cat_id == 20 || $details->cat_id == 70){
             $rangeSelected = $details->range->id;
             $similars = Product::with('range','group')
             ->where ('range_id', '=', $rangeSelected, 'and')
@@ -63,7 +63,7 @@ class ProductsController extends Controller
 
 
         //select similar products form a group
-        if($details->cat_id == 30 || $details->cat_id == 40 || $details->cat_id == 50 || $details->cat_id == 70){
+        if($details->cat_id == 30 || $details->cat_id == 40 || $details->cat_id == 50){
             $groupSelected = $details->group->id;
             $similars = Product::with('range','group')
             ->where ('group_id', '=', $groupSelected, 'and')
@@ -133,7 +133,8 @@ class ProductsController extends Controller
         $results = Product::with('range','group')
         ->where('cat_id','LIKE', $cat_id)
         ->where('group_id', 'LIKE', $group_id,  'AND')
-        ->where('range_id', 'LIKE', $range_id)  
+        ->where('range_id', 'LIKE', $range_id) 
+        ->orderby('order')   
         ->paginate(12);
 
         $groups = Group::where('cat_id', 'LIKE', $cat_id)  

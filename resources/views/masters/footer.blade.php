@@ -52,7 +52,7 @@
     <script>
     $('.input-group.date').datepicker({
     format: "dd-mm-yyyy",
-    startDate: '+1d',
+    startDate: '+3d',
     endDate: "01-01-2018",
     todayBtn: "linked",
     autoclose: true,

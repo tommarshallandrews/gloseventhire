@@ -360,13 +360,14 @@ class OrdersController extends Controller
         //check its not too long
         $diff = abs(strtotime($end_date) - strtotime($start_date));
         $days = $diff / 86400;
-        if($days > 7){
-        Session::flash('datesMessage','That\'s more than a week dude! call us');
+        if($days > 4){
+        Session::flash('datesMessage','That\'s more than our normal hire period. You\'ll have to ontact us for a quote');
         Session::flash('type', "danger");
         return Redirect::back()->withinput();
         }
-        
-        
+
+   
+
         $order->save();
         Session::flash('datesMessage','Your dates are sweet!');
         Session::flash('type', "success");

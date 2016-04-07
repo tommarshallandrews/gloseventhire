@@ -14,7 +14,7 @@ return array(
 
 	'model' => 'App\Product',
 
-	'form_width' => 400,
+	'form_width' => 700,
 
     'query_filter'=> function($query)
 {
@@ -162,7 +162,7 @@ return array(
 
 
          'notes' => array(
-            'type' => 'textarea',
+            'type' => 'wysiwyg',
             'title' => 'Notes / FAQ',
             'limit' => 1000, //optional, defaults to no limit
             'height' => 80, //optional, defaults to 100
