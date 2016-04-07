@@ -17,7 +17,7 @@
 
 
 
-<div class="green">
+<div class="green-back">
 
 <div class="container">
         <div class="navbar-header">
@@ -159,41 +159,26 @@
 @endforeach
 
             <!-- Navbar Search -->
-            <li class="hidden-xs">
+            <li class="hidden-x ">
               
               <!-- Search toggle -->
-              <a href="#" class="navbar-search__toggle">
-                <i class="fa fa-search"></i>
-              </a>
-
-              <!-- Search form -->
-              <div class="navbar-search">
-               {!! Form::open(array('url'=>'products/search','method'=>'get')) !!}
-
-                  <!-- Input -->
-                  <div class="navbar-search__box">
-                    <div class="input-group">
-                      <input type="text" class="form-control"  name="searchterm" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary">Go!</button>
-                      </span>
-                    </div>
-                    <div class="navbar-search-box__tips">
-                      E.g. "tea pot"
-                    </div>
-                  </div>
-
-                </form>
-              </div> 
+       {!! Form::open(array('url'=>'products/search','class'=>'navbar-form','role'=>'search','method'=>'get')) !!}
+        <div class="input-group">
+            <input type="text" class="form-control" name="searchterm" placeholder="Search products"  id="srch-term">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="fa fa-search green"></i></button>
+            </div>
+        </div>
+        </form>
            
             </li>
             <!-- / .navbar-search -->
 
 
             <!-- Shopping cart -->
-            <li class="navbar__shopping-cart">
+            <li class="navbar__shopping-cart pull-right">
               <a href="{{ url('/quote') }}/{{ $getOrder->order() }}">
-                <i class="fa fa-shopping-cart"></i> 
+                <i class="fa fa-shopping-cart green"></i> 
                 <span class="navbar__shopping-cart-items">{{ $getOrder->orderCount() }}<span class="visible-xs-inline">items</span></span>
               </a>
               {{Session::get('order')}}

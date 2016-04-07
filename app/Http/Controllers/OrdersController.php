@@ -440,7 +440,7 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
         public function getQuote()
     {
         $order = Order::find(Session::get('order'));
-        $order->status = 'quote';
+        $order->status = 'Quote';
         $order->save();
 
         //send verification email

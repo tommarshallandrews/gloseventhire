@@ -1,6 +1,10 @@
 
-.green {
+.green-back {
         background-color: #2D6F67;
+}
+
+.green {
+        color: #2D6F67;
 }
 
 
@@ -385,16 +389,14 @@ font-size: 13px;
 .navbar__shopping-cart {
     float: right;
 }
-}
+
 
 #productbar .navbar-nav {
     float: left!important;
     width: 100%;
 }
 
-.hidden-xs {
-    display: none!important;
-}
+
 
 .navbar__shopping-cart i {
     font-size: 25px;
@@ -418,7 +420,7 @@ font-size: 13px;
 }
 
 #topbar .navbar-nav > li:last-of-type > a {
-    padding-right: 0;
+    padding-right: 10px;
 }
 
 .navbar-right {
@@ -427,9 +429,49 @@ font-size: 13px;
 
 .navbar-nav > li > .dropdown-menu, .dropdown-submenu > .dropdown-menu {
     background-color: rgb( 255, 251, 98 );
+    color: rgb( 255, 251, 98 );
 }
+
+
 
 .navbar-default .navbar-toggle {
     margin-top: 3px;
     margin-bottom: 0;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #255D56;
+    }
+
+.dropdown-menu > li > a:hover {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #2D6F67;
+    white-space: nowrap;
+    background-color: rgb(255, 249, 0);
+}
+
+
+.navbar-right .dropdown-menu {
+    left: 0;
+    right: auto;
+}
+
+
+.navbar-form {
+    margin-top: 7px;
+
+}
+
+
+.navbar-form .input-group > .form-control {
+    background: #EFEDA3;
+}
+
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+    background: #ECEA8D;
 }
