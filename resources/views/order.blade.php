@@ -130,6 +130,13 @@
 
               <div class="spacer40"></div>
 
+               <h3 class="headline"><span>Instructions</span></h3>
+
+              @if($order->address1)
+              <div class="left large grey">{{ $order->instructions }}</div>
+              @endif
+
+
 
        
 
