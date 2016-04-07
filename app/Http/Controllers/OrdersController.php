@@ -21,6 +21,7 @@ use Auth;
 use Session;
 use Redirect;
 use Mail;
+use Config;
 
 class OrdersController extends Controller
 {
@@ -54,6 +55,15 @@ class OrdersController extends Controller
         $details = Product::with('range','group')
         ->find($id);
         return View::make('details', compact('details'));
+
+    }
+
+
+    public function address($id)
+    {    
+        $order = Order::with('user')
+        ->find($id);
+        return View::make('address', compact('order'));
 
     }
 
@@ -141,7 +151,11 @@ class OrdersController extends Controller
         
         Session::put('order', $order->id);
         //return $order;
-        return View::make('quote', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
+        if ($order->status == 'Quote' || $order->status == 'Open'){
+            return View::make('quote', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
+        } else {
+            return View::make('order', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
+        }
         //return View::make('results');
     }
 
@@ -197,6 +211,7 @@ class OrdersController extends Controller
             //create new order
             $order = new Order;
             $order->user_id = Auth::user()->id;
+            $order->status = 'Open';
             $order->save();
             Session::put('order', $order->id);
             Session::put('orderCount', 0);
@@ -214,7 +229,12 @@ class OrdersController extends Controller
         $order = Order::with('product')
         ->find(Session::get('order'));
 
-
+        //if order bnot open then send to dash with message
+        if ($order->status !== 'Quote' && $order->status !== 'Open'){
+        Session::flash('message','This order is locked. Please click \'Start a new quote\' below to begin another order');
+        Session::flash('alert-class', "alert-danger");
+        return Redirect::to('users/dashboard');
+        }
         //return $order;
 
 
@@ -325,7 +345,7 @@ class OrdersController extends Controller
         $order->distance = $distance;
         $order->save();
 
-        Session::flash('postcodeMessage', 'Sweet. that looks like a good postcode. We have added the estimated delivery & collection to your quote');
+        Session::flash('postcodeMessage', 'That looks like a good postcode. We have added the estimated delivery & collection to your quote');
         Session::flash('type', "success");
         return Redirect::back();
 
@@ -377,6 +397,35 @@ class OrdersController extends Controller
 
 
 
+public function updateAddress(Requests\AddressUpdateRequest $request)
+    {
+        $order = Order::find(Session::get('order'));
+        $order->address1 = $request->address1;
+        $order->town = $request->town;
+        $order->county = $request->county;
+        $order->postcode = $request->postcode;
+        $order->instructions = $request->instructions;
+        $order->status = 'Processing';
+
+        $order->save();
+
+        //send verification email
+        Mail::send('emails.notify', ['order' => $order], function($message) {
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
+         $message->to(Config::get('app.adminEmail'), Config::get('app.adminEmailName'))
+         ->subject(Config::get('app.companyName') . ' - Order notification');
+        });
+
+
+
+        Session::flash('message','That\s saved and someone will contact you shortly');
+        Session::flash('alert-class', "alert-success");
+        return Redirect::to('users/dashboard');
+    }
+
+
+
+
     public function updateReturn()
     {
         $order = Order::find(Session::get('order'));
@@ -385,7 +434,6 @@ class OrdersController extends Controller
         //Session::flash('you return state has been updated');
         //Session::flash('type', "success");
         return Redirect::back();
-
     }
 
 
@@ -397,9 +445,9 @@ class OrdersController extends Controller
 
         //send verification email
         Mail::send('emails.notify', ['order' => $order], function($message) {
-         $message->from('tom@marshallandrews.com', 'Tom');
-         $message->to('tom@marshallandrews.com', 'Tom')
-         ->subject('Gloucester Event Hire - Order notification');
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
+         $message->to(Config::get('app.adminEmail'), Config::get('app.adminEmailName'))
+         ->subject(Config::get('app.companyName') . ' - Order notification');
         });
 
 

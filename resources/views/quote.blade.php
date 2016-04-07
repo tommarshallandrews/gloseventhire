@@ -43,9 +43,9 @@
                   <h5 class="checkout-cart-item__heading">
                     <?php 
                     if($product->group->collection)
-                      {
+                    {
                         echo($product->group->name . " - " . $product->group->collection);
-                      }
+                    }
                     else
                     {
                       echo($product->name . " - " . $product->range->name);
@@ -198,8 +198,8 @@
               <div class="left large grey">Delivery - none:</div>
               <div class="right large grey">Free</div>
               @else
-              <div class="left large grey">Delivery ({{ number_format($order->distance/1609 , 2) }} miles):</div>
-              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile')/1609, 2) }}</div>
+              <div class="left large grey">Delivery ({{ number_format($order->distance/1609 , 0) }} miles):</div>
+              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile')/1609, 0) }}.00</div>
               @endif
               <div class="clearfix"></div>
 
@@ -233,10 +233,13 @@
 
                 <button type="submit" name="submitType" value="contact" class="btn btn-success block">Save this quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
                 <div class="spacer10"></div>
-                <a href="#" class="btn btn-info block">Order this stock and add addresses *</a>
+                
+                <a href="{{ url('/address') }}/{{$order->id}}" class="btn btn-info block">Order this stock and add details *</a>
                  <p>* Subject to availability and possible deposit<p>
-           
+
             {!! Form::close() !!}
+
+
 
         @endif
         <!-- end if user is logged in and confirmed -->

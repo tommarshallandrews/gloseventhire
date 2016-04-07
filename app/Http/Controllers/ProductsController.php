@@ -29,6 +29,9 @@ class ProductsController extends Controller
         return View::make('results', compact('results','types','typeSlug','ranges','rangeSlug','cat'));
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -208,6 +211,33 @@ class ProductsController extends Controller
         //return View::make('results');
 
     }
+
+
+
+
+
+       public function search() {
+
+                $q = \Input::get('searchterm');
+
+                $searchTerms = explode(' ', $q);
+
+                $query = Product::with('range','group');
+
+                foreach($searchTerms as $term)
+                {
+                    $query->where('name', 'LIKE', '%'. $term .'%');
+                }
+
+                $results = $query->paginate(100);  
+
+                //return $results;
+
+                return View::make('search', compact('results','q'));
+
+            }
+
+
 
     /**
      * Show the form for editing the specified resource.

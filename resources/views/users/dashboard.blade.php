@@ -48,15 +48,13 @@
                 <div class="checkout-cart-item__content">
                   
                   <div class="checkout-cart-item__heading pull-left">
-                   <h4> ORDER {{ $order->id }}</h4>
+                   <a href="{{ url('/quote') }}/{{ $order->id }}" class="btn btn-info btn-xs" role="button">Order {{ $order->id }}</a><br>
                   
                   Date Created : {{ $order->updated_at }} <br>
-                  Postcode: {{ $order->postcode }}
+                  Postcode: {{ $order->postcode }}<br>
+                  Status: <strong>{{ $order->status }}</strong>
                 </DIV>
 
-                    <div class="input_qty input_qty_sm pull-right">
-                      <a href="{{ url('/quote') }}/{{ $order->id }}" class="btn btn-info" role="button">View</a>
-                    </div>
                     <div class="clearfix"></div>
 
                 </div>

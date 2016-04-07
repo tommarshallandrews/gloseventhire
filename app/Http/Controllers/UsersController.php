@@ -226,6 +226,7 @@ class UsersController extends Controller {
         
         $orders = Order::
         where('user_id', Auth::user()->id)
+        ->orderby('id', 'desc')
         ->get();
 
         $user = Auth::user();

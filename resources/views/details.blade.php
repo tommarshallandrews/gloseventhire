@@ -110,12 +110,21 @@
 
 <!-- Item Description -->   
 @if($details->notes)       
+
+
+
           <div class="row">
             <div class="col-sm-12">
 
               <h3 class="headline">
                 <span>Notes and usage</span>
               </h3>
+
+              @if($details->document1) 
+              <div class="section">
+               <a href="{{ url('/documents') }}/{{$details->document1}}" class="btn btn-info block"><i class="fa fa-download"></i> Download Manual</a>
+              </div>
+              @endif
 
               <div class="section">
                <?php print($details->notes) ?>

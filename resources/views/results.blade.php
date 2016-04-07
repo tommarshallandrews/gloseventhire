@@ -157,7 +157,10 @@
                             <span class="white huge">Please select a colour range from the swatch</span>
                         </span>
                  @endif       
+         
          @else  
+
+                  @if($results[0])
         
 
                       @foreach($results as $result)
@@ -182,6 +185,34 @@
                               </div>
                             </div>
                         @endforeach
+
+                      
+                 @else
+                        <div class="col-sm-8 col-md-8 col-md-offset-2">
+                            <p class="large">There's nothing fitting that description. </p><p>Please try and select another catagory or use the search below:</p>
+                                      <!-- Search -->
+                              {!! Form::open(array('url'=>'products/search','method'=>'get')) !!}
+
+                                  <div class="row">
+                                    <div class="col-sm-12">
+                                      <div class="input-group">
+                                        <input type="text" class="form-control"  name="searchterm"  placeholder="Search again">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                          </button>
+                                        </span>
+                                      </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                  </div><!-- /.row -->
+
+                              </form>
+                        </div>
+                              <!-- Filter -->
+
+                 @endif 
+
+
 
           @endif              
 

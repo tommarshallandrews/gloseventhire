@@ -26,6 +26,11 @@ a {
     text-decoration: none;
 }
 
+.red {
+    color: red;
+    text-decoration: none;
+}
+
 .navbar-nav > li > a {
     text-transform: uppercase;
     font-size: 16px;
@@ -144,6 +149,10 @@ a {
 
 .spacer20 {
   padding-top : 20px;
+}
+
+.spacer40 {
+  padding-top : 40px;
 }
 
 
@@ -352,4 +361,75 @@ font-weight: bold;
 
 .shop__slideshow .carousel-inner .item_3 {
     background: url(../images/buffet.jpg) no-repeat center center / cover;
+}
+
+
+
+.navbar-default {
+background: #fffb62;
+height: 44px;
+min-height: auto;
+}
+
+.navbar-default .navbar-nav > li > a {
+color: #1b4530;
+font-weight: 600;
+padding: 0 10px;
+line-height: 44px;
+font-size: 13px;
+}
+@media (min-width: 991px) {
+.navbar-default .navbar-nav > li:first-of-type > a {
+   padding-left: 0;
+}
+.navbar__shopping-cart {
+    float: right;
+}
+}
+
+#productbar .navbar-nav {
+    float: left!important;
+    width: 100%;
+}
+
+.hidden-xs {
+    display: none!important;
+}
+
+.navbar__shopping-cart i {
+    font-size: 25px;
+    margin-right: 5px;
+}
+
+.navbar__shopping-cart i:before {
+    position: relative;
+    top: 4px;
+}
+
+.navbar__shopping-cart-items:after {
+    display: none;
+}
+
+#topbar .navbar-nav > li > a {
+    font-size: 14px;
+    padding: 20px 10px 20px;
+    text-transform: none;
+    color: #fff;
+}
+
+#topbar .navbar-nav > li:last-of-type > a {
+    padding-right: 0;
+}
+
+.navbar-right {
+    margin-right: 0;
+}
+
+.navbar-nav > li > .dropdown-menu, .dropdown-submenu > .dropdown-menu {
+    background-color: rgb( 255, 251, 98 );
+}
+
+.navbar-default .navbar-toggle {
+    margin-top: 3px;
+    margin-bottom: 0;
 }

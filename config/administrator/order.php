@@ -115,7 +115,7 @@ return array(
         'status' => array(
             'title' => 'Status',
             'type' => 'enum',
-            'options' => array('open','quote','paid','complete','cancelled','refunded'), //must be an array
+            'options' => array('Open','Quote','Processing','Paid','Complete','Cancelled','Refunded'), //must be an array
         ),
 
 

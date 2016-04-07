@@ -5,7 +5,14 @@ return [
     //SITE SETTINGS
     'companyName' => 'Gloucester Event Hire',
     'companyWebsite' => 'gloseventhire.co.uk',
-    'companyEmail' => 'info@gloseventhire.co.uk ',
+    'companyEmail' => 'info@gloseventhire.co.uk',
+
+    'adminEmail' => 'tommarshallandrews@gmail.com',
+    'adminEmailName' => 'tom',
+
+    'noreplyEmail' => 'noreply@marshallandrews.com',
+    'noreplyEmailName' => 'No Reply',
+
     'poundsPerMile' => 2,
 
     

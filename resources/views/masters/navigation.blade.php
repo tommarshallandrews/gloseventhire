@@ -168,18 +168,18 @@
 
               <!-- Search form -->
               <div class="navbar-search">
-                <form>
+               {!! Form::open(array('url'=>'products/search','method'=>'get')) !!}
 
                   <!-- Input -->
                   <div class="navbar-search__box">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search">
+                      <input type="text" class="form-control"  name="searchterm" placeholder="Search">
                       <span class="input-group-btn">
                         <button type="submit" class="btn btn-primary">Go!</button>
                       </span>
                     </div>
                     <div class="navbar-search-box__tips">
-                      E.g. "Bootstrap templates"
+                      E.g. "tea pot"
                     </div>
                   </div>
 
@@ -204,13 +204,15 @@
 
 
           <!-- Navbar Search (mobile) -->
-          <form class="navbar-form visible-xs">
+         {!! Form::open(array('url'=>'users/update', 'class'=>'navbar-form visible-xs', 'id'=>'signupform', 'role'=>'form')) !!}
             <div class="form-group">
               <div class="input-group">
+                
                 <input type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">
                   <button type="submit" class="btn btn-primary">Search!</button>
                 </span>
+
               </div>
             </div>
           </form>

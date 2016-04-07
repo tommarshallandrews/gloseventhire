@@ -63,6 +63,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 //products
+Route::get('/products/search', [ 'as' => 'products.search', 'uses' => 'ProductsController@search' ]);
 
 Route::get('/products/linen/{group}/{colour}', [ 'as' => 'products.showLinen', 'uses' => 'ProductsController@showLinen' ]);
 
@@ -81,7 +82,7 @@ Route::get('/quote/new', [ 'as' => 'orders.newquote', 'uses' => 'OrdersControlle
 
 Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
 
-
+Route::get('/address/{id}', [ 'as' => 'orders.address', 'uses' => 'OrdersController@address' ]);
 
 
 //orders
@@ -97,6 +98,8 @@ Route::post('/orders/updateDates', [ 'as' => 'orders.updateDates', 'uses' => 'Or
 Route::post('/orders/updateDelivery', [ 'as' => 'orders.updateDelivery', 'uses' => 'OrdersController@updateDelivery' ]);
 
 Route::post('/orders/getQuote', [ 'as' => 'orders.getQuote', 'uses' => 'OrdersController@getQuote' ]);
+
+Route::post('/orders/updateAddress', [ 'as' => 'orders.updateAddress', 'uses' => 'OrdersController@updateAddress' ]);
 
 //navigation
 
