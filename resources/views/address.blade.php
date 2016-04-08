@@ -44,6 +44,7 @@
             @if($order->postcode !== 'Collected')
 
                       <div class="form-group">
+                        <label for="address1">Address Line 1</label>
                         <input type="text" name="address1" placeholder="Address Line 1" class="form-control" value="<?php 
                         if($order->county)
                         {
@@ -55,7 +56,8 @@
 
 
                       <div class="form-group">
-                        <input type="text" name="address2" placeholder="Address Line 1" class="form-control" value="<?php 
+                        <label for="address2">Address Line 2</label>
+                        <input type="text" name="address2" placeholder="Address Line 2" class="form-control" value="<?php 
                         if($order->address2)
                         {
                           echo($order->address2);
@@ -66,6 +68,7 @@
 
 
                       <div class="form-group">
+                        <label for="town">Town</label>
                         <input type="text" name="town" placeholder="Town/City: " class="form-control" value="<?php 
                         if($order->county)
                         {
@@ -77,6 +80,7 @@
 
 
                       <div class="form-group">
+                        <label for="county">County</label>
                         <input type="text" name="county" placeholder="County" class="form-control" value="<?php 
                         if($order->county)
                         {
@@ -112,6 +116,8 @@ Churcham Business Park&nbsp;<br>
 Churcham<br>
 Gloucester<br>
 GL2 8AX<br>
+
+<div class="embed-responsive embed-responsive-4by3" id="map_canvas" style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
 
 
 <input type="hidden" name="postcode" value="Collected">
@@ -152,6 +158,7 @@ GL2 8AX<br>
 
 
                       <div class="form-group">
+                        <label for="instructions">Special instructions and requests</label>
                         <textarea class="form-control" name="instructions" placeholder="Special instructions and requests" class="form-control" value="{{ old('instructions') }}" rows="8
                         "></textarea>
                       </div>

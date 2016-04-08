@@ -20,12 +20,17 @@ Route::get('/', function () {
 });
 
 
+Route::get('/contact-us', function () {
+    return View::make('contact');
+});
+
 
 Route::get('/faq', function () {
     $faqs = faq::all();
     //return $faqs;
     return View::make('faqs', compact('faqs'));
 });
+
 
 Route::get('/page/{slug}', function ($slug) {
 

@@ -12,7 +12,7 @@
           <div class="row">
 
             <!-- Contact Us -->
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Contact Us</span></h5>
                 <div class="footer-item__content" style="display: block;">
@@ -39,41 +39,12 @@
               </div>
             </div>
 
-            <!-- Recent Tweets -->
-            <div class="col-xs-12 col-sm-4">
-              <div class="footer__item">
-                <h5 class="footer-item__title"><span>Recent Tweets</span></h5>
-                <div class="footer-item__content" style="display: block;">
-                  <div class="footer__tweet">
-                    <div class="footer-tweet__icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <div class="footer-tweet__content">
-                      <p>
-                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisi lorem, elementum sed.
-                      </p>
-                      <a href="#">1 hour ago</a>
-                    </div>
-                  </div>
-                  <div class="footer__tweet">
-                    <div class="footer-tweet__icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <div class="footer-tweet__content">
-                      <p>
-                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisi lorem, elementum sed.
-                      </p>
-                      <a href="#">1 day ago</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
 
 
 
             <!-- Quick Links -->
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Links</span></h5>
                 <div class="footer-item__content" style="display: block;">
@@ -113,6 +84,10 @@
           </div> <!-- / .row -->
         </div> <!-- / .container -->
       </div> <!-- / .footer_bottom -->
+
+
+
+
     </footer>
 
 

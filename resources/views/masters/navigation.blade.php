@@ -53,7 +53,7 @@
             </li>
 
             <li >
-              <a href="{{ url('/page/contact-us') }}" >Contact Us</a>
+              <a href="{{ url('/contact-us') }}" >Contact Us</a>
             </li>
 
             
@@ -71,7 +71,7 @@
                        <li >
                         <a href="{{ url('/users/register') }}" >Register</a>
                       </li>
-                    @endif
+                @endif
                 
                 @else  
                   <li>
@@ -181,7 +181,7 @@
                 <i class="fa fa-shopping-cart green"></i> 
                 <span class="navbar__shopping-cart-items">{{ $getOrder->orderCount() }}<span class="visible-xs-inline">items</span></span>
               </a>
-              {{Session::get('order')}}
+
             </li>
 
           </ul> <!-- / .nav -->

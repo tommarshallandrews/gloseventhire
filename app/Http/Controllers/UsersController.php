@@ -9,12 +9,14 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use App\Order;
+use App\Enquiry;
 use View;
 use Hash;
 use Mail;
 use Auth;
 use Redirect;
 use Session;
+use Config;
 
 class UsersController extends Controller {
 
@@ -77,7 +79,7 @@ class UsersController extends Controller {
 
         //send verification email
         Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
-         $message->from('tom@marshallandrews.com', 'Tom');
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
          $message->to($user->email)
          ->subject('Gloucester Event Hire - Email verification');
         });
@@ -123,6 +125,8 @@ class UsersController extends Controller {
 
         
     }
+
+
 
 
     public function postUpdatepassword(Requests\PasswordUpdateRequest $request) {
@@ -319,7 +323,7 @@ public function postResend(Request $request) {
 
         //send verification email
         Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
-         $message->from('tom@marshallandrews.com', 'Tom');
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
          $message->to($user->email)
          ->subject('Gloucester Event Hire - Email verification');
         });
@@ -339,7 +343,44 @@ public function postResend(Request $request) {
 
 
 
+ public function postEnquiry(Requests\EnquiryAddRequest $request) {
+    
 
+
+        $enquiry = New Enquiry;
+
+        $enquiry->email = $request->email;
+        $enquiry->name = $request->name;
+        $enquiry->enquiry = $request->enquiry;
+        $enquiry->save();
+
+        $email = $enquiry->email;
+
+        
+
+        Mail::send('emails.messageThanks', ['name' => $enquiry->name], function($message)  use ($email){
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
+         $message->to($email)
+         ->subject(Config::get('app.companyName') . ' - Message received');
+        });
+
+
+         Mail::send('emails.messageNotification', ['name' => $enquiry->name, 'email' => $enquiry->email, 'enquiry' => $enquiry->enquiry, 'id' => $enquiry->id], function($message) {
+         $message->from(Config::get('app.adminEmail'), Config::get('app.noreplyEmailName'));
+         $message->to(Config::get('app.adminEmail'), Config::get('app.adminName'))
+         ->subject(Config::get('app.companyName') . ' - Message notification');
+        });
+
+
+
+
+        return Redirect::to('contact-us')
+                ->with('message', 'Thanks. Your message has been sent. You\'ll be hearing form us shortly')
+                ->with('type', 'success')
+                ->withInput();
+
+        
+    }
 
 
         

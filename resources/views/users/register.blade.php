@@ -11,7 +11,7 @@
 
 
 
-
+<div class="container">
  <div id="signupbox" style="display; margin-top:50px" class="mainbox col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -133,5 +133,5 @@
                
                 
          </div> 
-
+</div>
    @include('masters.footer')

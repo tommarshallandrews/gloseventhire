@@ -75,6 +75,7 @@ return array(
 		'Linen' => array( 'linen','colours'),
 		'order',
 		'Site Content' => array( 'faq','pages'),
+		'enquiry',
 		),
 
 	/**

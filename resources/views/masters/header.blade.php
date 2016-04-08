@@ -32,7 +32,43 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" rel="stylesheet">
 
 
+    <script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+
+<script type="text/javascript">
+  function initialize() {
+    var position = new google.maps.LatLng(51.867277, -2.330254);
+    var myOptions = {
+      zoom: 10,
+      center: position,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(
+        document.getElementById("map_canvas"),
+        myOptions);
+ 
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title:"This is the place."
+    });  
+ 
+    var contentString = 'Gloucester Events Hire';
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+ 
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+ 
+  }
+ 
+</script>
+
+
 
   </head>
 
-  <body>
+<body onload="initialize()">
