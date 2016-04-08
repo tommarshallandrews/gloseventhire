@@ -5,6 +5,91 @@
     ================================================== -->
     <footer>
 
+
+
+      <div class="footer_top">
+        <div class="container">
+          <div class="row">
+
+            <!-- Contact Us -->
+            <div class="col-xs-12 col-sm-4">
+              <div class="footer__item">
+                <h5 class="footer-item__title"><span>Contact Us</span></h5>
+                <div class="footer-item__content" style="display: block;">
+                  <p>
+                    Do not hesitate to contact us if you have any queries:<br>
+ 
+                      Gloucester Event Hire<br>
+                      Unit A6 &amp; A7<br>
+                      Churcham Business Park&nbsp;<br>
+                      Churcham<br>
+                      Gloucester<br>
+                      GL2 8AX<br>
+                      <br>
+                      Tel: (01452) 750400<br>
+                      Fax: (01452) 751294</p><br>
+                      <p><strong>Email:&nbsp;</strong><a href="mailto:info@gloseventhire.co.uk">info@gloseventhire.co.uk</a>&nbsp;<br>
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Tweets -->
+            <div class="col-xs-12 col-sm-4">
+              <div class="footer__item">
+                <h5 class="footer-item__title"><span>Recent Tweets</span></h5>
+                <div class="footer-item__content" style="display: block;">
+                  <div class="footer__tweet">
+                    <div class="footer-tweet__icon">
+                      <i class="fa fa-twitter"></i>
+                    </div>
+                    <div class="footer-tweet__content">
+                      <p>
+                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisi lorem, elementum sed.
+                      </p>
+                      <a href="#">1 hour ago</a>
+                    </div>
+                  </div>
+                  <div class="footer__tweet">
+                    <div class="footer-tweet__icon">
+                      <i class="fa fa-twitter"></i>
+                    </div>
+                    <div class="footer-tweet__content">
+                      <p>
+                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nisi lorem, elementum sed.
+                      </p>
+                      <a href="#">1 day ago</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Quick Links -->
+            <div class="col-xs-12 col-sm-4">
+              <div class="footer__item">
+                <h5 class="footer-item__title"><span>Links</span></h5>
+                <div class="footer-item__content" style="display: block;">
+                  <ul class="footer__links">
+                    <li><a href="{{ url('/page') }}/links">Useful links</a></li>
+                    <li><a href="{{ url('/page') }}/terms-conditions">Terms & Conditions</a></li>
+                    <li><a href="{{ url('/documents') }}/Brochure-2016.pdf">Latest Brochure</a></li>
+                  </ul>
+                </div>
+              </div>            
+            </div>
+
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </div>
+
       
 
       <!-- Footer Bottom -->
@@ -13,7 +98,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <div class="footer__copyright">
-                Copyright 2015 <a href="http://{{ Config::get('app.companyWebsite') }}">{{ Config::get('app.companyName') }}</a>. All Rights Reserved.
+                Copyright 2016 <a href="http://{{ Config::get('app.companyWebsite') }}">{{ Config::get('app.companyName') }}</a>. All Rights Reserved.
               </div>
             </div>
             <div class="col-xs-12 col-sm-6">

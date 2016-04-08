@@ -61,10 +61,6 @@ a {
 
 
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #FBFBFB;
-    background-color: transparent;
-}
 
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -232,13 +228,14 @@ font-weight: bold;
 
 
 .colorbox {
-
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     cursor: pointer;
     padding: 15px;
     display: block;
 }
+
+
 
 .colorbox-quote {
 

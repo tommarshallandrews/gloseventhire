@@ -187,6 +187,10 @@ return array(
             'naming' => 'keep',
             'length' => 20,
             'size_limit' => 20,
+            'sizes' => array(
+                   array(213, 160, 'fit', public_path() . '/thumbs/', 70)
+                )
+
         ),
 
         'image2' => array(
@@ -196,6 +200,9 @@ return array(
             'naming' => 'keep',
             'length' => 20,
             'size_limit' => 20,
+            'sizes' => array(
+                   array(213, 160, 'fit', public_path() . '/thumbs/', 70)
+                )
         ),
 
         'image3' => array(
@@ -205,6 +212,9 @@ return array(
             'naming' => 'keep',
             'length' => 20,
             'size_limit' => 20,
+            'sizes' => array(
+                   array(213, 160, 'fit', public_path() . '/thumbs/', 70)
+                )
         ),
 
         'image4' => array(
@@ -214,6 +224,9 @@ return array(
             'naming' => 'keep',
             'length' => 20,
             'size_limit' => 20,
+            'sizes' => array(
+                   array(213, 160, 'fit', public_path() . '/thumbs/', 70)
+                )
         ),
         
         'order' => array(

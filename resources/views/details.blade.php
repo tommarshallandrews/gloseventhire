@@ -10,19 +10,18 @@
     <div class="topic">
       <div class="container">
         <div class="row">
-          <div class="col-sm-4">
-            <h3>Shop: Category</h3>
+          <div class="col-sm-12">
+            <h3>Details: {{ $details->name}}</h3>
           </div>
-          <div class="col-sm-8">
-            <ol class="breadcrumb pull-right hidden-xs">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index_shop.html">Shop</a></li>
-              <li class="active">Category</li>
-            </ol>
-          </div>
+
         </div> <!-- / .row -->
       </div> <!-- / .container -->
     </div> <!-- / .topic -->
+
+
+
+
+
 
 
  <div class="container">
@@ -61,12 +60,13 @@
 @endif
 
 
+
   {!! Form::open(array('url' => 'orders/edit', 'method' => 'post', 'class' => 'form-inline')) !!}
     <div class="form-group">
     <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
     </div>
     <input type="hidden" name="product_id" value="{{$details->id}}">
-    @if($details->group->collection)
+    @if($colour)
     <input type="hidden" name="colour_hex" value="{{$colour->hex}}">
     @endif
     <input type="hidden" name="action_id" value="add">
@@ -84,21 +84,21 @@
           <div class="shop-item__img">
             <div class="shop-item-img__aside">
               @if($details->image2)
-              <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive active" alt="...">
-              <img src="http://madigital.co.uk/images/{{$details->image2}}" class="img-responsive" alt="...">
+              <img src="{{ url('/images') }}/{{$details->image1}}" class="img-responsive active" alt="...">
+              <img src="{{ url('/images') }}/{{$details->image2}}" class="img-responsive" alt="...">
               @endif
               @if($details->image3)
-              <img src="http://madigital.co.uk/images/{{$details->image3}}" class="img-responsive" alt="...">
+              <img src="{{ url('/images') }}/{{$details->image3}}" class="img-responsive" alt="...">
               @endif
               @if($details->image4)
-              <img src="http://madigital.co.uk/images/{{$details->image4}}" class="img-responsive" alt="...">
+              <img src="{{ url('/images') }}/{{$details->image4}}" class="img-responsive" alt="...">
               @endif
             </div>
 
 
             <div class="shop-item-img__main">
               @if($details->image1)
-              <img src="http://madigital.co.uk/images/{{$details->image1}}" class="img-responsive" alt="..." style="opacity: 1;">
+              <img src="{{ url('/images') }}/{{$details->image1}}" class="img-responsive" alt="..." style="opacity: 1;">
               @elseif($details->group->collection)
               <span class="colorbox huge bold white " data-toggle="tooltip" data-placement="top" title="{{$colour->name}}" style="background:{{$colour->hex}}">{{$colour->name}} Linen {{$details->group->collection}}</span>
               @endif
@@ -178,7 +178,7 @@
 
                       <div class="shop-thumb__img">
                         <a href="{{ url('/products/details') }}/{{$similar->id}}">
-                        <img src="http://madigital.co.uk/images/{{$similar->image1}}" class="img-responsive" alt="..." width="210">
+                        <img src="{{ url('/thumbs') }}/{{$similar->image1}}" class="img-responsive" alt="..." width="210">
                         </a>
                       </div>
 

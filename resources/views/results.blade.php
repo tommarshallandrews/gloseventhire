@@ -10,15 +10,8 @@
     <div class="topic">
       <div class="container">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-12">
             <h3>Product: Category {{$catSlug}}</h3>
-          </div>
-          <div class="col-sm-8">
-            <ol class="breadcrumb pull-right hidden-xs">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="index_shop.html">Shop</a></li>
-              <li class="active">Category</li>
-            </ol>
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
@@ -139,9 +132,11 @@
                                     <a href="{{ url('/products/details') }}/{{$product->id}}/{{$colourId->slug}}">{{$product->group->name}}</a>
                                   
 
-
+                                    @if($colourId->slug == 'white')
+                                    <span class="shop-thumb-price_new pull-right">£{{ number_format($product->price2 / 100, 2)}} each</span>
+                                    @else
                                     <span class="shop-thumb-price_new pull-right">£{{ number_format($product->price / 100, 2)}} each</span>
-
+                                    @endif
 
                                
                                   </h5>
@@ -169,7 +164,7 @@
                                 <a href="#">
                                   <div class="shop-thumb__img">
                                     <a href="{{ url('/products/details') }}/{{$result->id}}">
-                                    <img src="http://madigital.co.uk/images/{{$result->image1}}"  class="img-responsive productThumb" alt="...">
+                                    <img src="{{ url('/thumbs') }}/{{$result->image1}}"  class="img-responsive productThumb" alt="...">
                                     </a>
                                   </div>
                                   <h5 class="shop-thumb__title">

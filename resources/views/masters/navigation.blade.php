@@ -32,7 +32,7 @@
           
           <!-- Navbar brand -->
           <a class="navbar-logo" href="{{ url('/') }}">
-            <img src="{{ url('/') }}/images/gloucester-events-hire.png" width="350px">
+            <img src="{{ url('/') }}/img/gloucester-events-hire.png" width="292px" height="52px">
           </a>
 
         </div> <!-- / .navbar-header -->
