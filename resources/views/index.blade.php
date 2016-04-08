@@ -30,10 +30,11 @@
                     </div>
                   </div>
                 </div>
-
               </div> <!-- / .item-container__inner -->
             </div> <!-- / .item__container -->
           </div> <!-- / .item -->
+
+
           <div class="item item_2">
             <div class="item__container">
               <div class="item-container__inner">
@@ -49,14 +50,15 @@
                     </div>
                   </div>
                 </div>
-
               </div> <!-- / .item-container__inner -->
             </div> <!-- / .item__container -->
           </div> <!-- / .item -->
+
+
+
           <div class="item item_3">
             <div class="item__container">
               <div class="item-container__inner">
-
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-8 col-md-6 col-lg-5">
@@ -68,10 +70,48 @@
                     </div>
                   </div>
                 </div>
-
               </div> <!-- / .item-container__inner -->
             </div> <!-- / .item__container -->
           </div> <!-- / .item -->
+        
+          <div class="item item_4">
+            <div class="item__container">
+              <div class="item-container__inner">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-8 col-md-6 col-lg-5">
+                      <h1 class="shop-slideshow__heading">Free returns</h1>
+                      <p class="shop-slideshow__subheading">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et vero, velit itaque hic tempore porro quisquam deserunt, minima veritatis
+                      </p>
+                      <a href="#" class="btn btn-lg shop-slideshow__btn">Find out more</a>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- / .item-container__inner -->
+            </div> <!-- / .item__container -->
+          </div> <!-- / .item -->
+
+          <div class="item item_5">
+            <div class="item__container">
+              <div class="item-container__inner">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-8 col-md-6 col-lg-5">
+                      <h1 class="shop-slideshow__heading">Free returns</h1>
+                      <p class="shop-slideshow__subheading">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et vero, velit itaque hic tempore porro quisquam deserunt, minima veritatis
+                      </p>
+                      <a href="#" class="btn btn-lg shop-slideshow__btn">Find out more</a>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- / .item-container__inner -->
+            </div> <!-- / .item__container -->
+          </div> <!-- / .item -->
+
+
+
         </div> <!-- / .carousel-inner -->
       
         <!-- Controls -->

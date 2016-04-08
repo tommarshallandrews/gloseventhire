@@ -92,7 +92,7 @@
 
                       <div class="form-group">
                         <input type="text" name="postcode" placeholder="Postcode" class="form-control" value="{{ $order->postcode }}">
-                        <p>Updating this postcode will change the delivety charge. Please set the correct postcode in the order page <a href"<a href="{{ url('/quote') }}/{{ $order->id }}"><span class="bold underline">here</span></a>
+                        <p>Updating this postcode will change the delivery charge. Please set the correct postcode in the order page <a href"<a href="{{ url('/quote') }}/{{ $order->id }}"><span class="bold underline">here</span></a>
                       </div>
 
 

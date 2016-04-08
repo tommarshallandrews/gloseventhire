@@ -389,7 +389,7 @@ class OrdersController extends Controller
    
 
         $order->save();
-        Session::flash('datesMessage','Your dates are sweet!');
+        Session::flash('datesMessage','Those dates are look OK');
         Session::flash('type', "success");
         return Redirect::back();
 

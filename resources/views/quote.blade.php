@@ -93,8 +93,8 @@
 
               <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect you order form out Gloucester warehouse.</p>
               {!! Form::open(array('url' => 'orders/updateDelivery', 'method' => 'post')) !!}
-              <div class="form-group">
-                <input type="text" id="checkout-account__first-name" name="postcode" value="{{ $order->postcode }}" placeholder="Enter postcode" class="form-control">
+              <div class="form-group <?php if(!$order->postcode){echo('has-error');} ?>">
+                <input type="text" id="inputError1" name="postcode" value="{{ $order->postcode }}" placeholder="Enter postcode" class="form-control">
               </div>
 
               @if (Session::has('postcodeMessage'))
@@ -124,14 +124,14 @@
 
                     
         <span class="small">Start date</span>
-        <div class="input-group date">
+        <div class="input-group date <?php if(!$order->start_date){echo('has-error');} ?>">
             <input type="text" name="start_date" class="form-control" value="<?php if(isset($order->start_date)){echo(date('d-m-Y', strtotime($order->start_date)));} ?>">
             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
 
       <div class="spacer10"></div>
         <span class="small">End date</span>
-        <div class="input-group date">
+        <div class="input-group date <?php if(!$order->end_date){echo('has-error');} ?>">
             <input type="text" name="end_date" class="form-control" value="<?php if(isset($order->start_date)){echo(date('d-m-Y', strtotime($order->end_date)));} ?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
         </div>
 
