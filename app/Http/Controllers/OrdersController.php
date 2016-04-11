@@ -88,7 +88,9 @@ class OrdersController extends Controller
     $order_id = $request->id;
 
         $order = Order::with(['product' => function($query) {
-                $query->with(['range', 'group'])->orderby('name');
+                $query
+                ->with(['range', 'group'])
+                ->orderby('name');
                 }])
         ->where('id', $order_id)
         //->orderby('product->name')
@@ -150,7 +152,9 @@ class OrdersController extends Controller
             //return $productcost;
         
         Session::put('order', $order->id);
+
         //return $order;
+
         if ($order->status == 'Quote' || $order->status == 'Open'){
             return View::make('quote', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));
         } else {
@@ -223,7 +227,8 @@ class OrdersController extends Controller
 
        $quantity = Input::get('quantity');
        $product_id = Input::get('product_id');
-       $colour_id = Input::get('colour_hex');
+       $colour_hex = Input::get('colour_hex');
+       $colour_name = Input::get('colour_name');
        $action_id = Input::get('action_id');
 
         $order = Order::with('product')
@@ -242,7 +247,7 @@ class OrdersController extends Controller
     $order->product()->detach($product_id);
     //attach if not 0 
     if(Input::get('quantity') != 0){
-    $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_id]); 
+    $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_name, 'hex' => $colour_hex]); 
     }
 
     //push productto order session

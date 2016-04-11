@@ -115,6 +115,7 @@ class ProductsController extends Controller
         if ($cat !== '0'){
             $cat_id = $catId->id;
             $catSlug = $catId->slug;
+            $catName = $catId->name;
             }
 
 
@@ -123,6 +124,7 @@ class ProductsController extends Controller
         if ($group !== '0'){
             $group_id = $groupId->id;
             $groupSlug = $groupId->slug;
+            $groupName = $groupId->name;
             }   
 
         $range_id = "%";
@@ -130,6 +132,7 @@ class ProductsController extends Controller
         if ($range !== '0'){
             $range_id = $rangeId->id;
             $rangeSlug = $rangeId->slug;
+            $rangeName = $rangeId->name;
             }       
 
         //
@@ -147,8 +150,8 @@ class ProductsController extends Controller
         ->orderby('order')  
         ->get();
 
-        //return $cat_id;
-        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat_id','cat','catSlug'));
+        //return $results;
+        return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat_id','cat','catSlug', 'catName','groupName','rangeName'));
         //return View::make('results');
 
     }
@@ -159,6 +162,7 @@ class ProductsController extends Controller
     {
 
         $catSlug = 'linen';
+        $catName = 'Linen';
 
         $groupId = Group::where('slug', '=', $group)->first();
         $colourId = Colour::where('slug', '=', $colour)->first();
@@ -169,6 +173,7 @@ class ProductsController extends Controller
         if ($group !== '0'){
             $group_id = $groupId->id;
             $groupSlug = $groupId->slug;
+            $groupName = $groupId->name;
             }   
 
         $colour_id = "%";
@@ -207,7 +212,7 @@ class ProductsController extends Controller
         session::put('colour', $colourHex);
 
         //return $results[0];
-        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','cat_id','catSlug'));
+        return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','cat_id','catSlug','groupName','catName'));
         //return View::make('results');
 
     }

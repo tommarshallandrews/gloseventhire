@@ -62,7 +62,7 @@
                                 <a href="#">
                                   <div class="shop-thumb__img">
                                     <a href="{{ url('/products/details') }}/{{$result->id}}">
-                                    <img src="{{ url('/thumbs') }}/{{$result->image1}}"  class="img-responsive productThumb" alt="...">
+                                    <img src="{{ url('/thumbs') }}/{{$result->image1}}"  class="img-responsive productThumb" alt="image of {{$result->name}}" onerror="this.src='{{ url('/img') }}/no-image.jpg'">
                                     </a>
                                   </div>
                                   <h5 class="shop-thumb__title">

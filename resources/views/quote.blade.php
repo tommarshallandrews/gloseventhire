@@ -27,13 +27,13 @@
                     if($product->image1)
                     {
                    ?>     
-                  <img src="http://madigital.co.uk/images/{{$product->image1}}" class="img-responsive" alt="...">
+                  <img src="{{ url('/images') }}/{{$product->image1}}" class="img-responsive" alt="...">
                   <?php
                     }
                     else
                     {
                   ?>
-                    <span class="colorbox-quote" data-toggle="tooltip" data-placement="top" title="" style="background:{{$product->pivot->colour}}"></span>
+                    <span class="colorbox-quote" data-toggle="tooltip" data-placement="top" title="" style="background:{{$product->pivot->hex}}"></span>
                   <?php
                     } 
                   ?>
@@ -44,7 +44,7 @@
                     <?php 
                     if($product->cat_id == 60)
                     {
-                        echo($product->group->name . " - " . $product->group->collection);
+                        echo($product->group->name . " - " . $product->pivot->colour .' - '. $product->group->collection );
                     }
                     else
                     {
@@ -64,6 +64,8 @@
                       <input type="hidden" name="action_id" value="update">
                       <button type="submit" class="btn btn-default btn-xs">update</button>
                       <input type="hidden" name="product_id" value="{{$product->id}}">
+                      <input type="hidden" name="colour_name" value="{{$product->pivot->colour}}">
+                      <input type="hidden" name="colour_hex" value="{{$product->pivot->hex}}">
 
                     </form>
 
@@ -149,7 +151,7 @@
                <h3 class="headline">
                 <span>Return</span>
               </h3>
-              <p>Stock is expected to be returned clean. Id you would like us to clean it we chargs an additional 20%</p>
+              <p>Stock is expected to be returned clean. If you would like us to clean it we charge an additional 20%</p>
               {!! Form::open(array('url' => 'orders/updateReturn', 'method' => 'post')) !!}
               <div class="radio">
                 <input type="radio" name="return" value="clean" id="checkout-delivery__standart" <?php if($order->return == 'clean'){echo('checked');} ?>>

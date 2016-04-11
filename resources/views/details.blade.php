@@ -68,6 +68,7 @@
     <input type="hidden" name="product_id" value="{{$details->id}}">
     @if($colour)
     <input type="hidden" name="colour_hex" value="{{$colour->hex}}">
+    <input type="hidden" name="colour_name" value="{{$colour->name}}">
     @endif
     <input type="hidden" name="action_id" value="add">
 
