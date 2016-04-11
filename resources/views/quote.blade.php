@@ -215,7 +215,7 @@
 
 
 <!-- checkout options only when a date is set -->
-@if($order->end_date && $order->end_date)
+@if($order->end_date && $order->end_date && $order->postcode)
 
 
 

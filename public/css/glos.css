@@ -94,10 +94,24 @@ a {
 
     }
 
+
+.navbar-nav {
+    height: 20px;
+}
+
+
+.shop-slideshow__btn {
+    border: 2px solid white;
+    border-radius: 0;
+    color: #2D6F67;
+    font-weight: 600;
+    background: #FFFB62;
+}
+
 .shop-slideshow__heading {
     margin: 0 0 20px 0;
     font-family: 'Questrial', sans-serif;
-    font-size: 46px;
+    font-size: 36px;
     line-height: 1.2;
     color: white;
     background: rgba(45, 111, 103, 0.72);
@@ -353,9 +367,8 @@ font-weight: bold;
     border-bottom: 5px solid transparent;
 }
 
-
 .shop__slideshow .carousel-inner .item_1 {
-    background: url(../img/home1.jpg) no-repeat center center / cover;
+    background: url(../img/home5.jpg) no-repeat center center / cover;
 }
 
 .shop__slideshow .carousel-inner .item_2 {
@@ -363,15 +376,19 @@ font-weight: bold;
 }
 
 .shop__slideshow .carousel-inner .item_3 {
-    background: url(../img/home3.jpg) no-repeat center center / cover;
+    background: url(../img/blue-gas-flame.jpg) no-repeat center center / cover;
 }
 
 .shop__slideshow .carousel-inner .item_4 {
-    background: url(../img/home4.jpg) no-repeat center center / cover;
+    background: url(../img/commercial-stovetop.jpg) no-repeat center center / cover;
 }
 
 .shop__slideshow .carousel-inner .item_5 {
-    background: url(../img/home5.jpg) no-repeat center center / cover;
+    background: url(../img/businesswoman.jpg) no-repeat center center / cover;
+}
+
+.shop__slideshow .carousel-inner .item_6 {
+    background: url(../img/female-kitchen-worker.jpg) no-repeat center center / cover;
 }
 
 
@@ -388,6 +405,7 @@ padding: 0 10px;
 line-height: 44px;
 font-size: 13px;
 }
+
 @media (min-width: 991px) {
 .navbar-default .navbar-nav > li:first-of-type > a {
    padding-left: 0;
@@ -481,3 +499,12 @@ font-size: 13px;
 .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
     background: #ECEA8D;
 }
+
+
+p {
+    margin: 0 0 9px;
+    line-height: 1.5em;
+    font-size: 1.1em;
+}
+
+

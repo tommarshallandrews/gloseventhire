@@ -98,9 +98,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="{{URL::to('/')}}/js/bootstrap.min.js"></script>
     
-    <!-- JS Plugins -->
-    <script src="{{URL::to('/')}}/js/scrolltopcontrols.js"></script>
-    
+
     <!-- JS Custom -->
     <script src="{{URL::to('/')}}/js/custom.js"></script>
 

@@ -198,7 +198,7 @@ class ProductsController extends Controller
         ->get();
 
 
-        $colours = Colour::orderby('order','range')  
+        $colours = Colour::orderby('order')  
         ->get();
 
         $cat = 'linen';
