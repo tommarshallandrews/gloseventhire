@@ -50,7 +50,10 @@ return array(
             'select' => "(:table).name",
         ),
 
-
+        'order' => array(
+            'title' => 'Order',
+            'type' => 'number',
+        ),
 	),
 
 	/**

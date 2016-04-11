@@ -501,10 +501,18 @@ font-size: 13px;
 }
 
 
+
+.navbar-nav > li > .dropdown-menu:before, .dropdown-submenu > .dropdown-menu:before {
+    border-top: 2px solid #2D6F67;
+}
+
 p {
     margin: 0 0 9px;
     line-height: 1.5em;
     font-size: 1.1em;
 }
+
+
+
 
 

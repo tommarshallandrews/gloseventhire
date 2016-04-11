@@ -105,9 +105,15 @@
        @if($cat_id == 60) 
 
              @if($results[0])
+             vanilla-slice
+             <?php 
+             $textcolour = 'white';
+             if($colourId->slug == 'white' || $colourId->slug == 'vanilla-slice' || $colourId->slug == 'banana-milkshake') { $textcolour = 'black'; } 
+              ?>
+
               
-            <span class="colorbox" data-toggle="tooltip" data-placement="top" style="background:{{ $colourId->hex  }}">
-              <span class="white huge">Linen available in {{ $colourId->name }} </span>
+            <span class="colorbox"  data-placement="top" style="background:{{ $colourId->hex  }}">
+              <span class="{{$textcolour}} huge">Linen available in {{ $colourId->name }} </span>
             </span>
 
 
@@ -164,7 +170,7 @@
                                 <a href="#">
                                   <div class="shop-thumb__img">
                                     <a href="{{ url('/products/details') }}/{{$result->id}}">
-                                    <img src="{{ url('/thumbs') }}/{{$result->image1}}"  class="img-responsive productThumb" alt="...">
+                                    <img src="{{ url('/thumbs') }}/{{$result->image1}}"  class="img-responsive productThumb" alt="..." onerror="this.src='{{ url('/img') }}/no-image.jpg'">
                                     </a>
                                   </div>
                                   <h5 class="shop-thumb__title">

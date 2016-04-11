@@ -178,7 +178,7 @@
 
                       <div class="shop-thumb__img">
                         <a href="{{ url('/products/details') }}/{{$similar->id}}">
-                        <img src="{{ url('/thumbs') }}/{{$similar->image1}}" class="img-responsive" alt="..." width="210">
+                        <img src="{{ url('/thumbs') }}/{{$similar->image1}}" class="img-responsive" alt="..." width="210" onerror="this.src='{{ url('/img') }}/no-image.jpg'">
                         </a>
                       </div>
 
