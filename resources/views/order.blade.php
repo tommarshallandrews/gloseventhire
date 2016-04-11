@@ -42,12 +42,13 @@
                 <div class="checkout-cart-item__content">
                   <h5 class="checkout-cart-item__heading">
                     <?php 
-                    if($product->group->collection)
-                      {
+                    if($product->cat_id == 60)
+                    {
                         echo($product->group->name . " - " . $product->group->collection);
-                      }
+                    }
                     else
                     {
+                      //echo($product->group_id);
                       echo($product->name . " - " . $product->range->name);
                     } 
                     ?>

@@ -99,21 +99,21 @@
         <div class="col-sm-8 col-md-9">
 
 
-
           <div class="row">
 
        @if($cat_id == 60) 
 
              @if($results[0])
-             vanilla-slice
+
              <?php 
              $textcolour = 'white';
-             if($colourId->slug == 'white' || $colourId->slug == 'vanilla-slice' || $colourId->slug == 'banana-milkshake') { $textcolour = 'black'; } 
+             if($colourId->slug == 'white' || $colourId->slug == 'vanilla-slice' || $colourId->slug == 'banana-milkshake' || $colourId->slug == 'candyfloss' || $colourId->slug == 'custard-cream') { $textcolour = 'black'; } 
               ?>
 
               
             <span class="colorbox"  data-placement="top" style="background:{{ $colourId->hex  }}">
-              <span class="{{$textcolour}} huge">Linen available in {{ $colourId->name }} </span>
+              <div class="{{$textcolour}} huge">Linen available in {{ $colourId->name }} </div>
+              <span class="{{$textcolour}}">{{ $colourId->description }} </span>
             </span>
 
 
@@ -135,7 +135,7 @@
                               <div class="">
                                 <a href="#">
                                   <h5 >
-                                    <a href="{{ url('/products/details') }}/{{$product->id}}/{{$colourId->slug}}">{{$product->group->name}}</a>
+                                    <a href="{{ url('/products/details') }}/{{$product->id}}/{{$colourId->slug}}" class="underline">{{$product->group->name}}</a>
                                   
 
                                     @if($colourId->slug == 'white')

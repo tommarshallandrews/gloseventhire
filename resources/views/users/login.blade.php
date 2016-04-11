@@ -20,31 +20,31 @@
                             
                        {!! Form::open(array('url'=>'users/signin', 'class'=>'form-horizontal')) !!}
                                     
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="username or email">                                        
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" id="email" placeholder="Your email Address" value="{{ old('email') }}">
                                     </div>
+
+                                </div>
                                 
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="password" id="email" placeholder="Your password" value="">
                                     </div>
+
+                                </div>
                                     
 
                                 
-                            <div class="input-group">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                        </label>
-                                      </div>
-                                    </div>
 
 
-                                <div style="margin-top:10px" class="input-group">
+
+                                <div class="form-group">
                                     <!-- Button -->
-
-                                    <div class="col-sm-12 controls">
+                                    <span class="col-md-3"></span>
+                                    <div class="col-sm-9 controls">
                                      {!! Form::submit('Login', array('class'=>'btn btn-success btn-lg"'))!!}
              
 

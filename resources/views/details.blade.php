@@ -100,11 +100,20 @@
               @if($details->image1)
               <img src="{{ url('/images') }}/{{$details->image1}}" class="img-responsive" alt="..." style="opacity: 1;">
               @elseif($details->group->collection)
-              <span class="colorbox huge bold white " data-toggle="tooltip" data-placement="top" title="{{$colour->name}}" style="background:{{$colour->hex}}">{{$colour->name}} Linen {{$details->group->collection}}</span>
+             <?php 
+             $textcolour = 'white';
+             if($colour->slug == 'white' || $colour->slug == 'vanilla-slice' || $colour->slug == 'banana-milkshake' || $colour->slug == 'candyfloss' || $colour->slug == 'custard-cream') { $colour = 'black'; } 
+              ?>
+            <span class="colorbox"  data-placement="top" style="background:{{ $colour->hex  }}">
+              <div class="{{$textcolour}} huge">{{ $colour->name }} </div>
+              <span class="{{$textcolour}}">{{ $colour->description }} </span>
+            </span>
+
               @endif
             </div>
             <div class="clearfix"></div>
           </div>
+
 
 
 
