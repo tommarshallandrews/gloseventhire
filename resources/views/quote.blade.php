@@ -352,7 +352,7 @@
 
       </div> <!-- / .container -->
 
-   
+   </div> <!-- / .container -->
 
 
    @include('masters.footer')

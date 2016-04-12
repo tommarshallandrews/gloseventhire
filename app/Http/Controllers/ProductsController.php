@@ -42,9 +42,11 @@ class ProductsController extends Controller
         //return $colour;
         $colour = null;
 
+        $keywords = '';
 
         if($colourslug){
         $colour = Colour::where('slug', '=', $colourslug)->first();
+        $keywords = $keywords . $colour->name . ', ';
         }
 
 
@@ -54,6 +56,7 @@ class ProductsController extends Controller
         //return $details;
 
         $similars = 0;
+        
 
         //select similar products form a range
         if($details->cat_id == 10 || $details->cat_id == 20 || $details->cat_id == 70){
@@ -62,6 +65,7 @@ class ProductsController extends Controller
             ->where ('range_id', '=', $rangeSelected, 'and')
             ->where ('id','!=', $id)
             ->get();
+            $keywords = $keywords . $details->range->name .', ';
             }
 
 
@@ -71,8 +75,14 @@ class ProductsController extends Controller
             $similars = Product::with('range','group')
             ->where ('group_id', '=', $groupSelected, 'and')
             ->where ('id','!=', $id)
-            ->get();
+            ->get(); 
+            $keywords = $keywords . $details->group->name .', ';
             }
+
+            $keywords = $keywords . $details->name;
+
+            Session::flash('keywords', $keywords);
+            Session::flash('title', $details->name);
             
         //select similar products for linen TODO
 
@@ -112,6 +122,7 @@ class ProductsController extends Controller
 
         $cat_id = "%";
         $catSlug = '0';
+        $catName = '';
         if ($cat !== '0'){
             $cat_id = $catId->id;
             $catSlug = $catId->slug;
@@ -121,6 +132,7 @@ class ProductsController extends Controller
 
         $group_id = "%";
         $groupSlug = '0';
+        $groupName = '';
         if ($group !== '0'){
             $group_id = $groupId->id;
             $groupSlug = $groupId->slug;
@@ -129,6 +141,7 @@ class ProductsController extends Controller
 
         $range_id = "%";
         $rangeSlug = '0';
+        $rangeName = '';
         if ($range !== '0'){
             $range_id = $rangeId->id;
             $rangeSlug = $rangeId->slug;
@@ -149,6 +162,11 @@ class ProductsController extends Controller
         $ranges = Range::where('cat_id', 'LIKE', $cat_id)  
         ->orderby('order')  
         ->get();
+
+        $keywords = $catName . ', ' . $groupName . ', ' . $rangeName;
+
+         Session::flash('keywords', $keywords);
+         Session::flash('title', $catName);
 
         //return $results;
         return View::make('results', compact('results','groups','groupSlug','ranges','rangeSlug','cat_id','cat','catSlug', 'catName','groupName','rangeName'));
@@ -210,6 +228,9 @@ class ProductsController extends Controller
         $cat_id = 60;
 
         session::put('colour', $colourHex);
+
+         Session::flash('keywords', 'linen, Tablecloths, napkins');
+         Session::flash('title', 'Linen');
 
         //return $results[0];
         return View::make('results', compact('results','groups','groupSlug','colours','colourId','cat','cat_id','catSlug','groupName','catName'));

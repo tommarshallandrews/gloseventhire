@@ -55,8 +55,8 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-8 col-md-6 col-lg-5">
-                      <h1 class="shop-slideshow__heading">High quality, professional grade kitchen equipment</h1>
-                      <a href="{{URL::to('/')}}/products/kitchen_equipment/0/0" class="btn btn-lg shop-slideshow__btn">Show me</a>
+                      <h1 class="shop-slideshow__heading">TMA has a MASSIVE hot wanger</h1>
+                      <a href="{{URL::to('/')}}/users/register" class="btn btn-lg shop-slideshow__btn">Register</a>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,73 @@
     <!-- MAIN CONTENT
     ================================================== -->
 
-  
+    <!-- Features -->
+    <section class="shop-index__section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <h2 class="shop-index__heading text-center">
+              Present your products in a beautiful way
+            </h2>
+            <p class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </p>
+
+          </div>
+        </div> <!-- / .row -->
+        <div class="row">
+          <div class="col-sm-4">
+            
+            <div class="shop-index-features__item">
+              <div class="shop-index-features__icon">
+                <i class="fa fa-truck"></i>
+              </div>
+
+              <h4 class="shop-index-features__heading">
+                Free 3-day shipping
+              </h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, perferendis et nostrum.
+              </p>
+            </div> <!-- / .shop-index-features__item -->
+
+          </div>
+          <div class="col-sm-4">
+            
+            <div class="shop-index-features__item">
+              <div class="shop-index-features__icon">
+                <i class="fa fa-shopping-bag"></i>
+              </div>
+
+              <h4 class="shop-index-features__heading">
+                Free returns
+              </h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, perferendis et nostrum.
+              </p>
+            </div> <!-- / .shop-index-features__item -->
+
+          </div>
+          <div class="col-sm-4">
+            
+            <div class="shop-index-features__item">
+              <div class="shop-index-features__icon">
+                <i class="fa fa-gift"></i>
+              </div>
+
+              <h4 class="shop-index-features__heading">
+                Gift cards
+              </h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, perferendis et nostrum.
+              </p>
+            </div> <!-- / .shop-index-features__item -->
+
+          </div>
+        </div>
+      </div> <!-- / .container -->
+    </section>
 
     <!-- Featured collection -->
 

@@ -7,8 +7,9 @@ return [
     'companyWebsite' => 'gloseventhire.co.uk',
     'companyEmail' => 'info@gloseventhire.co.uk',
 
-    'adminEmail' => 'info@gloseventhire.co.uk',
+    //'adminEmail' => 'info@gloseventhire.co.uk',
     'adminEmailName' => 'Gloucester Event Hire',
+    'adminEmail' => 'tommarshallandrews@gmail.com',
 
     'noreplyEmail' => 'noreply@marshallandrews.com',
     'noreplyEmailName' => 'No Reply',

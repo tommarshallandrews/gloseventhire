@@ -17,25 +17,34 @@ use App\Page;
 */
 Route::get('/', function () {
     return View::make('index');
+    Session::forget('keywords');
+    Session::forget('title');
 });
 
 
 Route::get('/contact-us', function () {
+    Session::flash('keywords', 'contact us');
+    Session::flash('title', 'Contact us');
     return View::make('contact');
+
 });
 
 
 Route::get('/faq', function () {
     $faqs = faq::all();
     //return $faqs;
+    Session::flash('keywords', 'faq, questions, queries');
+    Session::flash('title', 'FAQ');
     return View::make('faqs', compact('faqs'));
+
 });
 
 
 Route::get('/page/{slug}', function ($slug) {
 
     $content = Page::where('slug', $slug)->first();
-    //return $content;
+    Session::flash('keywords', $content->heading);
+    Session::flash('title', $content->heading);
     return View::make('page', compact('content'));
 });
 
@@ -113,16 +122,17 @@ Route::post('/orders/updateAddress', [ 'as' => 'orders.updateAddress', 'uses' =>
 
 View::composer('masters.navigation', function($view)
 {   
-
-
-    //$view->with('ordersOpen', Order::where('user_id','=', $user_id)->where('status', '=', 'open')->first()); 
     $group = Cat::with('groups')->orderby('name')->get(); 
-    //dd($cat);
     $view->with(['cats'=> $group, 'getOrder' => app('App\getOrder')]);
-
-
-
 });
+
+
+View::composer('masters.header', function($view)
+{   
+    $view->with(['getMeta' => app('App\getMeta')]);
+});
+
+
 
 //Route::resource('products', 'ProductsController');
 

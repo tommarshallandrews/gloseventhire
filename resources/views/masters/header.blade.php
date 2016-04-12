@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Professional hire of catering equipment for all your event needs">
+    <meta name="keywords" content="catering, event hire, {{ $getMeta->keywords() }}">
+    <META name="Robots" Content="index, FOLLOW">
+    <meta name="author" content="Marshall Andrews Ltd">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{URL::to('/')}}/ico/favicon.ico">
 
-    <title>{{Config::get('app.companyName')}}</title>
+
+    <title>{{Config::get('app.companyName')}} {{ $getMeta->title() }}</title>
 
     <script src="{{URL::to('/')}}/js/jquery.min.js"></script>
 

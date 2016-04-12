@@ -367,28 +367,18 @@ font-weight: bold;
 }
 
 .shop__slideshow .carousel-inner .item_1 {
-    background: url(../img/home5.jpg) no-repeat center center / cover;
+    background: url(../img/home2.jpg) no-repeat center center / cover;
 }
 
 .shop__slideshow .carousel-inner .item_2 {
-    background: url(../img/home2.jpg) no-repeat center center / cover;
+    background: url(../img/home5.jpg) no-repeat center center / cover;
 }
 
 .shop__slideshow .carousel-inner .item_3 {
     background: url(../img/blue-gas-flame.jpg) no-repeat center center / cover;
 }
 
-.shop__slideshow .carousel-inner .item_4 {
-    background: url(../img/commercial-stovetop.jpg) no-repeat center center / cover;
-}
 
-.shop__slideshow .carousel-inner .item_5 {
-    background: url(../img/businesswoman.jpg) no-repeat center center / cover;
-}
-
-.shop__slideshow .carousel-inner .item_6 {
-    background: url(../img/female-kitchen-worker.jpg) no-repeat center center / cover;
-}
 
 
 .navbar-default {

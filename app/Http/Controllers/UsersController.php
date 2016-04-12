@@ -33,6 +33,8 @@ class UsersController extends Controller {
 
   public function getLogin() {
         Auth::logout();
+        Session::flash('keywords', '');
+        Session::flash('title', 'Login');
         return View::make('users.login');
     }
 
@@ -42,6 +44,8 @@ class UsersController extends Controller {
 
 
     public function getRegister() {
+                Session::flash('keywords', '');
+        Session::flash('title', 'Register');
         return View::make('users.register');
     }
 
@@ -167,7 +171,8 @@ class UsersController extends Controller {
         public function getEdit() {
         $user = User::find(Auth::user()->id);
         //return $user;
-
+    Session::forget('keywords');
+    Session::forget('title');
         return View::make('users.edit', compact('user'));
         //return "edit";
     }
@@ -235,6 +240,9 @@ class UsersController extends Controller {
 
         $user = Auth::user();
 
+        Session::flash('keywords', '');
+        Session::flash('title', 'Dashboard');
+
 
         return View::make('users.dashboard', compact('orders','user'));
 
@@ -294,6 +302,8 @@ class UsersController extends Controller {
 
 
 public function getResend() {
+    Session::forget('keywords');
+    Session::forget('title');
         return View::make('users.resend');
     
     }
@@ -391,6 +401,8 @@ public function postResend(Request $request) {
         Auth::logout();
         Session::forget('order');
         Session::forget('orderCount');
+    Session::forget('keywords');
+    Session::forget('title');
         return Redirect::to('users/login')->with('message', 'Your are now logged out!');
     }
 }

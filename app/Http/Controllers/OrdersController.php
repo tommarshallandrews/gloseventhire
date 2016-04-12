@@ -42,6 +42,9 @@ class OrdersController extends Controller
         ->where('user_id', '=',  Auth::user()->id, 'and')
         ->get();
 
+        Session::flash('keywords', '');
+        Session::flash('title', '');
+
         return View::make('users.dashboard', compact('orders'));
     }
 
@@ -54,6 +57,8 @@ class OrdersController extends Controller
     {
         $details = Product::with('range','group')
         ->find($id);
+        Session::flash('keywords', '');
+        Session::flash('title', '');
         return View::make('details', compact('details'));
 
     }
@@ -63,6 +68,8 @@ class OrdersController extends Controller
     {    
         $order = Order::with('user')
         ->find($id);
+        Session::flash('keywords', '');
+        Session::flash('title', '');
         return View::make('address', compact('order'));
 
     }
@@ -152,6 +159,8 @@ class OrdersController extends Controller
             //return $productcost;
         
         Session::put('order', $order->id);
+    Session::forget('keywords');
+    Session::forget('title');
 
         //return $order;
 

@@ -12,7 +12,7 @@
           <div class="row">
 
             <!-- Contact Us -->
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Contact Us</span></h5>
                 <div class="footer-item__content" style="display: block;">
@@ -44,7 +44,7 @@
 
 
             <!-- Quick Links -->
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Links</span></h5>
                 <div class="footer-item__content" style="display: block;">
@@ -57,9 +57,39 @@
               </div>            
             </div>
 
+
+            <!-- Quick Links -->
+            <div class="col-xs-12 col-sm-4">
+              <div class="footer__item">
+      <a class="twitter-timeline" href="https://twitter.com/gloseventhire" data-widget-id="719824613371457536">Tweets by @gloseventhire</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+              </div>            
+            </div>
+
+
+
+
+
           </div> <!-- / .row -->
         </div> <!-- / .container -->
       </div>
+
+
+            <div class="col-xs-12 col-sm-4">
+              <div class="footer__item">
+
+
+              </div>            
+            </div>
+
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </div>
+
+
+
+
 
       
 
@@ -74,12 +104,13 @@
             </div>
             <div class="col-xs-12 col-sm-6">
               <ul class="footer__social">
-                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li class="twitter"><a href="https://twitter.com/gloseventhire" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li class="facebook"><a href="https://www.facebook.com/gloseventhire/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li class="linkedin"><a href="https://www.linkedin.com/company/gloucester-event-hire-ltd" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
               </ul>
+
+
             </div>
           </div> <!-- / .row -->
         </div> <!-- / .container -->
@@ -148,6 +179,13 @@ $('#accordion').on('shown.bs.collapse', toggleChevron);
 });//]]> 
 
 </script>
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56e944092b749792"></script>
+
+
+
 
 
   </body>
