@@ -120,12 +120,17 @@
         <div class="navbar-header">
 
 
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#productbar">
-            Click to view products
-          </button>
 
+          <button type="button" class="navbar-toggle btn-xs" data-toggle="collapse" data-target="#productbar">
+            View products
+          </button>
+          <a href="{{ url('/quote') }}/{{ $getOrder->order() }}" type="button" class="navbar-toggle btn-xs" >
+            Quote
+          </a>
 
         </div> <!-- / .navbar-header -->
+
+
         <div class="collapse navbar-collapse" id="productbar">
           <ul class="nav navbar-nav navbar-right">
 

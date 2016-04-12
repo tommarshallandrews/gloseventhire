@@ -15,6 +15,13 @@ use App\Page;
 | and give it the controller to call when that URI is requested.
 |
 */
+
+Route::get('/hello', function () {
+    return View::make('test');
+});
+
+
+
 Route::get('/', function () {
     return View::make('index');
     Session::forget('keywords');

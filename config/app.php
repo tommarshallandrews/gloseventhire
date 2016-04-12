@@ -7,11 +7,11 @@ return [
     'companyWebsite' => 'gloseventhire.co.uk',
     'companyEmail' => 'info@gloseventhire.co.uk',
 
-    //'adminEmail' => 'info@gloseventhire.co.uk',
+    'adminEmail' => 'info@gloseventhire.co.uk',
     'adminEmailName' => 'Gloucester Event Hire',
-    'adminEmail' => 'tommarshallandrews@gmail.com',
+    //'adminEmail' => 'tommarshallandrews@gmail.com',
 
-    'noreplyEmail' => 'noreply@marshallandrews.com',
+    'noreplyEmail' => 'noreply@gloseventhire.co.uk',
     'noreplyEmailName' => 'No Reply',
 
     'poundsPerMile' => 2,

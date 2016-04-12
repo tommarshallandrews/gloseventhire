@@ -13,10 +13,12 @@
 
     <title>{{Config::get('app.companyName')}} {{ $getMeta->title() }}</title>
 
-    <script src="{{URL::to('/')}}/js/jquery.min.js"></script>
+    <script src="{{URL::to('/')}}/assets/js/jquery.min.js"></script>
 
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="{{URL::to('/')}}/assets/plugins/animate/animate.css" rel="stylesheet">
 
     <!-- CSS Global -->
     <link href="{{URL::to('/')}}/css/styles.css" rel="stylesheet">

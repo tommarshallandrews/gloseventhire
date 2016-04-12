@@ -15,7 +15,7 @@
             <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Contact Us</span></h5>
-                <div class="footer-item__content" style="display: block;">
+                <div class="footer-item__content">
                   <p>
                     Do not hesitate to contact us if you have any queries:<br>
  
@@ -47,7 +47,7 @@
             <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <h5 class="footer-item__title"><span>Links</span></h5>
-                <div class="footer-item__content" style="display: block;">
+                <div class="footer-item__content">
                   <ul class="footer__links">
                     <li><a href="{{ url('/page') }}/links">Useful links</a></li>
                     <li><a href="{{ url('/page') }}/terms-conditions">Terms & Conditions</a></li>
@@ -61,8 +61,10 @@
             <!-- Quick Links -->
             <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
+                <div class="footer-item__content">
       <a class="twitter-timeline" href="https://twitter.com/gloseventhire" data-widget-id="719824613371457536">Tweets by @gloseventhire</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                  </div>
                 </div>
               </div>            
             </div>
@@ -132,10 +134,12 @@
 
     <!-- JS Custom -->
     <script src="{{URL::to('/')}}/js/custom.js"></script>
+<script type="text/javascript">(function () {
+        return window.SIG_EXT = {};
+      })()</script>
 
 
 
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   
   <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <script>
