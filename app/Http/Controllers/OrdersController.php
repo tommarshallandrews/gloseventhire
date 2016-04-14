@@ -275,7 +275,7 @@ class OrdersController extends Controller
 
     //set message depending od whethet order is open or quote
 
-    if($order->status !=='open') {
+    if($order->status !== 'Open') {
             Session::flash('registerMessage', "You are updating an existing quote. When you are happy please click the green button below to confirm your update.");
             Session::flash('type', "danger");
             return redirect()->route('orders.show', [$order->id]);
