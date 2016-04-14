@@ -11,7 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h3>Product: {{$catName}}</h3>
+            <h3>Product: {{$catName}} </h3>
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
@@ -59,14 +59,14 @@
                       </h3>
 
                       <div class="checkbox">
-                        <input type="checkbox" value="" id="shop-filter-checkbox_1" >
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/0/{{$rangeSlug}}">[All]</a></label>
+                        <!--<input type="checkbox" value="" id="shop-filter-checkbox_1" >-->
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/0/{{$rangeSlug}}" class="<?php if($groupSlug == '0'){ echo("red"); }  ?>">[All]</a></label>
                       </div>
 
                       @foreach($groups as $group)
                       <div class="checkbox">
-                        <input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($groupSlug == $group->slug){ echo("checked"); }  ?>>
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$group->slug}}/{{$rangeSlug}}">{{$group->name}}</a></label>
+                        <!--<input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($groupSlug == $group->slug){ echo("checked"); }  ?>> -->
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$group->slug}}/{{$rangeSlug}}" class="<?php if($groupSlug == $group->slug){ echo("red"); }  ?>">{{$group->name}}</a></label>
                       </div>
                       @endforeach
 
@@ -101,7 +101,10 @@
 
           <div class="row">
 
-       @if($cat_id == 60) 
+
+
+
+       @if($cat_id == 60)
 
              @if($results[0])
 
@@ -190,7 +193,18 @@
                       
                  @else
                         <div class="col-sm-8 col-md-8 col-md-offset-2">
-                            <p class="large">There's nothing fitting that description. </p><p>Please try and select another catagory or use the search below:</p>
+
+                       <?php
+                          $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+                            if (strpos($url,'/new-range') !== false) {
+                                echo '<p class="large">New Range - Available May 2016. </p>.';
+                            } else {
+                                echo '<p class="large">There are no products with this description.</p>';
+                            }
+                       ?>
+
+                            <p>Please try and select another catagory or use the search below:</p>
                                       <!-- Search -->
                               {!! Form::open(array('url'=>'products/search','method'=>'get')) !!}
 

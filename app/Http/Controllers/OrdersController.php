@@ -259,19 +259,6 @@ class OrdersController extends Controller
     $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_name, 'hex' => $colour_hex]); 
     }
 
-    //push productto order session
-    //Session::put('order.product', $product_id);
-    if($action_id == 'add'){
-     //  return $action_id;
-    }
-
-
-   
-    if($action_id == 'update'){
-    return redirect()->route('orders.show', [$order->id]);
-       return $action_id;
-    } 
-
 
     //count them again
     $updatedOrder = Order::with('product')
@@ -284,7 +271,24 @@ class OrdersController extends Controller
 
     //return $orderCount;
 
-    Session::put('orderCount', $orderCount);     
+    Session::put('orderCount', $orderCount);  
+
+    //set message depending od whethet order is open or quote
+
+    if($order->status !=='open') {
+            Session::flash('registerMessage', "You are updating an existing quote. When you are happy please click the green button below to confirm your update.");
+            Session::flash('type', "danger");
+            return redirect()->route('orders.show', [$order->id]);
+            }
+
+
+    //updating quantities
+    if($action_id == 'update'){
+    return redirect()->route('orders.show', [$order->id]);
+
+    } 
+    
+
     Session::flash('message', $quantity . " of these have been added to your quote");
     Session::flash('type', "success");
 
@@ -356,14 +360,20 @@ class OrdersController extends Controller
         //return Input::get('postcode');
         $order = Order::find(Session::get('order'));
         $order->postcode = $postcode;
-        $order->distance = $distance;
+        $order->distance = round($distance/1609);
         $order->save();
 
+        if($postcode == 'Collected'){
+        Session::flash('postcodeMessage', 'You have chosen to collect and return from our warehouse in Gloucester');
+        Session::flash('type', "info");
+        } else {
         Session::flash('postcodeMessage', 'That looks like a good postcode. We have added the estimated delivery & collection to your quote');
         Session::flash('type', "success");
+        }
         return Redirect::back();
 
     }
+
 
 
 
@@ -385,7 +395,7 @@ class OrdersController extends Controller
         $order->end_date = $end_date;
 
         if($start_date >= $end_date){
-        Session::flash('datesMessage','Your start date is after you end date');
+        Session::flash('datesMessage','Your start date is after your end date');
         Session::flash('type', "danger");
         return Redirect::back()->withinput();
         }
@@ -395,7 +405,7 @@ class OrdersController extends Controller
         $diff = abs(strtotime($end_date) - strtotime($start_date));
         $days = $diff / 86400;
         if($days > 4){
-        Session::flash('datesMessage','That\'s more than our normal hire period. You\'ll have to ontact us for a quote');
+        Session::flash('datesMessage','That\'s more than our normal hire period. You\'ll have to contact us for a quote.');
         Session::flash('type', "danger");
         return Redirect::back()->withinput();
         }
@@ -432,7 +442,7 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
 
 
 
-        Session::flash('message','That\s saved and someone will contact you shortly');
+        Session::flash('message','That\'s saved and someone will contact you shortly');
         Session::flash('alert-class', "alert-success");
         return Redirect::to('users/dashboard');
     }

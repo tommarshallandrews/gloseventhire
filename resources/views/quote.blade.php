@@ -94,7 +94,7 @@
                 <span>Delivery Postcode</span>
               </h3>
 
-              <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect you order form out Gloucester warehouse.</p>
+              <p>Please enter you postcode an click the button do calculate the delivery charge. It's free to collect your order from our Gloucester warehouse.</p>
               {!! Form::open(array('url' => 'orders/updateDelivery', 'method' => 'post')) !!}
               <div class="form-group <?php if(!$order->postcode){echo('has-error');} ?>">
                 <input type="text" id="inputError1" name="postcode" value="{{ $order->postcode }}" placeholder="Enter postcode" class="form-control">
@@ -201,8 +201,8 @@
               <div class="left large grey">Delivery - none:</div>
               <div class="right large grey">Free</div>
               @else
-              <div class="left large grey">Delivery ({{ number_format($order->distance/1609 , 0) }} miles):</div>
-              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile')/1609, 0) }}.00</div>
+              <div class="left large grey">Delivery ({{ $order->distance }} miles):</div>
+              <div class="right large grey">£{{$order->distance * Config::get('app.poundsPerMile') }}.00</div>
               @endif
               <div class="clearfix"></div>
 
@@ -229,6 +229,9 @@
 
 
 
+
+
+
         <!-- if user is logged in and confirmed -->
         @if(Auth::User()->confirmed == '1')
         <div class="spacer20"></div>
@@ -237,7 +240,7 @@
                 <button type="submit" name="submitType" value="contact" class="btn btn-success block">Save this quote and contact me at <br><strong>{{Auth::User()->email}}</strong></button>
                 <div class="spacer10"></div>
                 
-                <a href="{{ url('/address') }}/{{$order->id}}" class="btn btn-info block">Order this stock and add details *</a>
+                <a href="{{ url('users/addressbilling') }}" class="btn btn-info block">Order this stock and add details *</a>
                  <p>* Subject to availability and possible deposit<p>
 
             {!! Form::close() !!}

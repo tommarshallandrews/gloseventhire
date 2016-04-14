@@ -159,7 +159,82 @@
 
 
 
+ {!! Form::open(array('url'=>'users/addressbilling', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form')) !!}
 
+                                <div class="form-group">
+                                    <div for="email" class="col-md-3 control-label"></div>
+                                    <div class="col-md-9">
+                                        <h3>Billing Address</h3>
+                                    </div>
+                                </div>
+
+                                
+                                @if(Session::has('addressErrors'))
+                                <div id="signupalert" style="display" class="alert alert-danger">
+                                  <strong>You have some errors on the registration form.</strong>
+                                      <ul>
+                                          @foreach($addressErrors->all() as $addressError)
+                                      <li>{{ $addressError }}</li>
+                                          @endforeach
+                                      </ul>
+                                </div>
+                                @endif   
+
+
+                                
+                                  
+                                <div class="form-group">
+                                    <label for="address1" class="col-md-3 control-label">Address 1</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="address1" id="address1" placeholder="Address 1" value="{{ $user->address1 }}">
+                                    </div>
+
+                                </div>
+                                    
+
+                                <div class="form-group">
+                                    <label for="address2" class="col-md-3 control-label">Address 2</label>
+                                    <div class="col-md-6 ">
+
+                                        <input type="address2" class="form-control" id="address2" name="address2" placeholder="Address 2" value="{{ $user->address2 }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="town" class="col-md-3 control-label">Town / City</label>
+                                    <div class="col-md-6 ">
+                                        <input type="text" class="form-control" id="town" name="town" placeholder="Town"  value="{{ $user->town }}">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="county" class="col-md-3 control-label">County</label>
+                                    <div class="col-md-6 ">
+                                        <input type="text" class="form-control" id="county" name="county" placeholder="County" value="{{ $user->county }}">
+                                    </div>
+
+                                </div>  
+
+
+                                <div class="form-group">
+                                    <label for="postcode" class="col-md-3 control-label">Postcode</label>
+                                    <div class="col-md-6 ">
+                                        <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Postcode" value="{{ $user->postcode }}">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-success"><i class="icon-hand-right"></i> &nbsp Update Address</button>
+
+                                    </div>
+                                </div>
+
+                            {!! Form::close() !!}
 
 
 

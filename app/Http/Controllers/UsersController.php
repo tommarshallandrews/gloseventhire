@@ -44,7 +44,7 @@ class UsersController extends Controller {
 
 
     public function getRegister() {
-                Session::flash('keywords', '');
+        Session::flash('keywords', '');
         Session::flash('title', 'Register');
         return View::make('users.register');
     }
@@ -130,6 +130,39 @@ class UsersController extends Controller {
         
     }
 
+    public function getAddressbilling() {
+        $user = Auth::user();
+        Session::flash('keywords', '');
+        Session::flash('title', 'Billing Address');
+        return View::make('users.addressbilling', compact('user'));
+    }
+
+
+    public function postAddressbilling(Requests\AddressUpdateRequest $request)
+    {
+
+
+        $user = Auth::user();
+        $user->address1 = $request->address1;
+        $user->address2 = $request->address2;
+        $user->town = $request->town;
+        $user->county = $request->county;
+        $user->postcode = $request->postcode;
+        $user->save();
+        
+        //if ordering direct to delivery address page
+        if($request->action == 'order'){
+        return Redirect::to('address/' . session::get('order'));
+        }
+
+        return Redirect::to('users/dashboard')
+        ->with('message', 'That is updated for you now')
+        ->with('alert-class', 'alert-success')
+        ->withInput();
+
+    }
+
+
 
 
 
@@ -146,6 +179,7 @@ class UsersController extends Controller {
                     $user->password = Hash::make($request->password);
                     $user->save();
             
+
             return Redirect::to('users/dashboard')
                 ->with('password-message', 'That updated for you.')
                 ->with('alert-class', 'alert-success')

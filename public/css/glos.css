@@ -141,7 +141,7 @@ a {
     -webkit-transition: border-color 0.1s, -webkit-box-shadow 0.1s;
     -o-transition: border-color 0.1s, box-shadow 0.1s;
     transition: border-color 0.1s, box-shadow 0.1s;
-    height: 245px;
+    height: 250px;
 }
 
 

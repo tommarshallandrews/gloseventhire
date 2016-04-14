@@ -1,4 +1,3 @@
-
 @include('masters.header')
 
 @include('masters.navigation')
@@ -39,7 +38,7 @@
 
 
 
-            {!! Form::open(array('url'=>'orders/updateAddress', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form', 'method' => 'post')) !!}
+            {!! Form::open(array('url'=>'users/updateAddress', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form', 'method' => 'post')) !!}
 
             @if($order->postcode !== 'Collected')
 
@@ -91,7 +90,6 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="county">Postcode</label>
                         <input type="text" name="postcode" placeholder="Postcode" class="form-control" value="{{ $order->postcode }}">
                         <p>Updating this postcode will change the delivery charge. Please set the correct postcode in the order page <a href"<a href="{{ url('/quote') }}/{{ $order->id }}"><span class="bold underline">here</span></a>
                       </div>
