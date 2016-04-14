@@ -444,7 +444,7 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
 
         Session::flash('message','That\'s saved and someone will contact you shortly');
         Session::flash('alert-class', "alert-success");
-        return Redirect::to('users/dashboard');
+        return Redirect::to('quote/' . $order->id);
     }
 
 

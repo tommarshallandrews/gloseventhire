@@ -60,13 +60,13 @@
 
                       <div class="checkbox">
                         <!--<input type="checkbox" value="" id="shop-filter-checkbox_1" >-->
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/0/{{$rangeSlug}}" class="<?php if($groupSlug == '0'){ echo("red"); }  ?>">[All]</a></label>
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/0/{{$rangeSlug}}" class="<?php if($groupSlug == '0'){ echo("blue"); }  ?>">[All]</a></label>
                       </div>
 
                       @foreach($groups as $group)
                       <div class="checkbox">
                         <!--<input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($groupSlug == $group->slug){ echo("checked"); }  ?>> -->
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$group->slug}}/{{$rangeSlug}}" class="<?php if($groupSlug == $group->slug){ echo("red"); }  ?>">{{$group->name}}</a></label>
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$group->slug}}/{{$rangeSlug}}" class="<?php if($groupSlug == $group->slug){ echo("blue"); }  ?>">{{$group->name}}</a></label>
                       </div>
                       @endforeach
 
@@ -79,12 +79,11 @@
                       </h3>
                       <div class="checkbox">
                         <input type="checkbox" value="" id="shop-filter-checkbox_1">
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$groupSlug}}/0">[All]</a></label>
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$groupSlug}}/0" class="<?php if($rangeSlug == '0'){ echo("blue"); }  ?>">[All]</a></label>
                       </div>
                       @foreach($ranges as $range)
                       <div class="checkbox">
-                        <input type="checkbox" value="" id="shop-filter-checkbox_1" <?php if($rangeSlug == $range->slug){ echo("checked"); }  ?>>
-                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$groupSlug}}/{{$range->slug}}">{{$range->name}}</a></label>
+                        <label for="shop-filter-checkbox_1"><a href="{{ url('/products') }}/{{$cat}}/{{$groupSlug}}/{{$range->slug}}" class="<?php if($rangeSlug == $range->slug){ echo("blue"); }  ?>">{{$range->name}}</a></label>
                       </div>
                       @endforeach
 

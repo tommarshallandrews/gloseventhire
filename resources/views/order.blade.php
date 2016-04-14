@@ -9,6 +9,29 @@
     ================================================== -->
 
       <div class="container">
+
+
+
+    <div class="row">
+      <div class="col-sm-12">
+
+
+    @if (Session::has('message'))
+          <div class="alert {{ Session::get('alert-class') }}">{{ Session::get('message') }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          </div>
+    @endif
+
+
+      </div>
+    </div> 
+
+
+
+
+
+
+
         <div class="row">
           <div class="col-sm-4">
             <div class="checkout__block">
@@ -208,6 +231,8 @@
 
 
           </div>
+
+           </div>
 
 
         </div> <!-- / .row -->
