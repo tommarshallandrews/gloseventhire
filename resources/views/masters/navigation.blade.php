@@ -122,10 +122,10 @@
 
 
           <button type="button" class="navbar-toggle btn-xs" data-toggle="collapse" data-target="#productbar">
-            View products
+            <i class="fa fa-search" aria-hidden="true"></i> View products
           </button>
           <a href="{{ url('/quote') }}/{{ $getOrder->order() }}" type="button" class="navbar-toggle btn-xs" >
-            Quote
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Quote
           </a>
 
         </div> <!-- / .navbar-header -->

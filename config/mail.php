@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'ingo@gloseventhire.co.uk', 'name' => 'Gloucester Events Hire'],
+    'from' => ['address' => 'info@gloseventhire.co.uk', 'name' => 'Gloucester Events Hire'],
 
     /*
     |--------------------------------------------------------------------------

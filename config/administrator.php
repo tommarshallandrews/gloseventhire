@@ -86,8 +86,8 @@ return array(
 	 */
 	'permission'=> function()
 	{
-		return true;
-		//return Auth::user()->level == 1;
+		//return true;
+		return Auth::user()->level == 1;
 	},
 
 	/**

@@ -148,13 +148,17 @@ class ProductsController extends Controller
             $rangeName = $rangeId->name;
             }       
 
+          //  return $range_id;
+
         //
         $results = Product::with('range','group')
-        ->where('cat_id','LIKE', $cat_id)
+        ->where('cat_id','LIKE', $cat_id, 'AND')
         ->where('group_id', 'LIKE', $group_id,  'AND')
         ->where('range_id', 'LIKE', $range_id) 
         ->orderby('order')   
         ->paginate(12);
+
+       // return $cat_id . '-' . $group_id . '-' .$range_id ;
 
         $groups = Group::where('cat_id', 'LIKE', $cat_id)  
         ->get();

@@ -159,11 +159,11 @@
   $(function() {
     $(".productThumb")
         .mouseover(function() { 
-            var src = $(this).attr("src").replace("A.jpeg", "B.jpeg");
+            var src = $(this).attr("src").replace("_A.jpeg", "_B.jpeg");
             $(this).attr("src", src);
         })
         .mouseout(function() {
-            var src = $(this).attr("src").replace("B.jpeg", "A.jpeg");
+            var src = $(this).attr("src").replace("_B.jpeg", "_A.jpeg");
             $(this).attr("src", src);
         });
 });
