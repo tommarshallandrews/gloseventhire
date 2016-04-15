@@ -51,7 +51,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Ooops! There's a glitch on our servers.</div>
+                <div class="title">Ooops! This page doesn't exist anymore</div>
                 <p>Click <a href="http://gloseventhire.co.uk">here</a> to go to our new homepage</p>
             </div>
         </div>
