@@ -87,7 +87,12 @@ return array(
 	'permission'=> function()
 	{
 		//return true;
+		if(!Auth::check())
+		{
+		return Redirect::to('users/login');
+		}else{
 		return Auth::user()->level == 1;
+		};
 	},
 
 	/**
