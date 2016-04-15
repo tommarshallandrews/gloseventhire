@@ -153,12 +153,17 @@ class OrdersController extends Controller
                 $orderCount = $orderCount + 1;
 
             }
+             //add delivery
+            $totalvat = $totalvat + ($order->distance * Config::get('app.poundsPerMile') * 0.2 * 100) ;
+            $totaltotal = $totaltotal + ($order->distance * Config::get('app.poundsPerMile') * 1.2 * 100);
+
+           // return $totaltotal;
 
             Session::put('orderCount', $orderCount);
 
             //return $productcost;
         
-        Session::put('order', $order->id);
+    Session::put('order', $order->id);
     Session::forget('keywords');
     Session::forget('title');
 
