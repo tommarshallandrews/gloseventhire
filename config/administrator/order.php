@@ -31,6 +31,11 @@ return array(
             'type' => 'text',
         ),
 
+        'start_date' => array(
+            'title' => 'Event start date',
+            'type' => 'text',
+        ),
+
         'status' => array(
             'title' => 'Status',
             'type' => 'text',
@@ -112,25 +117,50 @@ return array(
             'type' => 'text',
         ),
 
-     
-        'user' => array(
-    'type' => 'relationship',
-    'title' => 'User',
-    'name_field' => 'lastname', //what column or accessor on the other table you want to use to represent this object
-    'options_sort_field' => "CONCAT(firstname, ' ' , lastname)",
-),
-
-
-
-        'status' => array(
+         'status' => array(
             'title' => 'Status',
             'type' => 'enum',
             'options' => array('Open','Quote','Processing','Paid','Complete','Cancelled','Refunded'), //must be an array
         ),
 
 
+        'address1' => array(
+        'title' => 'Event Address 1',
+        'type' => 'text',
+        ),     
 
-     
+        'address2' => array(
+        'title' => 'Event Address 2',
+        'type' => 'text',
+        ),    
+
+        'town' => array(
+        'title' => 'Event Town',
+        'type' => 'text',
+        ), 
+
+        'county' => array(
+        'title' => 'Event County',
+        'type' => 'text',
+        ), 
+
+        'postcode' => array(
+        'title' => 'Event Postcode',
+        'type' => 'text',
+        ), 
+
+
+
+
+
+
+    'user' => array(
+    'type' => 'relationship',
+    'title' => 'User ID',
+    'name_field' => 'id', //what column or accessor on the other table you want to use to represent this object
+    'editable' => false,
+),
+ 
 
 
         'created_at' => array(
@@ -155,7 +185,7 @@ return array(
  */
 'actions' => array(
     //Clearing the site cache
-    'clear_cache' => array(
+    'view_order' => array(
         'title' => 'Launch quote details',
         'messages' => array(
             'active' => 'Launching window...',
@@ -179,6 +209,31 @@ return array(
         }
     ),
 
+
+
+    'update_order' => array(
+        'title' => 'Update order',
+        'messages' => array(
+            'active' => 'Launching window...',
+            'success' => 'Cache cleared!',
+            'error' => 'There was an error while clearing the cache',
+        ),
+        //the settings data is passed to the function and saved if a truthy response is returned
+        'action' => function(&$data)
+        {
+            //Cache::flush();
+            //return $data;
+            //Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
+            return redirect('quote/' . $data->id);
+            //return Redirect::route('orders.show');
+
+            //return true to flash the success message
+            //return false to flash the default error
+            //return a string to show a custom error
+            //return a Response::download() to initiate a file download
+            //return true;
+        }
+    ),
 
 
     ),
