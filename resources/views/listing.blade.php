@@ -6,11 +6,13 @@
 <style>
 body {
   font-family: sans-serif;
+  font-size: 0.7em;
 }
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-    padding: 5px;
+    padding: 3px;
+
 }
 </style>
 
@@ -169,7 +171,7 @@ table, th, td {
 
 <tr>
     <td>
-    Address 1
+    Postcode
     </td>
     <td>
     {{ $order->postcode }}
