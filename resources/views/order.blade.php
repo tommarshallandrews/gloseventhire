@@ -56,7 +56,7 @@
                     else
                     {
                   ?>
-                    <span class="colorbox-quote" data-toggle="tooltip" data-placement="top" title="" style="background:{{$product->pivot->colour}}"></span>
+                    <span class="colorbox-quote" data-toggle="tooltip" data-placement="top" title="" style="background:{{$product->pivot->hex}}"></span>
                   <?php
                     } 
                   ?>
@@ -67,7 +67,7 @@
                     <?php 
                     if($product->cat_id == 60)
                     {
-                        echo($product->group->name . " - " . $product->group->collection);
+                        echo($product->group->name . " - " . $product->pivot->colour .' - '. $product->group->collection );
                     }
                     else
                     {
@@ -201,8 +201,8 @@
               <div class="left large grey">Delivery - none:</div>
               <div class="right large grey">Free</div>
               @else
-              <div class="left large grey">Delivery ({{ number_format($order->distance/1609 , 0) }} miles):</div>
-              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile')/1609, 0) }}.00</div>
+              <div class="left large grey">Delivery ({{ number_format($order->distance , 0) }} miles):</div>
+              <div class="right large grey">£{{ number_format($order->distance * Config::get('app.poundsPerMile'), 0) }}.00</div>
               @endif
               <div class="clearfix"></div>
 

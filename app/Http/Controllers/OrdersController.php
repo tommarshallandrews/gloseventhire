@@ -23,6 +23,7 @@ use Redirect;
 use Mail;
 use Config;
 
+
 class OrdersController extends Controller
 {
     /**
@@ -113,8 +114,6 @@ class OrdersController extends Controller
         if ($order->user_id !== Auth::user()->id && Auth::user()->level == 0){
             return "Order not avaialble to you";
         }
-
-
             //cost calculations
 
             $lineproduct = 0;
@@ -168,6 +167,18 @@ class OrdersController extends Controller
     Session::forget('title');
 
         //return $order;
+        //admin list
+
+
+
+
+
+
+        if(Auth::user()->level == '1' && \Request::segment(1) == 'listing'){
+            $user = Auth::User()->find($order->user_id);
+            //return $user;
+            return View::make('listing', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal', 'user'));
+        }
 
         if ($order->status == 'Quote' || $order->status == 'Open'){
             return View::make('quote', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal'));

@@ -88,7 +88,7 @@ class ProductsController extends Controller
 
         
         
-        //return($details);
+        //return($colour);
         return View::make('details', compact('details','colour','similars'));
         //return $details->group->id;
     }

@@ -103,11 +103,15 @@
               @elseif($details->group->collection)
              <?php 
              $textcolour = 'white';
-             if($colour->slug == 'white' || $colour->slug == 'vanilla-slice' || $colour->slug == 'banana-milkshake' || $colour->slug == 'candyfloss' || $colour->slug == 'custard-cream') { $colour = 'black'; } 
+             if($colour->slug == 'white' || $colour->slug == 'vanilla-slice' || $colour->slug == 'banana-milkshake'  || $colour->slug == 'candyfloss'  || $colour->slug == 'custard-cream') { $textcolour = 'black'; } 
               ?>
-            <span class="colorbox"  data-placement="top" style="background:{{ $colour->hex  }}">
+
+
+
+            <span class="colorbox"  data-placement="top" style="background:{{ $colour->hex }}">
               <div class="{{$textcolour}} huge">{{ $colour->name }} </div>
-              <span class="{{$textcolour}}">{{ $colour->description }} </span>
+              <span class="{{$textcolour}}">
+                {{ $colour->description }} </span>
             </span>
 
               @endif

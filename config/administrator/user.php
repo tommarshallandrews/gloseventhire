@@ -6,11 +6,11 @@
 
 return array(
 
-    'title' => 'Orders',
+    'title' => 'Users',
 
-    'single' => 'order',
+    'single' => 'user',
 
-    'model' => 'App\Order',
+    'model' => 'App\User',
 
      'form_width' => 600,
 
@@ -25,33 +25,19 @@ return array(
             'type' => 'text',
         ),  
 
-
-        'updated_at' => array(
-            'title' => 'Order Updated',
-            'type' => 'text',
-        ),
-
-        'status' => array(
-            'title' => 'Status',
-            'type' => 'text',
-        ),  
-
         'lastname' => array(
             'title' => 'Surname',
-            'relationship' => 'user',
-            'select' => 'lastname',
+            'type' => 'text',
         ),
 
         'firstname' => array(
             'title' => 'First name',
-            'relationship' => 'user',
-            'select' => 'firstname',
+            'type' => 'text',
         ),
 
         'email' => array(
             'title' => 'Email',
-            'relationship' => 'user',
-            'select' => 'email',
+            'type' => 'text',
         ),
 
         'postcode' => array(
@@ -70,14 +56,6 @@ return array(
         'id',
 
 
-       'status' => array(
-            'type' => 'enum',
-            'title' => 'Status',
-            'options' => array('open','quote','paid','complete','cancelled','refunded'), //must be an array
-        ),
-
-        
-
         'updated_at' => array(
             'title' => 'Order Updated',
             'type' => 'date',
@@ -85,12 +63,9 @@ return array(
         ),
 
 
-        'user' => array(
-            'type' => 'relationship',
-            'title' => 'Email (orderer)',
-            'name_field' => 'email',
-            'autocomplete' => true,
-            'num_options' => 10, //default is 10
+        'lastname' => array(
+            'type' => 'text',
+            'title' => 'Surname',
         ),
 
 
@@ -108,33 +83,48 @@ return array(
     'edit_fields' => array(
 
         'id' => array(
-            'title' => 'Order ID',
+            'title' => 'User ID',
             'type' => 'text',
         ),
 
-     
-        'user' => array(
-    'type' => 'relationship',
-    'title' => 'User',
-    'name_field' => 'lastname', //what column or accessor on the other table you want to use to represent this object
-    'options_sort_field' => "CONCAT(firstname, ' ' , lastname)",
-),
+        'firstname' => array(
+        'title' => 'First name',
+        'type' => 'text',
+        ),  
 
+        'lastname' => array(
+        'title' => 'Last name',
+        'type' => 'text',
+        ),  
 
+        'address1' => array(
+        'title' => 'Address 1',
+        'type' => 'text',
+        ),     
 
-        'status' => array(
-            'title' => 'Status',
-            'type' => 'enum',
-            'options' => array('Open','Quote','Processing','Paid','Complete','Cancelled','Refunded'), //must be an array
-        ),
+        'address2' => array(
+        'title' => 'Address 2',
+        'type' => 'text',
+        ),    
 
+        'town' => array(
+        'title' => 'Town',
+        'type' => 'text',
+        ), 
 
+        'county' => array(
+        'title' => 'County',
+        'type' => 'text',
+        ), 
 
-     
+        'postcode' => array(
+        'title' => 'Postcode',
+        'type' => 'text',
+        ), 
 
 
         'created_at' => array(
-            'title' => 'Billing Created',
+            'title' => 'Created',
             'editable' => false,
         ), 
 
@@ -149,14 +139,10 @@ return array(
 
     ),
 
-
-    /**
- * This is where you can define the model's custom actions
- */
 'actions' => array(
     //Clearing the site cache
     'clear_cache' => array(
-        'title' => 'Launch quote details',
+        'title' => 'View quotes page',
         'messages' => array(
             'active' => 'Launching window...',
             'success' => 'Cache cleared!',
@@ -168,7 +154,7 @@ return array(
             //Cache::flush();
             //return $data;
             //Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
-            return redirect('listing/' . $data->id);
+            return redirect('dashboard/' . $data->id);
             //return Redirect::route('orders.show');
 
             //return true to flash the success message
@@ -178,17 +164,8 @@ return array(
             //return true;
         }
     ),
-
-
-
-    ),
-
-
-
-
-
-
-    
+),
+  
 
 
 );

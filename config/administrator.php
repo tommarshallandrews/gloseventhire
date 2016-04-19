@@ -73,7 +73,7 @@ return array(
 		'kitchen_equipment',
 		'service_equipment',
 		'Linen' => array( 'linen','colours'),
-		'order',
+		'Users' => array( 'user','order'),
 		'Site Content' => array( 'faq','pages'),
 		'enquiry',
 		),
