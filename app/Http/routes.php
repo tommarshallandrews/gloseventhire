@@ -103,7 +103,7 @@ Route::get('/quote/new', [ 'as' => 'orders.newquote', 'uses' => 'OrdersControlle
 
 Route::get('/quote/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
 
-Route::get('/listing/{id}', [ 'as' => 'orders.show', 'uses' => 'OrdersController@show' ]);
+Route::get('/listing/{id}', [ 'as' => 'orders.listing', 'uses' => 'OrdersController@show' ]);
 
 Route::get('/address/{id}', [ 'as' => 'orders.address', 'uses' => 'OrdersController@address' ]);
 
