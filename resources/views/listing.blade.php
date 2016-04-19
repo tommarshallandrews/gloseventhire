@@ -24,7 +24,8 @@ table, th, td {
                 Order #{{$order->id}}
 </h2>
 <h4>
-                Status: {{$order->status}}
+                Status: {{$order->status}}<br>
+                Updated: {{date('d-m-Y / h:i', strtotime($order->updated_at))}}
 </h4>
 
 
@@ -101,11 +102,31 @@ table, th, td {
 
 </table>
 
-<h3>Event Address</h3>
+<h3>Event Details</h3>
 
 
 
 <table width="100%" border="1">
+
+
+<tr>
+    <td  width="200px">
+    Start date
+    </td>
+    <td>
+    {{ $order->start_date }}
+    </td>
+</tr>
+
+<tr>
+    <td  width="200px">
+    End date
+    </td>
+    <td>
+    {{ $order->end_date }}
+    </td>
+</tr>
+
 <tr>
     <td  width="200px">
     Address 1

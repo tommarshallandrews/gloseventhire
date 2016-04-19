@@ -254,7 +254,6 @@ font-weight: bold;
 .colorbox {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    cursor: pointer;
     padding: 15px;
     display: block;
 }
@@ -514,3 +513,9 @@ p {
 
 
 
+.filter {
+    margin: 0 0 9px;
+    line-height: 1.5em;
+    font-size: 1em;
+    padding-left: 20px;
+}
