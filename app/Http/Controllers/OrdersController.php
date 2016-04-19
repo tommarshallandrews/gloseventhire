@@ -176,7 +176,7 @@ class OrdersController extends Controller
 
         if(Auth::user()->level == '1' && \Request::segment(1) == 'listing'){
             $user = Auth::User()->find($order->user_id);
-            //return $user;
+            return $user;
             return View::make('listing', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal', 'user'));
         }
 
@@ -441,6 +441,7 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
     {
         $order = Order::find(Session::get('order'));
         $order->address1 = $request->address1;
+        $order->address2 = $request->address2;
         $order->town = $request->town;
         $order->county = $request->county;
         $order->postcode = $request->postcode;
@@ -448,6 +449,8 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
         $order->status = 'Processing';
 
         $order->save();
+
+        //return $order;
 
         //send verification email
         Mail::send('emails.notify', ['order' => $order], function($message) {
