@@ -6,7 +6,7 @@
     <body>
 
         
-        <h2>Notification of order # </h2>
+        <h2>Notification of order </h2>
 
         <div>
 
