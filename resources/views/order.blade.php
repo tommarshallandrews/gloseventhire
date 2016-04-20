@@ -50,7 +50,7 @@
                     if($product->image1)
                     {
                    ?>     
-                  <img src="http://madigital.co.uk/images/{{$product->image1}}" class="img-responsive" alt="...">
+                  <img src="{{ url('/images') }}/{{$product->image1}}" class="img-responsive" alt="...">
                   <?php
                     }
                     else

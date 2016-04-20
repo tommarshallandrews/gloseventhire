@@ -176,7 +176,6 @@ class OrdersController extends Controller
 
         if(Auth::user()->level == '1' && \Request::segment(1) == 'listing'){
             $user = Auth::User()->find($order->user_id);
-            return $user;
             return View::make('listing', compact('order', 'totalproduct', 'totaldirty', 'totalvat', 'totaltotal', 'user'));
         }
 
