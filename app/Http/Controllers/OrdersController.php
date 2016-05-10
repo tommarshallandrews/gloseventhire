@@ -128,6 +128,11 @@ class OrdersController extends Controller
 
                 //calculate line product cost
                 $lineproduct = ($products->price * $products->pivot->quantity);
+
+                //except for white linen which uses proce2
+                if ($products->pivot->hex == "#FFFFFF") {
+                $lineproduct = ($products->price2 * $products->pivot->quantity);
+                }
                 
                 //add dirty charge if set
                 if ($order->return == 'dirty' && $products->dirty == 1){

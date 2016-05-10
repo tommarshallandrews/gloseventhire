@@ -78,11 +78,21 @@
                   </h5>
                   <div class="checkout-cart-item__footer">
                     <div class="input_qty input_qty_sm pull-right bold">
+                      @if($product->pivot->hex == '#FFFFFF')
+                      £{{ number_format($product->pivot->quantity * $product->price2 / 100, 2)}}
+                      @else
                       £{{ number_format($product->pivot->quantity * $product->price / 100, 2)}}
+                      @endif
                     </div>
                     <div class="checkout-cart-item__price pull-left">
                       {!! Form::open(array('url' => 'orders/edit', 'method' => 'post', 'class' => 'form-inline')) !!}
+
+                      @if($product->pivot->hex == '#FFFFFF')
+                      £{{ number_format($product->price2 / 100, 2) }} x <input type="text" class="quantity_form" name="quantity" id="quantity" value="{{ $product->pivot->quantity }}">
+                      @else
                       £{{ number_format($product->price / 100, 2) }} x <input type="text" class="quantity_form" name="quantity" id="quantity" value="{{ $product->pivot->quantity }}">
+                      @endif
+
                       <input type="hidden" name="action_id" value="update">
                       <button type="submit" class="btn btn-default btn-xs">update</button>
                       <input type="hidden" name="product_id" value="{{$product->id}}">

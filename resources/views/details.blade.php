@@ -33,7 +33,8 @@
 
             <!-- Price -->
             <div class="shop-item-cart__price">
-              £{{ number_format($details->price / 100, 2)}} each
+              £{{ number_format($price / 100, 2)}} each
+
             
 
             <button type="button" class="btn btn-default btn-sml" data-container="body" data-toggle="popover" data-placement="top" data-content="This charge is for aech item for one hire period. Normally a hire period is Friday-monday or 48 hours during the week." title="" data-original-title="Cost notes" aria-describedby="popover948211">

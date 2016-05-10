@@ -42,16 +42,26 @@ class ProductsController extends Controller
         //return $colour;
         $colour = null;
 
+
         $keywords = '';
+
+        $details = Product::with('range','group')
+        ->find($id);
+
+        $price = $details->price;
 
         if($colourslug){
         $colour = Colour::where('slug', '=', $colourslug)->first();
         $keywords = $keywords . $colour->name . ', ';
+            if($colour->hex == "#FFFFFF") {
+                $price = $details->price2;
+            }
         }
 
 
-         $details = Product::with('range','group')
-        ->find($id);
+
+
+        
 
         //return $details;
 
@@ -83,13 +93,22 @@ class ProductsController extends Controller
 
             Session::flash('keywords', $keywords);
             Session::flash('title', $details->name);
+
+            //return $colour->hex;
+            
+            //except for white linen which uses price2
+            
+
+
+
+           // return $price;
             
         //select similar products for linen TODO
 
         
         
         //return($colour);
-        return View::make('details', compact('details','colour','similars'));
+        return View::make('details', compact('details','colour','similars', 'price'));
         //return $details->group->id;
     }
 

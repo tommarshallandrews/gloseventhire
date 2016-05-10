@@ -54,7 +54,15 @@ table, th, td {
     </td>
     <td>{{$product->code }}</td>
     <td>{{$product->pivot->quantity }}</td>
-    <td>£{{ number_format($product->pivot->quantity * $product->price / 100, 2)}}</td>
+    <td>
+      
+                     @if($product->pivot->hex == '#FFFFFF')
+                      £{{ number_format($product->pivot->quantity * $product->price2 / 100, 2)}}
+                      @else
+                      £{{ number_format($product->pivot->quantity * $product->price / 100, 2)}}
+                      @endif
+
+    </td>
   </tr>
 
 @endforeach
