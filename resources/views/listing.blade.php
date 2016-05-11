@@ -55,7 +55,7 @@ table, th, td {
     <td>{{$product->code }}</td>
     <td>{{$product->pivot->quantity }}</td>
     <td>
-      
+
                      @if($product->pivot->hex == '#FFFFFF')
                       £{{ number_format($product->pivot->quantity * $product->price2 / 100, 2)}}
                       @else
@@ -266,6 +266,15 @@ table, th, td {
     </td>
     <td>
     {{ $user->postcode }}
+    </td>
+</tr>
+
+<tr>
+    <td>
+    Phone
+    </td>
+    <td>
+    {{ $user->phone }}
     </td>
 </tr>
 

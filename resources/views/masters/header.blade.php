@@ -13,7 +13,6 @@
 
     <title>{{Config::get('app.companyName')}} {{ $getMeta->title() }}</title>
 
-    <script src="{{URL::to('/')}}/assets/js/jquery.min.js"></script>
 
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -54,9 +53,7 @@
 <meta name="theme-color" content="#ffffff">
 
 
-    <script type="text/javascript"
-    src="http://maps.google.com/maps/api/js?sensor=false">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYRVfogQzaISoL79obSzg0M5yAZ3sCkPA&callback=initMap" async defer></script>
 
 <script type="text/javascript">
   function initialize() {
@@ -86,7 +83,8 @@
     });
  
   }
- 
+
+
 </script>
 
 

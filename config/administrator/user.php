@@ -44,6 +44,8 @@ return array(
             'title' => 'Postcode',
             'type' => 'text',
         ),
+
+
         
     ),
 
@@ -119,6 +121,11 @@ return array(
 
         'postcode' => array(
         'title' => 'Postcode',
+        'type' => 'text',
+        ), 
+
+        'phone' => array(
+        'title' => 'Phone',
         'type' => 'text',
         ), 
 

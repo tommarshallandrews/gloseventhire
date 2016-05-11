@@ -160,7 +160,7 @@
 
     <!-- JS Custom -->
     <script src="{{URL::to('/')}}/js/custom.js"></script>
-<script type="text/javascript">(function () {
+    <script type="text/javascript">(function () {
         return window.SIG_EXT = {};
       })()</script>
 
