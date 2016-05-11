@@ -272,8 +272,9 @@ class OrdersController extends Controller
         //return $order;
 
 
-    //return $product_id;
-    $order->product()->detach($product_id);
+    //derach product is the same as existing    
+    //$order->product()->detach($product_id, ['hex' => $colour_hex]);
+    \DB::delete('delete from order_product where order_id = ? AND product_id = ? AND hex = ?', array($order->id,$product_id,$colour_hex));
     //attach if not 0 
     if(Input::get('quantity') != 0){
     $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_name, 'hex' => $colour_hex]); 

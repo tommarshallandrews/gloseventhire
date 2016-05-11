@@ -54,7 +54,6 @@
                       <a href="{{ url('/documents') }}/TableLinenSizeGuide.pdf" class="btn btn-info block"><i class="fa fa-download"></i> Download Linen size guide </a>
 
 
-
             @else
 
                                   <!-- Checkboxes -->
@@ -75,7 +74,7 @@
                       @endforeach
 
 
-<div class="spacer20"></div>
+                      <div class="spacer20"></div>
 
 
                       <h3 class="headline">

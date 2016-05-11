@@ -71,18 +71,19 @@
                     else
                     {
                       //echo($product->group_id);
-                      echo($product->name . " - " . $product->range->name);
-                    } 
+                      echo($product->name . " - " . $product->range->name);                    } 
                     ?>
                
                   </h5>
                   <div class="checkout-cart-item__footer">
                     <div class="input_qty input_qty_sm pull-right bold">
+
                       @if($product->pivot->hex == '#FFFFFF')
                       £{{ number_format($product->pivot->quantity * $product->price2 / 100, 2)}}
                       @else
                       £{{ number_format($product->pivot->quantity * $product->price / 100, 2)}}
                       @endif
+
                     </div>
                     <div class="checkout-cart-item__price pull-left">
                       {!! Form::open(array('url' => 'orders/edit', 'method' => 'post', 'class' => 'form-inline')) !!}

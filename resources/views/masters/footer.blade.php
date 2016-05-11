@@ -58,6 +58,10 @@
             </div>
 
 
+
+
+@if(Route::getCurrentRoute()->uri() == '/')
+
             <!-- Quick Links -->
             <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
@@ -66,7 +70,25 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                   </div>
                 </div>
-              </div>            
+            </div>   
+
+@else
+
+            <div class="col-xs-12 col-sm-4">
+              <ul class="footer__social">
+                <li class="twitter"><a href="https://twitter.com/gloseventhire" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li class="facebook"><a href="https://www.facebook.com/gloseventhire/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li class="linkedin"><a href="https://www.linkedin.com/company/gloucester-event-hire-ltd" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+
+
+
+
+            
+@endif
+
             </div>
 
 
@@ -104,6 +126,10 @@
                 Copyright 2016 <a href="http://{{ Config::get('app.companyWebsite') }}">{{ Config::get('app.companyName') }}</a>. All Rights Reserved.
               </div>
             </div>
+
+
+@if(Route::getCurrentRoute()->uri() == '/')
+
             <div class="col-xs-12 col-sm-6">
               <ul class="footer__social">
                 <li class="twitter"><a href="https://twitter.com/gloseventhire" target="_blank"><i class="fa fa-twitter"></i></a></li>
@@ -111,9 +137,9 @@
                 <li class="linkedin"><a href="https://www.linkedin.com/company/gloucester-event-hire-ltd" target="_blank"><i class="fa fa-linkedin"></i></a></li>
                 <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
               </ul>
-
-
             </div>
+@endif
+
           </div> <!-- / .row -->
         </div> <!-- / .container -->
       </div> <!-- / .footer_bottom -->
