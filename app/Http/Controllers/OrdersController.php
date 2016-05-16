@@ -485,6 +485,8 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
     }
 
 
+
+
         public function getQuote()
     {
         $order = Order::find(Session::get('order'));
@@ -492,10 +494,10 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
         $order->save();
 
         //send verification email
-        Mail::send('emails.notify', ['order' => $order], function($message) {
+        Mail::send('emails.quote', ['order' => $order], function($message) {
          $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
          $message->to(Config::get('app.adminEmail'), Config::get('app.adminEmailName'))
-         ->subject(Config::get('app.companyName') . ' - Order notification');
+         ->subject(Config::get('app.companyName') . ' - Quote request notification');
         });
 
 
