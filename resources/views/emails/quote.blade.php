@@ -6,7 +6,7 @@
     <body>
 
         
-        <h2>Notification of quote ewquest </h2>
+        <h2>Notification of quote request </h2>
 
         <div>
 
