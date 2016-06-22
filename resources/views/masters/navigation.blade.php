@@ -16,10 +16,10 @@
 
 
 
-
 <div class="green-back">
 
 <div class="container">
+
         <div class="navbar-header">
 
           <!-- Navbar toggle -->
@@ -34,6 +34,12 @@
           <a class="navbar-logo" href="{{ url('/') }}">
             <img src="{{ url('/') }}/img/gloucester-events-hire.png" width="350px" height="55px">
           </a>
+
+          <span class=" hidden-sm hidden-xs left">
+          <a class="slush" href="{{ url('/') }}/products/details/126">
+            <img src="{{ url('/') }}/img/slush-machines.png" width="235px" height="71px">
+          </a>
+          </span>
 
         </div> <!-- / .navbar-header -->
         <div class="collapse navbar-collapse" id="topbar">
