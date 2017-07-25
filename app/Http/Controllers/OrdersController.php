@@ -269,12 +269,22 @@ class OrdersController extends Controller
         Session::flash('alert-class', "alert-danger");
         return Redirect::to('users/dashboard');
         }
-        //return $order;
+        
+
+        
+
+
+
 
 
     //derach product is the same as existing    
     //$order->product()->detach($product_id, ['hex' => $colour_hex]);
+        if($colour_hex){
     \DB::delete('delete from order_product where order_id = ? AND product_id = ? AND hex = ?', array($order->id,$product_id,$colour_hex));
+         }else{   
+    \DB::delete('delete from order_product where order_id = ? AND product_id = ?', array($order->id,$product_id));
+        }
+    //return $product_id;
     //attach if not 0 
     if(Input::get('quantity') != 0){
     $order->product()->attach($product_id, ['quantity' => $quantity, 'colour' => $colour_name, 'hex' => $colour_hex]); 
@@ -504,6 +514,7 @@ public function updateAddress(Requests\AddressUpdateRequest $request)
 
         Session::flash('message','That\s saved and someone will contact you shortly');
         Session::flash('alert-class', "alert-success");
+        Session::flash('order-status', "placed");
         return Redirect::to('users/dashboard');
 
     }

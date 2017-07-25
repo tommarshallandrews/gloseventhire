@@ -11,7 +11,7 @@ return [
     'adminEmailName' => 'Gloucester Event Hire',
     //'adminEmail' => 'tommarshallandrews@gmail.com',
 
-    'noreplyEmail' => 'noreply@gloseventhire.co.uk',
+    'noreplyEmail' => 'noreply@gloucester-event-hire-mail.co.uk',
     'noreplyEmailName' => 'No Reply',
 
     'poundsPerMile' => 2,

@@ -132,6 +132,8 @@ Route::post('/orders/updateAddress', [ 'as' => 'orders.updateAddress', 'uses' =>
 View::composer('masters.navigation', function($view)
 {   
     $group = Cat::with('groups')->orderby('name')->get(); 
+
+    //dd($group);
     $view->with(['cats'=> $group, 'getOrder' => app('App\getOrder')]);
 });
 

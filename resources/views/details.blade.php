@@ -37,7 +37,7 @@
 
             
 
-            <button type="button" class="btn btn-default btn-sml" data-container="body" data-toggle="popover" data-placement="top" data-content="This charge is for aech item for one hire period. Normally a hire period is Friday-monday or 48 hours during the week." title="" data-original-title="Cost notes" aria-describedby="popover948211">
+            <button type="button" class="btn btn-default btn-sml" data-container="body" data-toggle="popover" data-placement="top" data-content="This charge is for each item for one hire period. Normally a hire period is Friday-monday or 48 hours during the week." title="" data-original-title="Cost notes" aria-describedby="popover948211">
                 info
             </button>
           </div>
@@ -124,7 +124,7 @@
 
 
 <!-- Item Description -->   
-@if($details->notes)       
+@if($details->notes || $details->document1 || $details->range_id == '14')       
 
 
 
@@ -135,15 +135,25 @@
                 <span>Notes and usage</span>
               </h3>
 
-              @if($details->document1) 
+
+              @if($details->document1 || $details->range_id == '14') 
               <div class="section">
-               <a href="{{ url('/documents') }}/{{$details->document1}}" class="btn btn-info block"><i class="fa fa-download"></i> Download Manual</a>
+                                @if($details->document1)           
+                                <a href="{{ url::to('/documents') }}/{{$details->document1}}" class="btn btn-info block"><i class="fa fa-download" target="_blank"></i> Download Manual</a>
+                                @endif
+
+                                @if($details->range_id =='14')
+                                &nbsp;<a href="{{ url::to('/documents') }}/Propane-Cylinder-Safety-Sheet.pdf" class="btn btn-danger block" target="_blank"><i class="fa fa-download"></i> Propane Cylinder Safety Sheet</a>
+                                @endif
+          
               </div>
               @endif
 
+              @if($details->notes)
               <div class="section">
                <?php print($details->notes) ?>
               </div>
+              @endif
 
             </div>
           </div> 

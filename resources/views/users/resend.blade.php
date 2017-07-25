@@ -74,7 +74,7 @@
         </div>
 
 
- @include('masters.footer') 
+
 
 
 

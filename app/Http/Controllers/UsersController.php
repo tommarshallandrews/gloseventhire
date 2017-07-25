@@ -369,7 +369,7 @@ public function postResend(Request $request) {
         Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
          $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
          $message->to($user->email)
-         ->subject('Gloucester Event Hire - Email verification');
+         ->subject('Gloucester Event Hire - Email verification resend');
         });
 
 
@@ -410,7 +410,7 @@ public function postResend(Request $request) {
 
 
          Mail::send('emails.messageNotification', ['name' => $enquiry->name, 'email' => $enquiry->email, 'enquiry' => $enquiry->enquiry, 'id' => $enquiry->id], function($message) {
-         $message->from(Config::get('app.adminEmail'), Config::get('app.noreplyEmailName'));
+         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
          $message->to(Config::get('app.adminEmail'), Config::get('app.adminName'))
          ->subject(Config::get('app.companyName') . ' - Message notification');
         });

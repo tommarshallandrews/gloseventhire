@@ -152,7 +152,7 @@
                 <!-- check cat to show correct drops -->
                     @if($cat->id == 10 || $cat->id == 20 || $cat->id == 70)
                             
-                              @foreach($cat->ranges as $range)
+                              @foreach($cat->ranges->sortBy('order') as $range)
                                     <li><a href="{{ url('/products') }}/{{$cat->slug}}/0/{{$range->slug}}">{{$range->name}}</a></li>
                               @endforeach
                     
