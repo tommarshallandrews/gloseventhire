@@ -302,7 +302,7 @@ class UsersController extends Controller {
 
         if ( ! $user)
         {   
-            Session::flash('alert-class', 'alert-warning'); 
+            Session::flash('alert-class', 'alert-warning');
             return Redirect::to('users/dashboard')
             ->with('message', 'That confirmtion link is bad. Click on accounts to send another one')
             ->with('alert-class', 'alert-danger')
@@ -314,11 +314,10 @@ class UsersController extends Controller {
         $user->confirmation_code = null;
         $user->save();
 
-
         Auth::login($user);
 
         $currentorder = Order::where('user_id', $user->id)
-        ->where('status', 'quote')
+        ->where('status', 'open')
         ->first();
 
         if($currentorder)
@@ -328,8 +327,6 @@ class UsersController extends Controller {
 
 
         return View::make('thanks');
-
-
 
         //if there is a live order then redirect to that quote page
         if(session::has('order')){
