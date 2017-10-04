@@ -314,6 +314,9 @@ class UsersController extends Controller {
         $user->confirmation_code = null;
         $user->save();
 
+
+        Auth::login($user);
+
         $currentorder = Order::where('user_id', $user->id)
         ->where('status', 'quote')
         ->first();
