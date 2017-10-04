@@ -95,7 +95,10 @@ Route::get('/products/details/{id}/{colourslug?}', [ 'as' => 'products.details',
 Route::get('/products/{catagory}/{group}/{range}', [ 'as' => 'products.show', 'uses' => 'ProductsController@show' ]);
 
 
-
+Route::any('thanks', function()
+{
+    return View::make('thanks');
+ });
 
 //orders
 
