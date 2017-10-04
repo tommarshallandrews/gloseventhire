@@ -17,12 +17,13 @@
 
             <div class="checkout__block">
 
+            <!--  if user is has not registered -->
 
-        <!--  if user is has not registered -->         
-
-
-
-                      <h3 class="headline"><span>Billing address</span></h3>
+                      <h3 class="headline">
+                        <span>
+                          Billing address
+                        </span>
+                      </h3>
 
 
                       @if(Session::has('errors'))
@@ -38,11 +39,7 @@
 
 
 
-
             {!! Form::open(array('url'=>'users/addressbilling', 'class'=>'form-horizontal', 'id'=>'signupform', 'role'=>'form', 'method' => 'post')) !!}
-
-
-
 
                     <div class="form-group">
                                     <label for="address1" class="col-md-2 control-label">Address 1</label>
@@ -136,7 +133,7 @@
 
                     </form>
    
-        <!--  if user is has not registered -->
+            <!--  if user is has not registered -->
 
 
 

@@ -39,7 +39,7 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-sm-8 col-md-6 col-lg-5">
-                      <h1 class="shop-slideshow__heading">New ranges of china & cutlery available from May 2016</h1>
+                      <h1 class="shop-slideshow__heading">New ranges of china & cutlery available from May 2017</h1>
                     </div>
                   </div>
                 </div>
