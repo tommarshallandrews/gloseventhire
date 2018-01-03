@@ -175,7 +175,7 @@
     $('.input-group.date').datepicker({
     format: "dd-mm-yyyy",
     startDate: '+3d',
-    endDate: "01-01-2018",
+    endDate: "01-01-2021",
     todayBtn: "linked",
     autoclose: true,
     todayHighlight: true
