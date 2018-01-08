@@ -79,6 +79,7 @@ class UsersController extends Controller {
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->confirmation_code = $confirmation_code;
+        $user->confirmed = '1';
         $user->save();
 
         //send verification email
