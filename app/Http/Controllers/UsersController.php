@@ -92,7 +92,7 @@ class UsersController extends Controller {
 
         //Session::flash('registerMessage','Thanks for registering. we\'ve sent you an email with a validation link. Please check and validate you email address. If you don\'t see it pleaes check you spam folder or click ACCOUNT above to resend it' );
         //Session::flash('type', "success");
-        return Redirect::back();
+        return Redirect::to('users/dashboard');
 
 
         
