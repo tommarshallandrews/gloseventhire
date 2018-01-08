@@ -15,7 +15,8 @@ return [
     'noreplyEmailName' => 'No Reply',
 
     'poundsPerMile' => 2,
-   
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +163,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
         Frozennode\Administrator\AdministratorServiceProvider::class,
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+
 
 
     ],
@@ -214,6 +217,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
+        'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
 
     ],
 

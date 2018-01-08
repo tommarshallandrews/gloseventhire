@@ -103,6 +103,16 @@
                                         </div>
                                           <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
                                     </div>
+
+
+                                <div class="form-group">
+                                    <label for="icode" class="col-md-3 control-label">x</label>
+                                    <div class="col-md-6">
+                                        {!! Recaptcha::render() !!}
+                                        </div>
+
+                                    </div>
+
                                 
 
                                 <div class="form-group">
