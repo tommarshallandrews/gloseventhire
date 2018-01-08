@@ -357,7 +357,7 @@
 
                         <input type="hidden" name="status" value="quote">
 
-                        <button type="submit" class="btn btn-secondary btn-xs">Contact me</button>
+                        <button type="submit" class="btn btn-secondary btn-xs">Register me</button>
 
               {!! Form::close() !!}
 
