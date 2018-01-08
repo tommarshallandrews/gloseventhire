@@ -34,6 +34,7 @@ class UserAddRequest extends Request
         'phone' => 'required', 
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6',
+        'g-recaptcha-response' => 'required|recaptcha',
         'password_confirmation' => 'required|same:password'
             ];
 
