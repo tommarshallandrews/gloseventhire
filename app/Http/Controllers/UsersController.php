@@ -82,15 +82,15 @@ class UsersController extends Controller {
         $user->save();
 
         //send verification email
-        Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
-         $message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
-         $message->to($user->email)
-         ->subject('Gloucester Event Hire - Email verification');
-        });
+       // Mail::send('emails.verify', ['confirmation_code' => $confirmation_code], function($message) use ($user) {
+         //$message->from(Config::get('app.noreplyEmail'), Config::get('app.noreplyEmailName'));
+         //$message->to($user->email)
+         //->subject('Gloucester Event Hire - Email verification');
+        //});
 
 
-        Session::flash('registerMessage','Thanks for registering. we\'ve sent you an email with a validation link. Please check and validate you email address. If you don\'t see it pleaes check you spam folder or click ACCOUNT above to resend it' );
-        Session::flash('type', "success");
+        //Session::flash('registerMessage','Thanks for registering. we\'ve sent you an email with a validation link. Please check and validate you email address. If you don\'t see it pleaes check you spam folder or click ACCOUNT above to resend it' );
+        //Session::flash('type', "success");
         return Redirect::back();
 
 
