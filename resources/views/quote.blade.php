@@ -349,6 +349,10 @@
                       <div class="form-group">
                         <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control">
                       </div>
+                      
+                      <div class="form-group">
+                      {!! Recaptcha::render() !!}
+                      </div>
 
 
                         <input type="hidden" name="status" value="quote">
