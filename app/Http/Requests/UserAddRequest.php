@@ -42,4 +42,12 @@ class UserAddRequest extends Request
         Request::flash();  
     }
 
+
+         public function messages()
+    {
+        return [
+            'g-recaptcha-response.required' => 'Please check the "I am not a robot" box',
+        ];
+    }
+
 }
