@@ -58,6 +58,10 @@
                 <span class="help-block"></span>
               </div>
               <!-- reCAPTCHA -->
+              <div class="form-group">
+              {!! Recaptcha::render() !!}
+              </div>
+
 
               <!-- /reCAPTCHA -->
               <button type="submit" class="btn btn-lg btn-primary">Send Message</button>

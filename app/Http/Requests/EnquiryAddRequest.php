@@ -32,6 +32,7 @@ class EnquiryAddRequest extends Request
         'enquiry' => 'required',
         'name' => 'required', 
         'email' => 'required|email',
+        'g-recaptcha-response' => 'required|recaptcha',
 
             ];
 
