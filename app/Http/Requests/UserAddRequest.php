@@ -35,7 +35,7 @@ class UserAddRequest extends Request
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6',
         'password_confirmation' => 'required|same:password',
-        'g-recaptcha-response' => 'required|recaptcha',
+        'g-recaptcha-response' => 'recaptcha',
             ];
 
 
@@ -43,11 +43,6 @@ class UserAddRequest extends Request
     }
 
 
-         public function messages()
-    {
-        return [
-            'g-recaptcha-response.required' => 'Please check the "I am not a robot" box',
-        ];
-    }
+
 
 }
